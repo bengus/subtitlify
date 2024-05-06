@@ -32,7 +32,7 @@ final class HomeContainerModuleFactory: HomeContainerModuleFactoryProtocol {
                 }
                 return vc
             },
-            editorFlowModuleFactory: { BaseViewController() },
+            editorFlowModuleFactory: container.getEditorFlowModuleFactory(),
             aboutModuleFactory: { let vc = BaseViewController()
                 vc.onViewDidLoad = { [weak vc] in
                     vc?.view.backgroundColor = .yellow

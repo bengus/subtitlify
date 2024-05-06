@@ -10,7 +10,7 @@ import UIKit
 
 public extension UIViewController {
     /// Find topmost view controller from specified root view controller
-    class func topViewController(fromRootViewController rootViewController: UIViewController) -> UIViewController {
+    class func findTopViewController(fromRootViewController rootViewController: UIViewController) -> UIViewController {
         guard let presentedViewController = rootViewController.presentedViewController else {
             return rootViewController
         }
@@ -19,10 +19,10 @@ public extension UIViewController {
             let presentedNavigationController = presentedViewController as? UINavigationController,
             let lastViewController = presentedNavigationController.viewControllers.last {
             
-            return topViewController(fromRootViewController: lastViewController)
+            return findTopViewController(fromRootViewController: lastViewController)
         }
         
-        return topViewController(fromRootViewController: presentedViewController)
+        return findTopViewController(fromRootViewController: presentedViewController)
     }
     
     /// Checks if the controller is the root inside UINavigationController

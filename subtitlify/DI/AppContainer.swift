@@ -25,4 +25,16 @@ final class AppContainer: AppContainerProtocol {
     func getHomeContainerModuleFactory() -> HomeContainerModuleFactoryProtocol {
         return HomeContainerModuleFactory(container: self)
     }
+    
+    func getEditorFlowModuleFactory() -> EditorFlowModuleFactoryProtocol {
+        return EditorFlowModuleFactory(container: self)
+    }
+    
+    func getEditorModuleFactory() -> EditorModuleFactoryProtocol {
+        return EditorModuleFactory(container: self)
+    }
+    
+    func getMediaPermissionsModuleFactory() -> MediaPermissionsModuleFactoryProtocol {
+        return MediaPermissionsModuleFactory(container: self)
+    }
 }

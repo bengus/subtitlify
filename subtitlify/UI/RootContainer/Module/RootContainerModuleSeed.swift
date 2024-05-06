@@ -10,4 +10,5 @@ import Foundation
 public struct RootContainerModuleSeed {
     // Parameters required to build an instance of the module should be declared here
     // for example: objectId or things like that
+    public init() { }
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D30A7D852BE8F11400325A76 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7D842BE8F11400325A76 /* AppDelegate.swift */; };
-		D30A7D892BE8F11400325A76 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7D882BE8F11400325A76 /* ViewController.swift */; };
 		D30A7D8E2BE8F11500325A76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D30A7D8D2BE8F11500325A76 /* Assets.xcassets */; };
 		D30A7D912BE8F11500325A76 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D30A7D8F2BE8F11500325A76 /* LaunchScreen.storyboard */; };
 		D30A7D9D2BE8F82C00325A76 /* PinLayout in Frameworks */ = {isa = PBXBuildFile; productRef = D30A7D9C2BE8F82C00325A76 /* PinLayout */; };
@@ -52,12 +51,33 @@
 		D30A7E012BE9506900325A76 /* Design.Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E002BE9506900325A76 /* Design.Fonts.swift */; };
 		D30A7E032BE9507200325A76 /* Design.Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E022BE9507200325A76 /* Design.Colors.swift */; };
 		D30A7E052BE951D000325A76 /* Design.Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E042BE951D000325A76 /* Design.Appearance.swift */; };
+		D30A7E082BE95B8900325A76 /* NavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E072BE95B8900325A76 /* NavigationCoordinator.swift */; };
+		D30A7E0A2BE95B9200325A76 /* TrackableStackNavigationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E092BE95B9200325A76 /* TrackableStackNavigationCoordinator.swift */; };
+		D30A7E0F2BE95F2800325A76 /* EditorFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E0E2BE95F2800325A76 /* EditorFlowModule.swift */; };
+		D30A7E112BE95F3C00325A76 /* EditorFlowModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E102BE95F3C00325A76 /* EditorFlowModuleSeed.swift */; };
+		D30A7E132BE95F4500325A76 /* EditorFlowModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E122BE95F4500325A76 /* EditorFlowModuleInput.swift */; };
+		D30A7E152BE9608900325A76 /* EditorFlowModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E142BE9608900325A76 /* EditorFlowModuleFactory.swift */; };
+		D30A7E172BE9609000325A76 /* EditorFlowModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E162BE9609000325A76 /* EditorFlowModuleFactoryProtocol.swift */; };
+		D30A7E192BE9620300325A76 /* EditorFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E182BE9620300325A76 /* EditorFlowCoordinator.swift */; };
+		D30A7E302BE9662A00325A76 /* EditorModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E292BE9652600325A76 /* EditorModuleInput.swift */; };
+		D30A7E312BE9662A00325A76 /* EditorModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E282BE9652600325A76 /* EditorModuleSeed.swift */; };
+		D30A7E322BE9662A00325A76 /* EditorModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E2A2BE9652600325A76 /* EditorModule.swift */; };
+		D30A7E332BE9662A00325A76 /* MediaPermissionsModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E2F2BE9660D00325A76 /* MediaPermissionsModuleFactoryProtocol.swift */; };
+		D30A7E342BE9662A00325A76 /* EditorModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E2B2BE9658000325A76 /* EditorModuleFactoryProtocol.swift */; };
+		D30A7E352BE9662A00325A76 /* MediaPermissionsModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E2E2BE965B600325A76 /* MediaPermissionsModuleSeed.swift */; };
+		D30A7E362BE9662A00325A76 /* MediaPermissionsModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E2D2BE965B500325A76 /* MediaPermissionsModule.swift */; };
+		D30A7E372BE9662A00325A76 /* MediaPermissionsModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E2C2BE965B500325A76 /* MediaPermissionsModuleInput.swift */; };
+		D30A7E392BE97AE300325A76 /* EditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E382BE97AE300325A76 /* EditorViewController.swift */; };
+		D30A7E3B2BE97AEA00325A76 /* EditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E3A2BE97AEA00325A76 /* EditorView.swift */; };
+		D30A7E3D2BE97B7B00325A76 /* EditorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E3C2BE97B7B00325A76 /* EditorViewModel.swift */; };
+		D30A7E3F2BE97B8200325A76 /* EditorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */; };
+		D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */; };
+		D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		D30A7D812BE8F11400325A76 /* subtitlify.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = subtitlify.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D30A7D842BE8F11400325A76 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D30A7D882BE8F11400325A76 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D30A7D8D2BE8F11500325A76 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D30A7D902BE8F11500325A76 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D30A7D922BE8F11500325A76 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -101,6 +121,28 @@
 		D30A7E002BE9506900325A76 /* Design.Fonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.Fonts.swift; sourceTree = "<group>"; };
 		D30A7E022BE9507200325A76 /* Design.Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.Colors.swift; sourceTree = "<group>"; };
 		D30A7E042BE951D000325A76 /* Design.Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Design.Appearance.swift; sourceTree = "<group>"; };
+		D30A7E072BE95B8900325A76 /* NavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationCoordinator.swift; sourceTree = "<group>"; };
+		D30A7E092BE95B9200325A76 /* TrackableStackNavigationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackableStackNavigationCoordinator.swift; sourceTree = "<group>"; };
+		D30A7E0E2BE95F2800325A76 /* EditorFlowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowModule.swift; sourceTree = "<group>"; };
+		D30A7E102BE95F3C00325A76 /* EditorFlowModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowModuleSeed.swift; sourceTree = "<group>"; };
+		D30A7E122BE95F4500325A76 /* EditorFlowModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowModuleInput.swift; sourceTree = "<group>"; };
+		D30A7E142BE9608900325A76 /* EditorFlowModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowModuleFactory.swift; sourceTree = "<group>"; };
+		D30A7E162BE9609000325A76 /* EditorFlowModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D30A7E182BE9620300325A76 /* EditorFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowCoordinator.swift; sourceTree = "<group>"; };
+		D30A7E282BE9652600325A76 /* EditorModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModuleSeed.swift; sourceTree = "<group>"; };
+		D30A7E292BE9652600325A76 /* EditorModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModuleInput.swift; sourceTree = "<group>"; };
+		D30A7E2A2BE9652600325A76 /* EditorModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModule.swift; sourceTree = "<group>"; };
+		D30A7E2B2BE9658000325A76 /* EditorModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D30A7E2C2BE965B500325A76 /* MediaPermissionsModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModuleInput.swift; sourceTree = "<group>"; };
+		D30A7E2D2BE965B500325A76 /* MediaPermissionsModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModule.swift; sourceTree = "<group>"; };
+		D30A7E2E2BE965B600325A76 /* MediaPermissionsModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModuleSeed.swift; sourceTree = "<group>"; };
+		D30A7E2F2BE9660D00325A76 /* MediaPermissionsModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D30A7E382BE97AE300325A76 /* EditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewController.swift; sourceTree = "<group>"; };
+		D30A7E3A2BE97AEA00325A76 /* EditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorView.swift; sourceTree = "<group>"; };
+		D30A7E3C2BE97B7B00325A76 /* EditorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewModel.swift; sourceTree = "<group>"; };
+		D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewState.swift; sourceTree = "<group>"; };
+		D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModuleFactory.swift; sourceTree = "<group>"; };
+		D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModuleFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,13 +178,11 @@
 			children = (
 				D30A7D982BE8F7ED00325A76 /* Base */,
 				D30A7D992BE8F7F200325A76 /* Design */,
-				D30A7DC52BE8FFCE00325A76 /* Services */,
 				D30A7DA12BE8F8A900325A76 /* DI */,
+				D30A7DC52BE8FFCE00325A76 /* Services */,
 				D30A7D9A2BE8F7F800325A76 /* UI */,
+				D30A7E272BE9646600325A76 /* Resources */,
 				D30A7D842BE8F11400325A76 /* AppDelegate.swift */,
-				D30A7D882BE8F11400325A76 /* ViewController.swift */,
-				D30A7D8D2BE8F11500325A76 /* Assets.xcassets */,
-				D30A7D8F2BE8F11500325A76 /* LaunchScreen.storyboard */,
 				D30A7D922BE8F11500325A76 /* Info.plist */,
 			);
 			path = subtitlify;
@@ -151,6 +191,7 @@
 		D30A7D982BE8F7ED00325A76 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				D30A7E062BE95B7D00325A76 /* Coordinators */,
 				D30A7DA72BE8FCB400325A76 /* UIKitExtensions */,
 				D30A7DB62BE8FE6500325A76 /* UIKitBase */,
 				D30A7DC22BE8FF0600325A76 /* Utils */,
@@ -174,14 +215,15 @@
 		D30A7D9A2BE8F7F800325A76 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				D30A7D9E2BE8F85A00325A76 /* Launch */,
 				D30A7D9F2BE8F86100325A76 /* RootContainer */,
+				D30A7D9E2BE8F85A00325A76 /* Launch */,
 				D30A7DA02BE8F87400325A76 /* HomeContainer */,
 				D30A7DE02BE93AF700325A76 /* ProjectsFlow */,
 				D30A7DA32BE8F9EC00325A76 /* Projects */,
 				D30A7DA22BE8F9E400325A76 /* About */,
 				D30A7DCC2BE908E100325A76 /* EditorFlow */,
 				D30A7DA42BE8FA0800325A76 /* Editor */,
+				D30A7E1A2BE9641700325A76 /* MediaPermissions */,
 				D30A7DCD2BE908F000325A76 /* Preview */,
 			);
 			path = UI;
@@ -241,6 +283,10 @@
 		D30A7DA42BE8FA0800325A76 /* Editor */ = {
 			isa = PBXGroup;
 			children = (
+				D30A7E1B2BE9642300325A76 /* View */,
+				D30A7E1C2BE9642A00325A76 /* ViewModel */,
+				D30A7E1D2BE9642F00325A76 /* Module */,
+				D30A7E1E2BE9643500325A76 /* Factory */,
 			);
 			path = Editor;
 			sourceTree = "<group>";
@@ -299,6 +345,9 @@
 		D30A7DCC2BE908E100325A76 /* EditorFlow */ = {
 			isa = PBXGroup;
 			children = (
+				D30A7E0B2BE95EE400325A76 /* Coordinator */,
+				D30A7E0C2BE95EED00325A76 /* Module */,
+				D30A7E0D2BE95EF400325A76 /* Factory */,
 			);
 			path = EditorFlow;
 			sourceTree = "<group>";
@@ -306,6 +355,10 @@
 		D30A7DCD2BE908F000325A76 /* Preview */ = {
 			isa = PBXGroup;
 			children = (
+				D30A7E262BE9644C00325A76 /* View */,
+				D30A7E252BE9644C00325A76 /* ViewModel */,
+				D30A7E232BE9644C00325A76 /* Module */,
+				D30A7E242BE9644C00325A76 /* Factory */,
 			);
 			path = Preview;
 			sourceTree = "<group>";
@@ -373,6 +426,160 @@
 				D30A7DF82BE9475700325A76 /* HomeContainerModuleFactory.swift */,
 			);
 			path = Factory;
+			sourceTree = "<group>";
+		};
+		D30A7E062BE95B7D00325A76 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E072BE95B8900325A76 /* NavigationCoordinator.swift */,
+				D30A7E092BE95B9200325A76 /* TrackableStackNavigationCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		D30A7E0B2BE95EE400325A76 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E182BE9620300325A76 /* EditorFlowCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D30A7E0C2BE95EED00325A76 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E102BE95F3C00325A76 /* EditorFlowModuleSeed.swift */,
+				D30A7E122BE95F4500325A76 /* EditorFlowModuleInput.swift */,
+				D30A7E0E2BE95F2800325A76 /* EditorFlowModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D30A7E0D2BE95EF400325A76 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E162BE9609000325A76 /* EditorFlowModuleFactoryProtocol.swift */,
+				D30A7E142BE9608900325A76 /* EditorFlowModuleFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		D30A7E1A2BE9641700325A76 /* MediaPermissions */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E222BE9644800325A76 /* View */,
+				D30A7E202BE9644800325A76 /* ViewModel */,
+				D30A7E1F2BE9644800325A76 /* Module */,
+				D30A7E212BE9644800325A76 /* Factory */,
+			);
+			path = MediaPermissions;
+			sourceTree = "<group>";
+		};
+		D30A7E1B2BE9642300325A76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E382BE97AE300325A76 /* EditorViewController.swift */,
+				D30A7E3A2BE97AEA00325A76 /* EditorView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D30A7E1C2BE9642A00325A76 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E3C2BE97B7B00325A76 /* EditorViewModel.swift */,
+				D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D30A7E1D2BE9642F00325A76 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E282BE9652600325A76 /* EditorModuleSeed.swift */,
+				D30A7E292BE9652600325A76 /* EditorModuleInput.swift */,
+				D30A7E2A2BE9652600325A76 /* EditorModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D30A7E1E2BE9643500325A76 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E2B2BE9658000325A76 /* EditorModuleFactoryProtocol.swift */,
+				D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		D30A7E1F2BE9644800325A76 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E2E2BE965B600325A76 /* MediaPermissionsModuleSeed.swift */,
+				D30A7E2C2BE965B500325A76 /* MediaPermissionsModuleInput.swift */,
+				D30A7E2D2BE965B500325A76 /* MediaPermissionsModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D30A7E202BE9644800325A76 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D30A7E212BE9644800325A76 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7E2F2BE9660D00325A76 /* MediaPermissionsModuleFactoryProtocol.swift */,
+				D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		D30A7E222BE9644800325A76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D30A7E232BE9644C00325A76 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D30A7E242BE9644C00325A76 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		D30A7E252BE9644C00325A76 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D30A7E262BE9644C00325A76 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D30A7E272BE9646600325A76 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D30A7D8D2BE8F11500325A76 /* Assets.xcassets */,
+				D30A7D8F2BE8F11500325A76 /* LaunchScreen.storyboard */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -452,16 +659,25 @@
 			buildActionMask = 2147483647;
 			files = (
 				D30A7DDC2BE91D3300325A76 /* HomeContentType.swift in Sources */,
+				D30A7E172BE9609000325A76 /* EditorFlowModuleFactoryProtocol.swift in Sources */,
 				D30A7DD62BE9179B00325A76 /* HomeContainerViewController.swift in Sources */,
+				D30A7E302BE9662A00325A76 /* EditorModuleInput.swift in Sources */,
 				D30A7DB22BE8FCB400325A76 /* UIView+BoundingRect.swift in Sources */,
+				D30A7E132BE95F4500325A76 /* EditorFlowModuleInput.swift in Sources */,
 				D30A7DC72BE900DB00325A76 /* LaunchViewController.swift in Sources */,
 				D30A7DB02BE8FCB400325A76 /* UIView+Debug.swift in Sources */,
 				D30A7DBD2BE8FE6500325A76 /* BaseViewController.swift in Sources */,
 				D30A7E032BE9507200325A76 /* Design.Colors.swift in Sources */,
+				D30A7E322BE9662A00325A76 /* EditorModule.swift in Sources */,
+				D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */,
 				D30A7DFC2BE9479100325A76 /* HomeContainerModule.swift in Sources */,
 				D30A7DFD2BE94B1600325A76 /* HomeContainerModuleFactoryProtocol.swift in Sources */,
+				D30A7E392BE97AE300325A76 /* EditorViewController.swift in Sources */,
+				D30A7E192BE9620300325A76 /* EditorFlowCoordinator.swift in Sources */,
 				D30A7DC12BE8FE6500325A76 /* MvvmUIKitView.swift in Sources */,
 				D30A7DB42BE8FCB400325A76 /* UIColor+Components.swift in Sources */,
+				D30A7E0A2BE95B9200325A76 /* TrackableStackNavigationCoordinator.swift in Sources */,
+				D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */,
 				D30A7DDA2BE91CD500325A76 /* HomeCoordinator.swift in Sources */,
 				D30A7E052BE951D000325A76 /* Design.Appearance.swift in Sources */,
 				D30A7DC92BE906E000325A76 /* AppContainerProtocol.swift in Sources */,
@@ -471,26 +687,38 @@
 				D30A7DA62BE8FB7600325A76 /* Design.swift in Sources */,
 				D30A7DDE2BE9221C00325A76 /* ViewLifecycleObservable.swift in Sources */,
 				D30A7DBE2BE8FE6500325A76 /* LoadingView.swift in Sources */,
+				D30A7E3D2BE97B7B00325A76 /* EditorViewModel.swift in Sources */,
+				D30A7E3F2BE97B8200325A76 /* EditorViewState.swift in Sources */,
 				D30A7DE92BE93D8700325A76 /* RootContainerModuleSeed.swift in Sources */,
 				D30A7DD42BE915F300325A76 /* RootContentType.swift in Sources */,
 				D30A7DCB2BE906F600325A76 /* AppContainer.swift in Sources */,
 				D30A7DFA2BE9478C00325A76 /* HomeContainerModuleSeed.swift in Sources */,
+				D30A7E312BE9662A00325A76 /* EditorModuleSeed.swift in Sources */,
 				D30A7DE72BE93B9200325A76 /* RootContainerModuleInput.swift in Sources */,
+				D30A7E372BE9662A00325A76 /* MediaPermissionsModuleInput.swift in Sources */,
 				D30A7DD02BE9153000325A76 /* RootContainerViewController.swift in Sources */,
+				D30A7E362BE9662A00325A76 /* MediaPermissionsModule.swift in Sources */,
 				D30A7DBF2BE8FE6500325A76 /* ViewModel.swift in Sources */,
 				D30A7DAF2BE8FCB400325A76 /* UINavigationController+Completion.swift in Sources */,
 				D30A7DD22BE915A500325A76 /* RootCoordinator.swift in Sources */,
 				D30A7DFF2BE9506100325A76 /* Design.Metrics.swift in Sources */,
-				D30A7D892BE8F11400325A76 /* ViewController.swift in Sources */,
+				D30A7E342BE9662A00325A76 /* EditorModuleFactoryProtocol.swift in Sources */,
+				D30A7E112BE95F3C00325A76 /* EditorFlowModuleSeed.swift in Sources */,
+				D30A7E332BE9662A00325A76 /* MediaPermissionsModuleFactoryProtocol.swift in Sources */,
+				D30A7E352BE9662A00325A76 /* MediaPermissionsModuleSeed.swift in Sources */,
 				D30A7DFB2BE9479100325A76 /* HomeContainerModuleInput.swift in Sources */,
 				D30A7DB12BE8FCB400325A76 /* UIViewController+Helpers.swift in Sources */,
 				D30A7DB52BE8FCB400325A76 /* UIImage+.swift in Sources */,
+				D30A7E152BE9608900325A76 /* EditorFlowModuleFactory.swift in Sources */,
+				D30A7E082BE95B8900325A76 /* NavigationCoordinator.swift in Sources */,
 				D30A7DC42BE8FF0600325A76 /* DisposeBag.swift in Sources */,
 				D30A7DED2BE93E6C00325A76 /* RootContainerModuleFactory.swift in Sources */,
 				D30A7DC02BE8FE6500325A76 /* MvvmUIKitViewController.swift in Sources */,
 				D30A7DEF2BE943E500325A76 /* SuperTimer.swift in Sources */,
 				D30A7DE52BE93B8900325A76 /* RootContainerModule.swift in Sources */,
 				D30A7DB32BE8FCB400325A76 /* UIApplication+KeyWindow.swift in Sources */,
+				D30A7E3B2BE97AEA00325A76 /* EditorView.swift in Sources */,
+				D30A7E0F2BE95F2800325A76 /* EditorFlowModule.swift in Sources */,
 				D30A7D852BE8F11400325A76 /* AppDelegate.swift in Sources */,
 				D30A7E012BE9506900325A76 /* Design.Fonts.swift in Sources */,
 			);

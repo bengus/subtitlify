@@ -11,4 +11,7 @@ protocol AppContainerProtocol {
     var rootContainerModule: RootContainerModule { get }
     
     func getHomeContainerModuleFactory() -> HomeContainerModuleFactoryProtocol
+    func getEditorFlowModuleFactory() -> EditorFlowModuleFactoryProtocol
+    func getEditorModuleFactory() -> EditorModuleFactoryProtocol
+    func getMediaPermissionsModuleFactory() -> MediaPermissionsModuleFactoryProtocol
 }

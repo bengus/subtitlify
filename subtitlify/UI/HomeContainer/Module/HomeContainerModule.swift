@@ -9,6 +9,14 @@ import Foundation
 import UIKit
 
 public struct HomeContainerModule {
-    let containerViewController: UIViewController & DisposeBag
-    let moduleInput: HomeContainerModuleInput
+    public let containerViewController: UIViewController & DisposeBag
+    public let moduleInput: HomeContainerModuleInput
+    
+    public init(
+        containerViewController: UIViewController & DisposeBag,
+        moduleInput: HomeContainerModuleInput
+    ) {
+        self.containerViewController = containerViewController
+        self.moduleInput = moduleInput
+    }
 }

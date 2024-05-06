@@ -14,7 +14,7 @@ final class HomeCoordinator: NSObject,
 {
     private weak var containerViewController: HomeContainerViewController?
     private let projectsModuleFactory: () -> UIViewController
-    private let editorFlowModuleFactory: () -> UIViewController
+    private let editorFlowModuleFactory: EditorFlowModuleFactoryProtocol
     private let aboutModuleFactory: () -> UIViewController
     
     
@@ -22,7 +22,7 @@ final class HomeCoordinator: NSObject,
     init(
         containerViewController: HomeContainerViewController,
         projectsModuleFactory: @escaping () -> UIViewController,
-        editorFlowModuleFactory: @escaping () -> UIViewController,
+        editorFlowModuleFactory: EditorFlowModuleFactoryProtocol,
         aboutModuleFactory: @escaping () -> UIViewController
     ) {
         self.containerViewController = containerViewController
@@ -58,7 +58,8 @@ final class HomeCoordinator: NSObject,
     // This is a fake editor for tabbar, actual EditorFlow will be presented as modal
     private lazy var emptyEditorViewController = {
         let viewController = UIViewController()
-        // Probably not the best solution to center "Add" button
+        // Probably hack with an imageInsets is not the best solution to center "Add" button.
+        // It could be Better to override UITabBarItem -> CenteredImageTabBarItem and set it
         viewController.tabBarItem.imageInsets = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
         viewController.tabBarItem.image = UIImage(named: "48_plus_circle1")?.withRenderingMode(.alwaysOriginal)
         return viewController
@@ -106,11 +107,42 @@ final class HomeCoordinator: NSObject,
         }
     }
     
+    private func openEditorFlow() {
+        guard
+            let window = UIApplication.shared.findKeyWindow(),
+            let rootViewController = window.rootViewController else
+        {
+            assertionFailure("Can't find keyWindow or rootViewController while editor opening")
+            return
+        }
+        
+        let navigationController = UINavigationController()
+        let editorFlowModule = editorFlowModuleFactory.module(moduleSeed: EditorFlowModuleSeed())
+        editorFlowModule.moduleInput.onAction = { [weak navigationController] action in
+            switch action {
+            case .close:
+                navigationController?.dismiss(animated: true)
+            }
+        }
+        if Design.isIpad {
+            navigationController.modalPresentationStyle = .automatic
+        } else {
+            navigationController.modalPresentationStyle = .fullScreen
+        }
+        navigationController.isModalInPresentation = true
+        let topViewController = UIViewController.findTopViewController(fromRootViewController: rootViewController)
+        
+        // Start flow inside NavigationController and present it
+        editorFlowModule.moduleInput.start(navigationController: navigationController)
+        topViewController.present(navigationController, animated: true)
+    }
+    
     
     // MARK: - UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController === emptyEditorViewController {
-            // open editor flow
+            openEditorFlow()
+            // Prevent tab switching in case of modal editor opening
             return false
         } else {
             return true

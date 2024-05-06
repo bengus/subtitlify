@@ -37,6 +37,8 @@ final class RootCoordinator: RootContainerModuleInput {
     private lazy var homeContainerModule = homeContainerModuleFactory.module(
         moduleSeed: HomeContainerModuleSeed()
     )
+    // Also in a real app could be more content modules like paywall, onboarding, unauthorized etc.
+    // Because of demo we only have launch and home screens inside root.
     
     
     // MARK: - RootContainerModuleInput
