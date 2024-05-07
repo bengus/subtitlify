@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 final class EditorFlowCoordinator: NavigationCoordinator,
                                    EditorFlowModuleInput
@@ -26,54 +27,42 @@ final class EditorFlowCoordinator: NavigationCoordinator,
     
     
     // MARK: - Child UI modules
-    private lazy var editorModule: EditorModule = {
-        let module = editorModuleFactory.module(moduleSeed: EditorModuleSeed())
-        module.moduleInput.onAction = { [weak self] action in
-            switch action {
-            case .close:
-                self?.onAction?(.close)
-            }
-        }
-        return module
-    }()
+    private weak var editorModuleInput: EditorModuleInput?
     
     
     // MARK: - EditorFlowModuleInput
     var onAction: ((EditorFlowModuleAction) -> Void)?
     
     func start(navigationController: UINavigationController) {
-        let viewController = editorModule.viewController
+        let editorModule = editorModuleFactory.module(moduleSeed: EditorModuleSeed())
+        editorModule.moduleInput.onAction = { [weak self] action in
+            switch action {
+            case .selectVideo:
+                self?.selectVideo()
+            case .close:
+                self?.onAction?(.close)
+            }
+        }
+        // Lifecycle of the NavigationCoordinator should follow the root viewcontroller lificycle (see configure)
         configure(
             navigationController: navigationController,
-            rootViewController: viewController
+            rootViewController: editorModule.viewController
         )
-        push(viewController, animated: false)
+        // hold module input as weak reference
+        self.editorModuleInput = editorModule.moduleInput
+        push(editorModule.viewController, animated: false)
     }
     
     
     // MARK: - Coordinator
-//    private lazy var paywallModule: PaywallModule = {
-//        let module = paywallModuleFactory.module(moduleSeed: PaywallModuleSeed())
-//        module.moduleInput.onAction = { [weak self] action in
-//            switch action {
-//            case .openProductList:
-//                self?.openProductList()
-//            case .close:
-//                self?.onAction?(.close)
-//            }
-//        }
-//        return module
-//    }()
-    
-//    private func openProductList() {
-//        let productListModule = productListModuleFactory.module(moduleSeed: ProductListModuleSeed())
-//        productListModule.moduleInput.onAction = { [weak self] action in
-//            switch action {
-//            case .purchased:
-//                self?.onAction?(.close)
-//            }
-//        }
-//        let viewController = productListModule.viewController
-//        push(viewController, animated: true)
-//    }
+    private func selectVideo() {
+        let demoVideoURL = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+        let demoVideo = Video(url: demoVideoURL)
+        
+        guard let editorModuleInput = editorModuleInput else {
+            assertionFailure("editorModuleInput is nil while selectVideo()")
+            return
+        }
+        editorModuleInput.setVideo(demoVideo)
+    }
 }

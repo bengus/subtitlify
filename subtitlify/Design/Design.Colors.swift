@@ -35,6 +35,7 @@ public extension Design {
         public static var tabBarText: UIColor { Palette.grey }
         public static var tabBarSelectedText: UIColor { Palette.black }
         public static var tabBarBackround: UIColor { Palette.white }
+        public static var playbackBackround: UIColor { Palette.pianoBlack }
     }
 }
 

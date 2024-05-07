@@ -73,6 +73,15 @@
 		D30A7E3F2BE97B8200325A76 /* EditorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */; };
 		D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */; };
 		D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */; };
+		D38D01272BE9FCA0009E3E83 /* AppStateSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01262BE9FCA0009E3E83 /* AppStateSubscriber.swift */; };
+		D38D01292BEA01AA009E3E83 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D38D01282BEA01AA009E3E83 /* video.mp4 */; };
+		D38D012D2BEA027E009E3E83 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D012C2BEA027E009E3E83 /* Video.swift */; };
+		D38D012F2BEA0347009E3E83 /* MediaUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D012E2BEA0347009E3E83 /* MediaUtils.swift */; };
+		D38D01312BEA0421009E3E83 /* ObservablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01302BEA0421009E3E83 /* ObservablePlayer.swift */; };
+		D38D01332BEA0827009E3E83 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01322BEA0827009E3E83 /* Buttons.swift */; };
+		D38D01362BEA19BC009E3E83 /* PinLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01352BEA19BC009E3E83 /* PinLayout+.swift */; };
+		D38D01382BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01372BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift */; };
+		D38D01442BEA392B009E3E83 /* MYAudioTapProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,6 +152,18 @@
 		D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewState.swift; sourceTree = "<group>"; };
 		D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModuleFactory.swift; sourceTree = "<group>"; };
 		D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModuleFactory.swift; sourceTree = "<group>"; };
+		D38D01262BE9FCA0009E3E83 /* AppStateSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateSubscriber.swift; sourceTree = "<group>"; };
+		D38D01282BEA01AA009E3E83 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
+		D38D012C2BEA027E009E3E83 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
+		D38D012E2BEA0347009E3E83 /* MediaUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaUtils.swift; sourceTree = "<group>"; };
+		D38D01302BEA0421009E3E83 /* ObservablePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservablePlayer.swift; sourceTree = "<group>"; };
+		D38D01322BEA0827009E3E83 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		D38D01352BEA19BC009E3E83 /* PinLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinLayout+.swift"; sourceTree = "<group>"; };
+		D38D01372BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSpeechRecognitionProvider.swift; sourceTree = "<group>"; };
+		D38D013A2BEA3056009E3E83 /* subtitlify-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "subtitlify-Bridging-Header.h"; sourceTree = "<group>"; };
+		D38D013D2BEA3808009E3E83 /* CoreAudioTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioTypes.framework; path = System/Library/Frameworks/CoreAudioTypes.framework; sourceTree = SDKROOT; };
+		D38D01422BEA392B009E3E83 /* MYAudioTapProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAudioTapProcessor.h; sourceTree = "<group>"; };
+		D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAudioTapProcessor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +183,7 @@
 			children = (
 				D30A7D832BE8F11400325A76 /* subtitlify */,
 				D30A7D822BE8F11400325A76 /* Products */,
+				D38D013C2BEA3808009E3E83 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -176,6 +198,7 @@
 		D30A7D832BE8F11400325A76 /* subtitlify */ = {
 			isa = PBXGroup;
 			children = (
+				D38D013B2BEA30DC009E3E83 /* Vendor */,
 				D30A7D982BE8F7ED00325A76 /* Base */,
 				D30A7D992BE8F7F200325A76 /* Design */,
 				D30A7DA12BE8F8A900325A76 /* DI */,
@@ -184,6 +207,7 @@
 				D30A7E272BE9646600325A76 /* Resources */,
 				D30A7D842BE8F11400325A76 /* AppDelegate.swift */,
 				D30A7D922BE8F11500325A76 /* Info.plist */,
+				D38D013A2BEA3056009E3E83 /* subtitlify-Bridging-Header.h */,
 			);
 			path = subtitlify;
 			sourceTree = "<group>";
@@ -196,6 +220,7 @@
 				D30A7DB62BE8FE6500325A76 /* UIKitBase */,
 				D30A7DC22BE8FF0600325A76 /* Utils */,
 				D30A7DB92BE8FE6500325A76 /* Mvvm */,
+				D38D012B2BEA026E009E3E83 /* Media */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -208,6 +233,7 @@
 				D30A7E002BE9506900325A76 /* Design.Fonts.swift */,
 				D30A7E022BE9507200325A76 /* Design.Colors.swift */,
 				D30A7E042BE951D000325A76 /* Design.Appearance.swift */,
+				D38D01322BEA0827009E3E83 /* Buttons.swift */,
 			);
 			path = Design;
 			sourceTree = "<group>";
@@ -301,6 +327,7 @@
 				D30A7DAC2BE8FCB400325A76 /* UIApplication+KeyWindow.swift */,
 				D30A7DAD2BE8FCB400325A76 /* UIColor+Components.swift */,
 				D30A7DAE2BE8FCB400325A76 /* UIImage+.swift */,
+				D38D01352BEA19BC009E3E83 /* PinLayout+.swift */,
 			);
 			path = UIKitExtensions;
 			sourceTree = "<group>";
@@ -331,6 +358,7 @@
 			children = (
 				D30A7DC32BE8FF0600325A76 /* DisposeBag.swift */,
 				D30A7DEE2BE943E500325A76 /* SuperTimer.swift */,
+				D38D01262BE9FCA0009E3E83 /* AppStateSubscriber.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -576,10 +604,39 @@
 		D30A7E272BE9646600325A76 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D38D01282BEA01AA009E3E83 /* video.mp4 */,
 				D30A7D8D2BE8F11500325A76 /* Assets.xcassets */,
 				D30A7D8F2BE8F11500325A76 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D38D012B2BEA026E009E3E83 /* Media */ = {
+			isa = PBXGroup;
+			children = (
+				D38D012C2BEA027E009E3E83 /* Video.swift */,
+				D38D012E2BEA0347009E3E83 /* MediaUtils.swift */,
+				D38D01302BEA0421009E3E83 /* ObservablePlayer.swift */,
+				D38D01372BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift */,
+			);
+			path = Media;
+			sourceTree = "<group>";
+		};
+		D38D013B2BEA30DC009E3E83 /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				D38D01422BEA392B009E3E83 /* MYAudioTapProcessor.h */,
+				D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		D38D013C2BEA3808009E3E83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D38D013D2BEA3808009E3E83 /* CoreAudioTypes.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -647,6 +704,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D30A7D912BE8F11500325A76 /* LaunchScreen.storyboard in Resources */,
+				D38D01292BEA01AA009E3E83 /* video.mp4 in Resources */,
 				D30A7D8E2BE8F11500325A76 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,12 +723,16 @@
 				D30A7DB22BE8FCB400325A76 /* UIView+BoundingRect.swift in Sources */,
 				D30A7E132BE95F4500325A76 /* EditorFlowModuleInput.swift in Sources */,
 				D30A7DC72BE900DB00325A76 /* LaunchViewController.swift in Sources */,
+				D38D01382BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift in Sources */,
+				D38D01312BEA0421009E3E83 /* ObservablePlayer.swift in Sources */,
 				D30A7DB02BE8FCB400325A76 /* UIView+Debug.swift in Sources */,
 				D30A7DBD2BE8FE6500325A76 /* BaseViewController.swift in Sources */,
+				D38D012D2BEA027E009E3E83 /* Video.swift in Sources */,
 				D30A7E032BE9507200325A76 /* Design.Colors.swift in Sources */,
 				D30A7E322BE9662A00325A76 /* EditorModule.swift in Sources */,
 				D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */,
 				D30A7DFC2BE9479100325A76 /* HomeContainerModule.swift in Sources */,
+				D38D01362BEA19BC009E3E83 /* PinLayout+.swift in Sources */,
 				D30A7DFD2BE94B1600325A76 /* HomeContainerModuleFactoryProtocol.swift in Sources */,
 				D30A7E392BE97AE300325A76 /* EditorViewController.swift in Sources */,
 				D30A7E192BE9620300325A76 /* EditorFlowCoordinator.swift in Sources */,
@@ -679,6 +741,7 @@
 				D30A7E0A2BE95B9200325A76 /* TrackableStackNavigationCoordinator.swift in Sources */,
 				D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */,
 				D30A7DDA2BE91CD500325A76 /* HomeCoordinator.swift in Sources */,
+				D38D01332BEA0827009E3E83 /* Buttons.swift in Sources */,
 				D30A7E052BE951D000325A76 /* Design.Appearance.swift in Sources */,
 				D30A7DC92BE906E000325A76 /* AppContainerProtocol.swift in Sources */,
 				D30A7DEB2BE93E4A00325A76 /* RootContainerModuleFactoryProtocol.swift in Sources */,
@@ -691,6 +754,7 @@
 				D30A7E3F2BE97B8200325A76 /* EditorViewState.swift in Sources */,
 				D30A7DE92BE93D8700325A76 /* RootContainerModuleSeed.swift in Sources */,
 				D30A7DD42BE915F300325A76 /* RootContentType.swift in Sources */,
+				D38D01442BEA392B009E3E83 /* MYAudioTapProcessor.m in Sources */,
 				D30A7DCB2BE906F600325A76 /* AppContainer.swift in Sources */,
 				D30A7DFA2BE9478C00325A76 /* HomeContainerModuleSeed.swift in Sources */,
 				D30A7E312BE9662A00325A76 /* EditorModuleSeed.swift in Sources */,
@@ -699,6 +763,7 @@
 				D30A7DD02BE9153000325A76 /* RootContainerViewController.swift in Sources */,
 				D30A7E362BE9662A00325A76 /* MediaPermissionsModule.swift in Sources */,
 				D30A7DBF2BE8FE6500325A76 /* ViewModel.swift in Sources */,
+				D38D01272BE9FCA0009E3E83 /* AppStateSubscriber.swift in Sources */,
 				D30A7DAF2BE8FCB400325A76 /* UINavigationController+Completion.swift in Sources */,
 				D30A7DD22BE915A500325A76 /* RootCoordinator.swift in Sources */,
 				D30A7DFF2BE9506100325A76 /* Design.Metrics.swift in Sources */,
@@ -710,6 +775,7 @@
 				D30A7DB12BE8FCB400325A76 /* UIViewController+Helpers.swift in Sources */,
 				D30A7DB52BE8FCB400325A76 /* UIImage+.swift in Sources */,
 				D30A7E152BE9608900325A76 /* EditorFlowModuleFactory.swift in Sources */,
+				D38D012F2BEA0347009E3E83 /* MediaUtils.swift in Sources */,
 				D30A7E082BE95B8900325A76 /* NavigationCoordinator.swift in Sources */,
 				D30A7DC42BE8FF0600325A76 /* DisposeBag.swift in Sources */,
 				D30A7DED2BE93E6C00325A76 /* RootContainerModuleFactory.swift in Sources */,
@@ -878,8 +944,9 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/subtitlify/subtitlify-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -904,8 +971,9 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/subtitlify/subtitlify-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

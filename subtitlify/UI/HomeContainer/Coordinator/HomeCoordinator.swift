@@ -58,10 +58,12 @@ final class HomeCoordinator: NSObject,
     // This is a fake editor for tabbar, actual EditorFlow will be presented as modal
     private lazy var emptyEditorViewController = {
         let viewController = UIViewController()
-        // Probably hack with an imageInsets is not the best solution to center "Add" button.
-        // It could be Better to override UITabBarItem -> CenteredImageTabBarItem and set it
-        viewController.tabBarItem.imageInsets = UIEdgeInsets(top: 12, left: 0, bottom: 0, right: 0)
-        viewController.tabBarItem.image = UIImage(named: "48_plus_circle1")?.withRenderingMode(.alwaysOriginal)
+        if !Design.isIpad {
+            // Probably hack with an imageInsets is not the best solution to center "Add" button.
+            // It could be Better to Create custom UITabBar but for Demo is ok
+            viewController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0)
+        }
+        viewController.tabBarItem.image = UIImage(named: "42_plus_circle1")?.withRenderingMode(.alwaysOriginal)
         return viewController
     }()
     

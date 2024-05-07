@@ -20,9 +20,11 @@ public extension Design {
         public static let bigHorizontalGap: CGFloat = 36
         public static let topGap: CGFloat = 16
         public static let bottomGap: CGFloat = 16
-        public static let buttonHeight: CGFloat = 48
-        public static let ipadButtonWidth: CGFloat = 320
-        public static let buttonCornerRadius: CGFloat = 12
         public static let borderWidth: CGFloat = 1 / UIScreen.main.scale
+        public static let buttonCornerRadius: CGFloat = 12
+        public static let buttonSolidContentInset = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+        public static let buttonSystemContentInset = NSDirectionalEdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4)
+        public static let buttonHeight: CGFloat = 48
+        public static let buttonWidthIpad: CGFloat = 320
     }
 }

@@ -8,9 +8,21 @@
 import Foundation
 
 struct EditorViewState: Equatable {
+    enum State {
+        case permissionRequired
+        case selecting
+        case editing
+    }
+    
     let isLoading: Bool
+    let state: State
+    let captioning: String?
     
     static func empty() -> Self {
-        return EditorViewState(isLoading: false)
+        return EditorViewState(
+            isLoading: false,
+            state: .selecting,
+            captioning: nil
+        )
     }
 }
