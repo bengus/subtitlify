@@ -35,20 +35,39 @@ class EditorViewModel:
         // No effects
     }
     
-    // EditorViewModel is the specific case, because of that becides simple ViewState (see base ViewModel),
-    // we also publish player observable state to sync playback status and slider as well
-    @Published
-    private(set) var player: ObservablePlayer?
-    private var selectedVideo: Video?
-    private var transcriptionProvider: VideoTranscriptionProvider?
-    private var isBufferedTrascriptionMode = true
+    private let context: EditorContext
+    private let isBufferedTrascriptionMode: Bool
+    private let selectedVideo: Video
+    private let transcriptionProvider: VideoTranscriptionProvider?
     private let captioningDecorator = CaptioningDecorator()
+    
+    // EditorViewModel is the specific case, because of that becides simple ViewState (see base ViewModel),
+    // we also expose player observable state to sync playback status and slider as well.
+    let player: ObservablePlayer
     
     
     // MARK: - Init
-    override init(initialState: EditorViewState) {
-        super.init(initialState: initialState)
+    init(
+        initialState: EditorViewState,
+        context: EditorContext
+    ) {
+        self.context = context
+        switch context {
+        case .demo(let isBuffered):
+            self.isBufferedTrascriptionMode = isBuffered
+            let demoVideoURL = Bundle.main.url(forResource: "video_short", withExtension: "mp4")!
+            self.selectedVideo = Video(url: demoVideoURL)
+        case .project(let project):
+            self.isBufferedTrascriptionMode = false
+            self.selectedVideo = Video(url: project.videoUrl)
+        }
+        self.player = ObservablePlayer(
+            asset: selectedVideo.asset,
+            periodicTimeObservationInterval: 0.1
+        )
+        self.transcriptionProvider = VideoTranscriptionProvider(asset: selectedVideo.asset)
         
+        super.init(initialState: initialState)
     }
     
     deinit {
@@ -64,6 +83,20 @@ class EditorViewModel:
         reload()
     }
     
+    override func onViewDidFirstAppear() {
+        super.onViewDidFirstAppear()
+        
+        SFSpeechRecognizer.requestAuthorization { [weak self] status in
+            assert(status == .authorized)
+            DispatchQueue.main.async { [weak self] in
+#if DEBUG
+                print("SFSpeechRecognizer permission granted")
+#endif
+                self?.prepareTranscription()
+            }
+        }
+    }
+    
     override func onViewDidAppear() {
         super.onViewDidAppear()
         startPlayerObservation()
@@ -74,19 +107,6 @@ class EditorViewModel:
         
         stopPlayerObservation()
         pause()
-    }
-    
-    override func onViewDidFirstAppear() {
-        super.onViewDidFirstAppear()
-        
-        SFSpeechRecognizer.requestAuthorization { status in
-            assert(status == .authorized)
-            DispatchQueue.main.async {
-#if DEBUG
-                print("SFSpeechRecognizer permission granted")
-#endif
-            }
-        }
     }
     
     
@@ -117,7 +137,7 @@ class EditorViewModel:
     }
     
     private func playPause() {
-        if player?.timeControlStatus == .paused {
+        if player.timeControlStatus == .paused {
             play()
         } else {
             pause()
@@ -125,28 +145,31 @@ class EditorViewModel:
     }
     
     private func play() {
+        if player.observedTime == selectedVideo.durationSeconds {
+            player.scrubState = .scrubEnded(0)
+        }
         if isBufferedTrascriptionMode {
             transcriptionProvider?.startBufferedTranscriptioning()
         }
-        player?.play()
+        player.play()
     }
     
     private func pause() {
         if isBufferedTrascriptionMode {
             transcriptionProvider?.stopBufferedTranscriptioning()
         }
-        player?.pause()
+        player.pause()
     }
     
     private func scrubStarted() {
-        player?.scrubState = .scrubStarted
+        player.scrubState = .scrubStarted
         if isBufferedTrascriptionMode {
             transcriptionProvider?.stopBufferedTranscriptioning()
         }
     }
     
     private func scrubEnded(seekTime: TimeInterval) {
-        player?.scrubState = .scrubEnded(seekTime)
+        player.scrubState = .scrubEnded(seekTime)
         captioningDecorator.reset()
         if isBufferedTrascriptionMode {
             captioningDecorator.setTranscription(nil)
@@ -180,7 +203,6 @@ class EditorViewModel:
         let state: EditorViewState.State
         if selectedVideo != nil {
             state = .editing
-            captioningDecorator.rebuildCaptioningText()
         } else {
             state = .selecting
         }
@@ -191,9 +213,9 @@ class EditorViewModel:
             EditorViewState(
                 isLoading: isLoading,
                 state: state,
-                captioningAttributedText: captioningDecorator.captioningAttributedText,
+                captioningAttributedText: captioningDecorator.getCaptioningAttributedText(),
                 captioningMode: .fromDecoratorCaptioningMode(captioningDecorator.captioningMode),
-                timeControlStatus: .fromAVPlayerTimeControlStatus(player?.timeControlStatus)
+                timeControlStatus: .fromAVPlayerTimeControlStatus(player.timeControlStatus)
             )
         )
     }
@@ -205,53 +227,31 @@ class EditorViewModel:
     
     private func startPlayerObservation() {
         stopPlayerObservation()
-        if let player = player {
-            player.startObservation()
-            // Observing playback to make captioning accordingly to current playback time
-            playerObservedTimePublisher = player.$observedTime
-                .receive(on: DispatchQueue.main)//.global(qos: .background))
-                .removeDuplicates()
-                .sink { [weak self] value in
-                    self?.captioningDecorator.moveCaptioningWindow(currentTime: value)
-                    self?.reload()
-                }
-            // Observing control status for correct icon name play/pause
-            playerTimeControlStatusPublisher = player.$timeControlStatus
-                .receive(on: DispatchQueue.main)
-                .removeDuplicates()
-                .sink { [weak self] value in
-                    self?.reload()
-                }
-        }
+        player.startObservation()
+        // Observing playback to make captioning accordingly to current playback time
+        playerObservedTimePublisher = player.$observedTime
+            .receive(on: DispatchQueue.main)//.global(qos: .background))
+            .removeDuplicates()
+            .sink { [weak self] value in
+                self?.captioningDecorator.moveCaptioningWindow(currentTime: value)
+                self?.reload()
+            }
+        // Observing control status for correct icon name play/pause
+        playerTimeControlStatusPublisher = player.$timeControlStatus
+            .receive(on: DispatchQueue.main)
+            .removeDuplicates()
+            .sink { [weak self] value in
+                self?.reload()
+            }
     }
     
     private func stopPlayerObservation() {
         playerObservedTimePublisher?.cancel()
         playerTimeControlStatusPublisher?.cancel()
-        player?.stopObservation()
+        player.stopObservation()
     }
     
-    private func preparePlayer() {
-        if let video = selectedVideo {
-            self.player = ObservablePlayer(asset: video.asset)
-            startPlayerObservation()
-            reload()
-        }
-    }
-    
-    
-    // MARK: - Captioning text building (Could be moved to smth like CaptioningDecorator)
-    
-    
-    
-    // MARK: - EditorModuleInput
-    var onAction: ((EditorModuleAction) -> Void)?
-    
-    func setVideo(_ video: Video) {
-        stopPlayerObservation()
-        pause()
-           
-        self.transcriptionProvider = VideoTranscriptionProvider(asset: video.asset)
+    private func prepareTranscription() {
         // Listening for buffered transcription
         transcriptionProvider?.onBufferedTranscriptionChanged = { [weak self] lastBufferedTranscription in
             self?.captioningDecorator.setTranscription(lastBufferedTranscription)
@@ -259,8 +259,6 @@ class EditorViewModel:
         // There is 2 modes of transcriptions: Buffered (live mode) / Regular (full translation before editing)
         captioningDecorator.setIsTailWindowMode(isBufferedTrascriptionMode)
         if isBufferedTrascriptionMode {
-            self.selectedVideo = video
-            preparePlayer()
             // Buffered mode
             // In case of buffered mode we have to use audioMix with MTAudioProcessingTap in inputParameters
             // audioMix synced with the playback state and time to time give us AVAudioPCMBuffer
@@ -269,23 +267,19 @@ class EditorViewModel:
             // Because of that in buffered mode we only can show last captions in "live mode" like in "interviews"
             // This is experimental mode and added just to demonstrate it.
             // Seems like for our case it's better prepare captions before editing.
-            player?.avPlayer.currentItem?.audioMix = transcriptionProvider?.tapAudioMix
+            player.avPlayer.currentItem?.audioMix = transcriptionProvider?.tapAudioMix
         } else {
             // Otherwise generate full transcription before playing
             transcriptionProvider?.provideFullTranscription { [weak self] transcription in
-                guard let self else { return }
-                
-#if DEBUG
-                transcription?.segments.enumerated().forEach({
-                    print("\($0): \($1.substring) [\($1.timestamp)..\($1.timestamp + $1.duration)]")
-                })
-#endif
-                
-                self.captioningDecorator.setTranscription(transcription)
-                self.selectedVideo = video
-                preparePlayer()
+                self?.captioningDecorator.setTranscription(transcription)
+                self?.reload()
             }
             reload()
         }
     }
+    
+    
+    
+    // MARK: - EditorModuleInput
+    var onAction: ((EditorModuleAction) -> Void)?
 }

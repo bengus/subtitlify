@@ -16,5 +16,4 @@ public enum EditorModuleAction {
 
 public protocol EditorModuleInput: AnyObject {
     var onAction: ((EditorModuleAction) -> Void)? { get set }
-    func setVideo(_ video: Video)
 }

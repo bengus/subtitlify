@@ -84,6 +84,15 @@
 		D38D01442BEA392B009E3E83 /* MYAudioTapProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		D3DD28EC2BEAB42B00542276 /* video_short.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D3DD28EB2BEAB42B00542276 /* video_short.mp4 */; };
 		D3DD28EE2BEBA98C00542276 /* CaptioningDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */; };
+		D3DD28F22BEBCEF000542276 /* ImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DD28F12BEBCEF000542276 /* ImagePickerDelegateProxy.swift */; };
+		D3F2EE922BEBDF99000F31AD /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE912BEBDF99000F31AD /* Project.swift */; };
+		D3F2EE942BEBDFA4000F31AD /* ProjectProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE932BEBDFA4000F31AD /* ProjectProviderProtocol.swift */; };
+		D3F2EE962BEBDFAC000F31AD /* ProjectProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE952BEBDFAC000F31AD /* ProjectProvider.swift */; };
+		D3F2EE992BEBE327000F31AD /* SystemPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE982BEBE327000F31AD /* SystemPermission.swift */; };
+		D3F2EE9B2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE9A2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift */; };
+		D3F2EE9D2BEBE483000F31AD /* SystemPermissionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE9C2BEBE483000F31AD /* SystemPermissionsProvider.swift */; };
+		D3F2EE9F2BEBF3DB000F31AD /* EditorFlowContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE9E2BEBF3DB000F31AD /* EditorFlowContext.swift */; };
+		D3F2EEA12BEBF5C6000F31AD /* EditorContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEA02BEBF5C6000F31AD /* EditorContext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -168,6 +177,15 @@
 		D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAudioTapProcessor.m; sourceTree = "<group>"; };
 		D3DD28EB2BEAB42B00542276 /* video_short.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video_short.mp4; sourceTree = "<group>"; };
 		D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptioningDecorator.swift; sourceTree = "<group>"; };
+		D3DD28F12BEBCEF000542276 /* ImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
+		D3F2EE912BEBDF99000F31AD /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
+		D3F2EE932BEBDFA4000F31AD /* ProjectProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProviderProtocol.swift; sourceTree = "<group>"; };
+		D3F2EE952BEBDFAC000F31AD /* ProjectProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProvider.swift; sourceTree = "<group>"; };
+		D3F2EE982BEBE327000F31AD /* SystemPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPermission.swift; sourceTree = "<group>"; };
+		D3F2EE9A2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPermissionsProviderProtocol.swift; sourceTree = "<group>"; };
+		D3F2EE9C2BEBE483000F31AD /* SystemPermissionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPermissionsProvider.swift; sourceTree = "<group>"; };
+		D3F2EE9E2BEBF3DB000F31AD /* EditorFlowContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowContext.swift; sourceTree = "<group>"; };
+		D3F2EEA02BEBF5C6000F31AD /* EditorContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContext.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,9 +270,9 @@
 				D30A7DA32BE8F9EC00325A76 /* Projects */,
 				D30A7DA22BE8F9E400325A76 /* About */,
 				D30A7DCC2BE908E100325A76 /* EditorFlow */,
+				D30A7DCD2BE908F000325A76 /* ProjectCreate */,
 				D30A7DA42BE8FA0800325A76 /* Editor */,
 				D30A7E1A2BE9641700325A76 /* MediaPermissions */,
-				D30A7DCD2BE908F000325A76 /* Preview */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -343,6 +361,7 @@
 				D30A7DB72BE8FE6500325A76 /* BaseViewController.swift */,
 				D30A7DD72BE91C7A00325A76 /* BaseTabBarController.swift */,
 				D30A7DB82BE8FE6500325A76 /* LoadingView.swift */,
+				D3DD28F12BEBCEF000542276 /* ImagePickerDelegateProxy.swift */,
 			);
 			path = UIKitBase;
 			sourceTree = "<group>";
@@ -370,6 +389,8 @@
 		D30A7DC52BE8FFCE00325A76 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EE972BEBE31C000F31AD /* SystemPermissions */,
+				D3F2EE902BEBDF85000F31AD /* Projects */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -384,7 +405,7 @@
 			path = EditorFlow;
 			sourceTree = "<group>";
 		};
-		D30A7DCD2BE908F000325A76 /* Preview */ = {
+		D30A7DCD2BE908F000325A76 /* ProjectCreate */ = {
 			isa = PBXGroup;
 			children = (
 				D30A7E262BE9644C00325A76 /* View */,
@@ -392,7 +413,7 @@
 				D30A7E232BE9644C00325A76 /* Module */,
 				D30A7E242BE9644C00325A76 /* Factory */,
 			);
-			path = Preview;
+			path = ProjectCreate;
 			sourceTree = "<group>";
 		};
 		D30A7DE02BE93AF700325A76 /* ProjectsFlow */ = {
@@ -483,6 +504,7 @@
 				D30A7E102BE95F3C00325A76 /* EditorFlowModuleSeed.swift */,
 				D30A7E122BE95F4500325A76 /* EditorFlowModuleInput.swift */,
 				D30A7E0E2BE95F2800325A76 /* EditorFlowModule.swift */,
+				D3F2EE9E2BEBF3DB000F31AD /* EditorFlowContext.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -532,6 +554,7 @@
 				D30A7E282BE9652600325A76 /* EditorModuleSeed.swift */,
 				D30A7E292BE9652600325A76 /* EditorModuleInput.swift */,
 				D30A7E2A2BE9652600325A76 /* EditorModule.swift */,
+				D3F2EEA02BEBF5C6000F31AD /* EditorContext.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -645,6 +668,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D3F2EE902BEBDF85000F31AD /* Projects */ = {
+			isa = PBXGroup;
+			children = (
+				D3F2EE912BEBDF99000F31AD /* Project.swift */,
+				D3F2EE932BEBDFA4000F31AD /* ProjectProviderProtocol.swift */,
+				D3F2EE952BEBDFAC000F31AD /* ProjectProvider.swift */,
+			);
+			path = Projects;
+			sourceTree = "<group>";
+		};
+		D3F2EE972BEBE31C000F31AD /* SystemPermissions */ = {
+			isa = PBXGroup;
+			children = (
+				D3F2EE982BEBE327000F31AD /* SystemPermission.swift */,
+				D3F2EE9A2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift */,
+				D3F2EE9C2BEBE483000F31AD /* SystemPermissionsProvider.swift */,
+			);
+			path = SystemPermissions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -732,13 +775,18 @@
 				D30A7DC72BE900DB00325A76 /* LaunchViewController.swift in Sources */,
 				D38D01382BEA3001009E3E83 /* VideoTranscriptionProvider.swift in Sources */,
 				D38D01312BEA0421009E3E83 /* ObservablePlayer.swift in Sources */,
+				D3F2EEA12BEBF5C6000F31AD /* EditorContext.swift in Sources */,
 				D30A7DB02BE8FCB400325A76 /* UIView+Debug.swift in Sources */,
+				D3F2EE962BEBDFAC000F31AD /* ProjectProvider.swift in Sources */,
 				D30A7DBD2BE8FE6500325A76 /* BaseViewController.swift in Sources */,
 				D38D012D2BEA027E009E3E83 /* Video.swift in Sources */,
 				D30A7E032BE9507200325A76 /* Design.Colors.swift in Sources */,
+				D3F2EE922BEBDF99000F31AD /* Project.swift in Sources */,
+				D3F2EE9D2BEBE483000F31AD /* SystemPermissionsProvider.swift in Sources */,
 				D30A7E322BE9662A00325A76 /* EditorModule.swift in Sources */,
 				D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */,
 				D30A7DFC2BE9479100325A76 /* HomeContainerModule.swift in Sources */,
+				D3F2EE9B2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift in Sources */,
 				D38D01362BEA19BC009E3E83 /* PinLayout+.swift in Sources */,
 				D30A7DFD2BE94B1600325A76 /* HomeContainerModuleFactoryProtocol.swift in Sources */,
 				D30A7E392BE97AE300325A76 /* EditorViewController.swift in Sources */,
@@ -754,6 +802,7 @@
 				D30A7DEB2BE93E4A00325A76 /* RootContainerModuleFactoryProtocol.swift in Sources */,
 				D30A7DF92BE9475700325A76 /* HomeContainerModuleFactory.swift in Sources */,
 				D30A7DD82BE91C7A00325A76 /* BaseTabBarController.swift in Sources */,
+				D3F2EE992BEBE327000F31AD /* SystemPermission.swift in Sources */,
 				D30A7DA62BE8FB7600325A76 /* Design.swift in Sources */,
 				D30A7DDE2BE9221C00325A76 /* ViewLifecycleObservable.swift in Sources */,
 				D30A7DBE2BE8FE6500325A76 /* LoadingView.swift in Sources */,
@@ -775,8 +824,11 @@
 				D30A7DD22BE915A500325A76 /* RootCoordinator.swift in Sources */,
 				D30A7DFF2BE9506100325A76 /* Design.Metrics.swift in Sources */,
 				D30A7E342BE9662A00325A76 /* EditorModuleFactoryProtocol.swift in Sources */,
+				D3F2EE942BEBDFA4000F31AD /* ProjectProviderProtocol.swift in Sources */,
+				D3F2EE9F2BEBF3DB000F31AD /* EditorFlowContext.swift in Sources */,
 				D30A7E112BE95F3C00325A76 /* EditorFlowModuleSeed.swift in Sources */,
 				D30A7E332BE9662A00325A76 /* MediaPermissionsModuleFactoryProtocol.swift in Sources */,
+				D3DD28F22BEBCEF000542276 /* ImagePickerDelegateProxy.swift in Sources */,
 				D30A7E352BE9662A00325A76 /* MediaPermissionsModuleSeed.swift in Sources */,
 				D30A7DFB2BE9479100325A76 /* HomeContainerModuleInput.swift in Sources */,
 				D30A7DB12BE8FCB400325A76 /* UIViewController+Helpers.swift in Sources */,

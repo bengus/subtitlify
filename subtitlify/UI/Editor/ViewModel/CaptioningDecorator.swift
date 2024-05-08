@@ -18,7 +18,6 @@ final class CaptioningDecorator {
         case highlighted
     }
     
-    private(set) var captioningAttributedText: NSAttributedString?
     private var currentCaptioningIndex: Array.Index?
     private var currentCaptioningRange: Range<Array.Index>?
     private var transcription: SFTranscription?
@@ -34,7 +33,6 @@ final class CaptioningDecorator {
     func reset() {
         self.currentCaptioningIndex = nil
         self.currentCaptioningRange = nil
-        self.captioningAttributedText = nil
     }
     
     func setTranscription(_ transcription: SFTranscription?) {
@@ -49,7 +47,11 @@ final class CaptioningDecorator {
         self.captioningMode = mode
     }
     
-    func rebuildCaptioningText() {
+    func getCaptioningAttributedText() -> NSAttributedString? {
+        if currentCaptioningIndex == nil && currentCaptioningRange == nil {
+            return nil
+        }
+        
         let regularAttributes: [NSAttributedString.Key: Any] = [
             NSAttributedString.Key.foregroundColor: Design.Colors.lightText,
             NSAttributedString.Key.font: Design.Fonts.semibold(ofSize: 18),
@@ -58,10 +60,6 @@ final class CaptioningDecorator {
             NSAttributedString.Key.foregroundColor: Design.Colors.accent,
             NSAttributedString.Key.font: Design.Fonts.bold(ofSize: 18),
         ]
-        
-        if currentCaptioningIndex == nil && currentCaptioningRange == nil {
-            self.captioningAttributedText = nil
-        }
         
         let attributedText = NSMutableAttributedString()
         if let transcription {
@@ -119,7 +117,8 @@ final class CaptioningDecorator {
                 }
             }
         }
-        self.captioningAttributedText = attributedText
+        
+        return attributedText
     }
     
     func moveCaptioningWindow(currentTime: TimeInterval?) {
@@ -165,16 +164,16 @@ final class CaptioningDecorator {
             }
         }
         
-#if DEBUG
-        print("--- moveCaptioningWindow ---")
-        if let currentCaptioningRange {
-            print("currentCaptioningRange: [\(currentCaptioningRange.lowerBound)..<\(currentCaptioningRange.upperBound)]")
-        }
-        if let currentCaptioningIndex {
-            print("currentCaptioningIndex: \(currentCaptioningIndex)")
-        }
-        print("currentTime: \(currentTime ?? .nan)")
-#endif
+//#if DEBUG
+//        print("--- moveCaptioningWindow ---")
+//        if let currentCaptioningRange {
+//            print("currentCaptioningRange: [\(currentCaptioningRange.lowerBound)..<\(currentCaptioningRange.upperBound)]")
+//        }
+//        if let currentCaptioningIndex {
+//            print("currentCaptioningIndex: \(currentCaptioningIndex)")
+//        }
+//        print("currentTime: \(currentTime ?? .nan)")
+//#endif
     }
 }
 

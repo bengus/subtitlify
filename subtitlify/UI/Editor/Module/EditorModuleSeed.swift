@@ -10,5 +10,9 @@ import Foundation
 public struct EditorModuleSeed {
     // Parameters required to build an instance of the module should be declared here
     // for example: objectId or things like that
-    public init() { }
+    public let context: EditorContext
+    
+    public init(context: EditorContext) {
+        self.context = context
+    }
 }

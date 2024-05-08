@@ -22,7 +22,8 @@ final class EditorModuleFactory: EditorModuleFactoryProtocol {
     func module(moduleSeed: EditorModuleSeed) -> EditorModule {
         // ViewModel
         let viewModel = EditorViewModel(
-            initialState: EditorViewState.empty()
+            initialState: EditorViewState.empty(),
+            context: moduleSeed.context
         )
         
         // ViewController

@@ -40,5 +40,7 @@
 	<false/>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>Access to speech recognition required for subtitles generation</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>RandomDay saves captured videos to your photo library</string>
 </dict>
 </plist>

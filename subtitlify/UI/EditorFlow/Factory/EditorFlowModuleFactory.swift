@@ -22,6 +22,7 @@ final class EditorFlowModuleFactory: EditorFlowModuleFactoryProtocol {
     func module(moduleSeed: EditorFlowModuleSeed) -> EditorFlowModule {
         // Coordinator
         let coordinator = EditorFlowCoordinator(
+            context: moduleSeed.context,
             editorModuleFactory: container.getEditorModuleFactory(),
             mediaPermissionsModuleFactory: container.getMediaPermissionsModuleFactory()
         )

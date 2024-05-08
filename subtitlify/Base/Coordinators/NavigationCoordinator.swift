@@ -28,7 +28,7 @@ open class NavigationCoordinator {
     // MARK: - Internal
     func assertConfigured() {
         if !isConfigured {
-            assertionFailure("\(type(of: self)) tries to work in not-configured state, use - configure(navigationController:rootViewController:)")
+            assertionFailure("\(type(of: self)) tries to work in non-configured state, use - configure(navigationController:rootViewController:)")
         }
     }
     
@@ -39,7 +39,7 @@ open class NavigationCoordinator {
         rootViewController: UIViewController & DisposeBag
     ) {
         self.navigationController = navigationController
-        // Life cycle навигационного координатора совпадает с life cycle рутового экранного модуля
+        // Lifecycle of the NavigationCoordinator should follow the root viewcontroller lificycle
         rootViewController.addDisposable(self)
         self.rootViewController = rootViewController
     }

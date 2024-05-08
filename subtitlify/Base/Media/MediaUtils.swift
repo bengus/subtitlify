@@ -7,9 +7,50 @@
 
 import Foundation
 import UIKit
+import Photos
 import AVFoundation
 
+public enum MediaError: Error {
+    case encodingVideoToMp4Failed(reason: Error?)
+}
+
 public enum MediaUtils {
+    public static let mediaFileTypeMp4 = "mp4"
+    
+    public static func getDocumentsDirectoryUrl() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
+    
+    public static func getTempDirectoryUrl() -> URL {
+        return URL(fileURLWithPath: NSTemporaryDirectory())
+    }
+    
+    public static func getUniqueMediaFileName(withExt fileExtension: String) -> String {
+        return "\(UUID().uuidString).\(fileExtension)"
+    }
+    
+    public static func getDocumentsFileUrl(forFileName fileName: String) -> URL {
+        return getDocumentsDirectoryUrl().appendingPathComponent(fileName)
+    }
+    
+    public static func getTempFileUrl(forFileName fileName: String) -> URL {
+        return getTempDirectoryUrl().appendingPathComponent(fileName)
+    }
+    
+    public static func movedVideoToDocumentsDirectory(
+        _ sourceVideo: Video,
+        newFileName: String
+    ) -> Video {
+        let newVideoUrl = MediaUtils.getDocumentsFileUrl(forFileName: newFileName)
+        // TODO error handling
+        try! FileManager.default.moveItem(
+            at: sourceVideo.url,
+            to: newVideoUrl
+        )
+        
+        return Video(url: newVideoUrl)
+    }
+    
     public static func previewImageFromVideo(url: URL) -> UIImage? {
         let request = URLRequest(url: url)
         let cache = URLCache.shared
@@ -48,5 +89,59 @@ public enum MediaUtils {
         }
 
         return image
+    }
+    
+    public func encodeVideoToMp4(
+        videoUrl: URL,
+        completion: @escaping (Result<Video, MediaError>) -> Void
+    ) {
+        let savingFilePath = MediaUtils.getUniqueMediaFileName(withExt: MediaUtils.mediaFileTypeMp4)
+        let savingUrl = MediaUtils.getTempFileUrl(forFileName: savingFilePath)
+        let sourceAsset = AVURLAsset(url: videoUrl)
+        
+        // Export
+        guard let exportSession = AVAssetExportSession(
+            asset: sourceAsset,
+            presetName: AVAssetExportPresetPassthrough
+        ) else {
+            DispatchQueue.main.async {
+                completion(.failure(.encodingVideoToMp4Failed(reason: nil)))
+            }
+            return
+        }
+        exportSession.timeRange = CMTimeRange(start: CMTime(seconds: 0, preferredTimescale: 1), duration: sourceAsset.duration)
+        exportSession.outputURL = savingUrl
+        exportSession.outputFileType = AVFileType.mp4
+        exportSession.shouldOptimizeForNetworkUse = true
+        
+        exportSession.exportAsynchronously {
+            switch exportSession.status {
+            case .completed:
+                let encodedVideo = Video(url: savingUrl)
+                DispatchQueue.main.async {
+                    completion(.success(encodedVideo))
+                }
+            default:
+                DispatchQueue.main.async {
+                    completion(.failure(.encodingVideoToMp4Failed(reason: exportSession.error)))
+                }
+            }
+        }
+    }
+    
+    public static func requestPhotoLibraryAuthorization(
+        completion: @escaping (Bool) -> Void
+    ) {
+        if PHPhotoLibrary.authorizationStatus() == .authorized {
+            DispatchQueue.main.async {
+                completion(true)
+            }
+        } else {
+            PHPhotoLibrary.requestAuthorization { status in
+                DispatchQueue.main.async {
+                    completion(status == .authorized)
+                }
+            }
+        }
     }
 }

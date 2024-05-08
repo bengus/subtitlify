@@ -10,7 +10,6 @@ import AVFoundation
 import Combine
 
 private let timeScale = CMTimeScale(1000)
-private let time = CMTime(seconds: 0.1, preferredTimescale: timeScale)
 
 public enum PlayerScrubState {
     case reset
@@ -44,6 +43,7 @@ public final class ObservablePlayer: NSObject,
     public let avPlayer: AVPlayer
 
     /// Time observer.
+    private let periodicTimeObservationInterval: TimeInterval
     private var periodicTimeObserver: Any?
 
     public var scrubState: PlayerScrubState = .reset {
@@ -54,22 +54,33 @@ public final class ObservablePlayer: NSObject,
             case .scrubStarted:
                 return
             case .scrubEnded(let seekTime):
-                avPlayer.seek(to: CMTime(seconds: seekTime, preferredTimescale: 1000))
+                avPlayer.seek(to: CMTime(seconds: seekTime, preferredTimescale: timeScale))
             }
         }
     }
 
     
     // MARK: - Init
-    public convenience init(asset: AVURLAsset) {
+    public convenience init(
+        asset: AVURLAsset,
+        periodicTimeObservationInterval: TimeInterval = 0.5
+    ) {
         let playerItem = AVPlayerItem(asset: asset)
         let player = AVPlayer(playerItem: playerItem)
         
-        self.init(avPlayer: player)
+        self.init(
+            avPlayer: player,
+            periodicTimeObservationInterval: periodicTimeObservationInterval
+        )
     }
     
-    public init(avPlayer: AVPlayer) {
+    public init(
+        avPlayer: AVPlayer,
+        periodicTimeObservationInterval: TimeInterval = 0.5
+    ) {
+        self.periodicTimeObservationInterval = periodicTimeObservationInterval
         self.avPlayer = avPlayer
+        
         super.init()
     }
 
@@ -105,7 +116,8 @@ public final class ObservablePlayer: NSObject,
     
     // MARK: - AVPlayer observation
     private func addPeriodicTimeObserver() {
-        self.periodicTimeObserver = avPlayer.addPeriodicTimeObserver(forInterval: time, queue: .main) { [weak self] (time) in
+        let interval = CMTime(seconds: periodicTimeObservationInterval, preferredTimescale: timeScale)
+        self.periodicTimeObserver = avPlayer.addPeriodicTimeObserver(forInterval: interval, queue: .main) { [weak self] (time) in
             guard let self = self else { return }
 
             // Always update observed time.

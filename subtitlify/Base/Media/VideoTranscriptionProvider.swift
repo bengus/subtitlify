@@ -120,6 +120,11 @@ public final class VideoTranscriptionProvider: NSObject,
             {
                 self.fullRecognitionTask = nil
                 completion(result.bestTranscription)
+#if DEBUG
+                result.bestTranscription.segments.enumerated().forEach({
+                    print("\($0): \($1.substring) [\($1.timestamp)..\($1.timestamp + $1.duration)]")
+                })
+#endif
             }
             
             if error != nil {

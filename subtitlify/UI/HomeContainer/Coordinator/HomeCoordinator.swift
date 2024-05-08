@@ -109,7 +109,7 @@ final class HomeCoordinator: NSObject,
         }
     }
     
-    private func openEditorFlow() {
+    private func openEditorFlow(context: EditorFlowContext) {
         guard
             let window = UIApplication.shared.findKeyWindow(),
             let rootViewController = window.rootViewController else
@@ -119,7 +119,7 @@ final class HomeCoordinator: NSObject,
         }
         
         let navigationController = UINavigationController()
-        let editorFlowModule = editorFlowModuleFactory.module(moduleSeed: EditorFlowModuleSeed())
+        let editorFlowModule = editorFlowModuleFactory.module(moduleSeed: EditorFlowModuleSeed(context: context))
         editorFlowModule.moduleInput.onAction = { [weak navigationController] action in
             switch action {
             case .close:
@@ -143,8 +143,10 @@ final class HomeCoordinator: NSObject,
     // MARK: - UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController === emptyEditorViewController {
-            openEditorFlow()
-            // Prevent tab switching in case of modal editor opening
+            openEditorFlow(context: .demo(isBuffered: true))
+            return false
+        } else if viewController === aboutViewController {
+            openEditorFlow(context: .demo(isBuffered: false))
             return false
         } else {
             return true

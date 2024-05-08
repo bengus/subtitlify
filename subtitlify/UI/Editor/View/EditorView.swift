@@ -112,19 +112,15 @@ final class EditorView: MvvmUIKitView
         
         addSubview(loadingView)
         
-        // TODO: pan gesture for subtitlesWrapperView
         playPauseButton.addTarget(self, action: #selector(playPauseButtonPressed), for: .touchUpInside)
         progressSlider.addTarget(self, action: #selector(sliderValueChanged(sender:event:)), for: .valueChanged)
         modeWordByWordButton.addTarget(self, action: #selector(modeWordByWordButtonPressed), for: .touchUpInside)
         modeRegularButton.addTarget(self, action: #selector(modeRegularButtonPressed), for: .touchUpInside)
         modeHighlightedButton.addTarget(self, action: #selector(modeHighlightedButtonPressed), for: .touchUpInside)
+        subtitlesWrapperView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleSubtitlesPan)))
         
         // Observing $player becides normal UI State
-        viewModel.$player
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] player in
-                self?.startPlayerObservation(player)
-            }.store(in: &cancellables)
+        startPlayerObservation()
     }
     
     deinit {
@@ -207,9 +203,17 @@ final class EditorView: MvvmUIKitView
             .height(modeWordByWordButton.frame.maxY + Design.Metrics.verticalGap + pin.safeArea.bottom)
         
         // subtitles
-        subtitlesWrapperView.pin
-            .horizontally()
-            .above(of: controlsWrapperView)
+        if let overridenSubtitlesOrigin {
+            // following to overriden origin, but keep our width
+            subtitlesWrapperView.pin
+                .top(overridenSubtitlesOrigin.y)
+                .left(overridenSubtitlesOrigin.x)
+                .width(editingWrapperView.frame.width)
+        } else {
+            subtitlesWrapperView.pin
+                .horizontally()
+                .above(of: controlsWrapperView)
+        }
         subtitlesLabel.pin
             .top()
             .horizontally(Design.Metrics.horizontalGap)
@@ -269,6 +273,36 @@ final class EditorView: MvvmUIKitView
     @objc
     private func modeHighlightedButtonPressed() {
         viewModel.sendViewAction(.captioningModeHighlightedTap)
+    }
+    
+    // Didn't store it in ViewModel or in layer above because of demo
+    private var overridenSubtitlesOrigin: CGPoint?
+    
+    @objc
+    private func handleSubtitlesPan(_ gesture: UIPanGestureRecognizer) {
+        if let draggingView = gesture.view {
+            let point = gesture.translation(in: editingWrapperView)
+            draggingView.center = CGPoint(
+                x: draggingView.center.x + point.x,
+                y: draggingView.center.y + point.y
+            )
+            overridenSubtitlesOrigin = draggingView.frame.origin
+            gesture.setTranslation(.zero, in: editingWrapperView)
+            switch gesture.state {
+            case .began:
+                draggingView.layer.borderWidth = 1
+                draggingView.layer.borderColor = Design.Colors.accent.cgColor
+            case .cancelled, .ended, .failed:
+                draggingView.layer.borderWidth = 0
+                draggingView.layer.borderColor = nil
+            case .possible:
+                break
+            case .changed:
+                break
+            @unknown default:
+                break
+            }
+        }
     }
     
     
@@ -335,22 +369,22 @@ final class EditorView: MvvmUIKitView
     // MARK: - Player observation
     private var playerDisplayTimePublisher: AnyCancellable?
     
-    private func startPlayerObservation(_ player: ObservablePlayer?) {
+    private func startPlayerObservation() {
         stopPlayerObservation()
-        if let player = player {
-            playerLayer.player = player.avPlayer
-            progressSlider.maximumValue = Float(player.itemDuration)
-            progressSlider.minimumValue = 0
-            progressSlider.value = 0
-            
-            playerDisplayTimePublisher = player.$displayTime
-                .receive(on: DispatchQueue.main)
-                .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: true)
-                .sink { [weak self] value in
-                    self?.progressSlider.maximumValue = Float(player.itemDuration)
-                    self?.progressSlider.value = Float(value)
-                }
-        }
+        
+        let player = viewModel.player
+        playerLayer.player = player.avPlayer
+        progressSlider.maximumValue = Float(player.itemDuration)
+        progressSlider.minimumValue = 0
+        progressSlider.value = 0
+        
+        playerDisplayTimePublisher = player.$displayTime
+            .receive(on: DispatchQueue.main)
+            .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: true)
+            .sink { [weak self] value in
+                self?.progressSlider.maximumValue = Float(player.itemDuration)
+                self?.progressSlider.value = Float(value)
+            }
     }
     
     private func stopPlayerObservation() {
