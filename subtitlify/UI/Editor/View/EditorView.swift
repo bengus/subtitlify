@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 import AVFoundation
 import PinLayout
 
@@ -37,19 +38,48 @@ final class EditorView: MvvmUIKitView
     
     private lazy var subtitlesLabel: UILabel = {
         let label = UILabel()
-        label.font = Design.Fonts.mediumText
-        label.textColor = Design.Colors.primaryText
+        label.font = Design.Fonts.semibold(ofSize: 18)
+        label.textColor = Design.Colors.lightText
         label.numberOfLines = 0
         label.lineBreakMode = .byTruncatingHead
+        label.textAlignment = .center
         
         return label
     }()
     
     private lazy var subtitlesWrapperView: UIView = {
         let view = UIView(frame: .zero)
-        view.backgroundColor = Design.Colors.Palette.white.withAlphaComponent(0.6)
+        view.backgroundColor = Design.Colors.Palette.pianoBlack.withAlphaComponent(0.6)
         return view
     }()
+    
+    private lazy var controlsWrapperView: UIView = {
+        let view = UIView(frame: .zero)
+        view.backgroundColor = Design.Colors.playbackBackround
+        return view
+    }()
+    
+    private lazy var playPauseButton = Buttons.image(
+        image: UIImage(named: "44_play_solid"),
+        backgroundColor: Design.Colors.playbackBackround
+    )
+    
+    private lazy var progressSlider: UISlider = {
+        let slider = UISlider()
+        slider.minimumTrackTintColor = Design.Colors.accent
+        slider.maximumTrackTintColor = Design.Colors.defaultBackground
+        slider.isContinuous = true
+        return slider
+    }()
+    
+    private lazy var modeWordByWordButton = Buttons.solidSecondary(title: "word")
+    private lazy var modeRegularButton = Buttons.solidSecondary(title: "regular")
+    private lazy var modeHighlightedButton = Buttons.solidSecondary(title: "highlighted")
+    
+    private lazy var loadingView = LoadingView(
+        indicatorColor: Design.Colors.loadingIndicatorWhite,
+        backdropColor: Design.Colors.loadingBackdropColor
+    )
     
     
     // MARK: - Init
@@ -70,8 +100,37 @@ final class EditorView: MvvmUIKitView
         
         editingWrapperView.addSubview(playerView)
         editingWrapperView.addSubview(subtitlesWrapperView)
+        editingWrapperView.addSubview(controlsWrapperView)
+            
         subtitlesWrapperView.addSubview(subtitlesLabel)
+        
+        controlsWrapperView.addSubview(playPauseButton)
+        controlsWrapperView.addSubview(progressSlider)
+        controlsWrapperView.addSubview(modeWordByWordButton)
+        controlsWrapperView.addSubview(modeRegularButton)
+        controlsWrapperView.addSubview(modeHighlightedButton)
+        
+        addSubview(loadingView)
+        
+        // TODO: pan gesture for subtitlesWrapperView
+        playPauseButton.addTarget(self, action: #selector(playPauseButtonPressed), for: .touchUpInside)
+        progressSlider.addTarget(self, action: #selector(sliderValueChanged(sender:event:)), for: .valueChanged)
+        modeWordByWordButton.addTarget(self, action: #selector(modeWordByWordButtonPressed), for: .touchUpInside)
+        modeRegularButton.addTarget(self, action: #selector(modeRegularButtonPressed), for: .touchUpInside)
+        modeHighlightedButton.addTarget(self, action: #selector(modeHighlightedButtonPressed), for: .touchUpInside)
+        
+        // Observing $player becides normal UI State
+        viewModel.$player
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] player in
+                self?.startPlayerObservation(player)
+            }.store(in: &cancellables)
     }
+    
+    deinit {
+        stopPlayerObservation()
+    }
+    
     
     // MARK: - Life cycle
     override func layoutSubviews() {
@@ -112,11 +171,45 @@ final class EditorView: MvvmUIKitView
         
         // editing
         editingWrapperView.pin.all()
-        playerView.pin.all()
-        playerLayer.frame = playerView.bounds
-        subtitlesWrapperView.pin
+        
+        // controls
+        controlsWrapperView.pin
             .horizontally()
             .bottom()
+        playPauseButton.pin
+            .top(Design.Metrics.smallVerticalGap)
+            .left(Design.Metrics.smallHorizontalGap)
+            .size(Design.Metrics.playPauseHeight)
+        progressSlider.pin
+            .after(of: playPauseButton)
+            .right(Design.Metrics.smallHorizontalGap)
+            .height(Design.Metrics.sliderHeight)
+            .vCenter(to: playPauseButton.edge.vCenter)
+        let buttonWidth: CGFloat = (controlsWrapperView.frame.width - Design.Metrics.horizontalGap * CGFloat(2) - Design.Metrics.modeButtonsGap * CGFloat(2)) / CGFloat(3)
+        modeWordByWordButton.pin
+            .below(of: playPauseButton)
+            .left(Design.Metrics.horizontalGap)
+            .width(buttonWidth)
+            .sizeToFit(.width)
+        modeRegularButton.pin
+            .below(of: playPauseButton)
+            .after(of: modeWordByWordButton)
+            .marginLeft(Design.Metrics.modeButtonsGap)
+            .width(buttonWidth)
+            .sizeToFit(.width)
+        modeHighlightedButton.pin
+            .below(of: playPauseButton)
+            .after(of: modeRegularButton)
+            .marginLeft(Design.Metrics.modeButtonsGap)
+            .width(buttonWidth)
+            .sizeToFit(.width)
+        controlsWrapperView.pin
+            .height(modeWordByWordButton.frame.maxY + Design.Metrics.verticalGap + pin.safeArea.bottom)
+        
+        // subtitles
+        subtitlesWrapperView.pin
+            .horizontally()
+            .above(of: controlsWrapperView)
         subtitlesLabel.pin
             .top()
             .horizontally(Design.Metrics.horizontalGap)
@@ -124,6 +217,14 @@ final class EditorView: MvvmUIKitView
             .marginTop(Design.Metrics.verticalGap)
         subtitlesWrapperView.pin
             .height(subtitlesLabel.frame.maxY + Design.Metrics.verticalGap)
+        
+        playerView.pin
+            .top()
+            .horizontally()
+            .above(of: controlsWrapperView)
+        playerLayer.frame = playerView.bounds
+        
+        loadingView.pin.all()
         
         return frame.size
     }
@@ -133,6 +234,41 @@ final class EditorView: MvvmUIKitView
     @objc
     private func selectButtonPressed() {
         viewModel.sendViewAction(.selectVideoTap)
+    }
+    
+    @objc
+    private func playPauseButtonPressed() {
+        viewModel.sendViewAction(.playPauseTap)
+    }
+    
+    @objc
+    private func sliderValueChanged(sender: UISlider, event: UIEvent) {
+        if  let touchEvent = event.allTouches?.first {
+            switch touchEvent.phase {
+            case .began:
+                viewModel.sendViewAction(.scrubStarted)
+            case .ended:
+                viewModel.sendViewAction(.scrubEnded(seekTime: TimeInterval(sender.value)))
+            default:
+                break
+            }
+        }
+        
+    }
+    
+    @objc
+    private func modeWordByWordButtonPressed() {
+        viewModel.sendViewAction(.captioningModeCurrentWordTap)
+    }
+    
+    @objc
+    private func modeRegularButtonPressed() {
+        viewModel.sendViewAction(.captioningModeRegularTap)
+    }
+    
+    @objc
+    private func modeHighlightedButtonPressed() {
+        viewModel.sendViewAction(.captioningModeHighlightedTap)
     }
     
     
@@ -157,13 +293,74 @@ final class EditorView: MvvmUIKitView
             break
         }
         
-        playerLayer.player = viewModel.player?.avPlayer
-        subtitlesLabel.text = state.captioning
+        subtitlesLabel.attributedText = state.captioningAttributedText
+        loadingView.setLoading(state.isLoading)
+        switch state.timeControlStatus {
+        case .paused:
+            playPauseButton.setImage(UIImage(named: "44_play_solid"), for: .normal)
+        case .playing:
+            playPauseButton.setImage(UIImage(named: "44_pause_solid"), for: .normal)
+        case .unknown:
+            playPauseButton.setImage(nil, for: .normal)
+        }
+        
+        switch state.captioningMode {
+        case .currentWord:
+            modeWordByWordButton.backgroundColor = Design.Colors.accent
+            modeWordByWordButton.titleLabel?.textColor = Design.Colors.lightText
+            modeRegularButton.backgroundColor = Design.Colors.info
+            modeRegularButton.titleLabel?.textColor = Design.Colors.primaryText
+            modeHighlightedButton.backgroundColor = Design.Colors.info
+            modeHighlightedButton.titleLabel?.textColor = Design.Colors.primaryText
+        case .regular:
+            modeWordByWordButton.backgroundColor = Design.Colors.info
+            modeWordByWordButton.titleLabel?.textColor = Design.Colors.primaryText
+            modeRegularButton.backgroundColor = Design.Colors.accent
+            modeRegularButton.titleLabel?.textColor = Design.Colors.lightText
+            modeHighlightedButton.backgroundColor = Design.Colors.info
+            modeHighlightedButton.titleLabel?.textColor = Design.Colors.primaryText
+        case .highlighted:
+            modeWordByWordButton.backgroundColor = Design.Colors.info
+            modeWordByWordButton.titleLabel?.textColor = Design.Colors.primaryText
+            modeRegularButton.backgroundColor = Design.Colors.info
+            modeRegularButton.titleLabel?.textColor = Design.Colors.primaryText
+            modeHighlightedButton.backgroundColor = Design.Colors.accent
+            modeHighlightedButton.titleLabel?.textColor = Design.Colors.lightText
+        }
         
         setNeedsLayout()
+    }
+    
+    
+    // MARK: - Player observation
+    private var playerDisplayTimePublisher: AnyCancellable?
+    
+    private func startPlayerObservation(_ player: ObservablePlayer?) {
+        stopPlayerObservation()
+        if let player = player {
+            playerLayer.player = player.avPlayer
+            progressSlider.maximumValue = Float(player.itemDuration)
+            progressSlider.minimumValue = 0
+            progressSlider.value = 0
+            
+            playerDisplayTimePublisher = player.$displayTime
+                .receive(on: DispatchQueue.main)
+                .throttle(for: .seconds(0.5), scheduler: DispatchQueue.main, latest: true)
+                .sink { [weak self] value in
+                    self?.progressSlider.maximumValue = Float(player.itemDuration)
+                    self?.progressSlider.value = Float(value)
+                }
+        }
+    }
+    
+    private func stopPlayerObservation() {
+        playerDisplayTimePublisher?.cancel()
     }
 }
 
 private extension Design.Metrics {
     static let subtitlesHeight: CGFloat = 120
+    static let playPauseHeight: CGFloat = 44
+    static let sliderHeight: CGFloat = 20
+    static let modeButtonsGap: CGFloat = 4
 }

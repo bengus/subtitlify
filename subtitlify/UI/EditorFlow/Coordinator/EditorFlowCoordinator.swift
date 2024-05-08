@@ -56,7 +56,7 @@ final class EditorFlowCoordinator: NavigationCoordinator,
     
     // MARK: - Coordinator
     private func selectVideo() {
-        let demoVideoURL = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+        let demoVideoURL = Bundle.main.url(forResource: "video_short", withExtension: "mp4")!
         let demoVideo = Video(url: demoVideoURL)
         
         guard let editorModuleInput = editorModuleInput else {

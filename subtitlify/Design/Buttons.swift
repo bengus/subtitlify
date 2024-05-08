@@ -9,6 +9,24 @@ import Foundation
 import UIKit
 
 public enum Buttons {
+    public static func image(
+        image: UIImage?,
+        backgroundColor: UIColor,
+        cornerRadius: CGFloat = Design.Metrics.buttonCornerRadius,
+        contentInsets: NSDirectionalEdgeInsets = Design.Metrics.buttonImageContentInset
+    ) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.setImage(image, for: .normal)
+        button.backgroundColor = backgroundColor
+        button.layer.cornerRadius = cornerRadius
+        var configuration = UIButton.Configuration.plain()
+        configuration.contentInsets = contentInsets
+        button.configuration = configuration
+        
+        return button
+    }
+    
+    
     // MARK: - Solid(filled) buttons
     public static func solid(
         title: String? = nil,

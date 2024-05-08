@@ -10,7 +10,7 @@ import AVFoundation
 import Combine
 
 private let timeScale = CMTimeScale(1000)
-private let time = CMTime(seconds: 0.5, preferredTimescale: timeScale)
+private let time = CMTime(seconds: 0.1, preferredTimescale: timeScale)
 
 public enum PlayerScrubState {
     case reset
@@ -74,7 +74,7 @@ public final class ObservablePlayer: NSObject,
     }
 
     deinit {
-        stopPlaybackObservation()
+        stopObservation()
 #if DEBUG
         print("ObservablePlayer deinit")
 #endif
@@ -90,13 +90,13 @@ public final class ObservablePlayer: NSObject,
         self.avPlayer.pause()
     }
     
-    public func startPlaybackObservation() {
+    public func startObservation() {
         self.addPeriodicTimeObserver()
         self.addTimeControlStatusObserver()
         self.addItemDurationPublisher()
     }
     
-    public func stopPlaybackObservation() {
+    public func stopObservation() {
         removePeriodicTimeObserver()
         timeControlStatusKVOPublisher?.cancel()
         itemDurationKVOPublisher?.cancel()
@@ -140,8 +140,7 @@ public final class ObservablePlayer: NSObject,
             .sink(receiveValue: { [weak self] (newStatus) in
                 guard let self = self else { return }
                 self.timeControlStatus = newStatus
-                }
-        )
+            })
     }
 
     private func addItemDurationPublisher() {
@@ -149,10 +148,11 @@ public final class ObservablePlayer: NSObject,
             .publisher(for: \.currentItem?.duration)
             .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] (newStatus) in
-                guard let newStatus = newStatus,
-                    let self = self else { return }
-                self.itemDuration = newStatus.seconds
-                }
-        )
+                guard
+                    let newStatus = newStatus,
+                    let self = self else
+                { return }
+                self.itemDuration = newStatus.seconds.isNaN ? 0 : newStatus.seconds
+            })
     }
 }

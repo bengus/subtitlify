@@ -23,6 +23,7 @@ public extension Design {
         public static let borderWidth: CGFloat = 1 / UIScreen.main.scale
         public static let buttonCornerRadius: CGFloat = 12
         public static let buttonSolidContentInset = NSDirectionalEdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12)
+        public static let buttonImageContentInset = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         public static let buttonSystemContentInset = NSDirectionalEdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4)
         public static let buttonHeight: CGFloat = 48
         public static let buttonWidthIpad: CGFloat = 320

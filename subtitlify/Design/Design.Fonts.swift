@@ -10,13 +10,25 @@ import UIKit
 
 public extension Design {
     enum Fonts {
-        public static var navBarTitle: UIFont { UIFont.systemFont(ofSize: 17, weight: .semibold) }
-        public static var navBarButton: UIFont { UIFont.systemFont(ofSize: 17, weight: .regular) }
-        public static var tabBarTitle: UIFont { UIFont.systemFont(ofSize: 11, weight: .regular) }
-        public static var defaultButton: UIFont { UIFont.systemFont(ofSize: 16, weight: .regular) }
-        public static var defaultText: UIFont { UIFont.systemFont(ofSize: 14, weight: .regular) }
-        public static var mediumText: UIFont { UIFont.systemFont(ofSize: 16, weight: .regular) }
-        public static var bigText: UIFont { UIFont.systemFont(ofSize: 18, weight: .regular) }
+        public static func regular(ofSize size: CGFloat) -> UIFont {
+            UIFont.systemFont(ofSize: size, weight: .semibold)
+        }
+        
+        public static func semibold(ofSize size: CGFloat) -> UIFont {
+            UIFont.systemFont(ofSize: size, weight: .semibold)
+        }
+        
+        public static func bold(ofSize size: CGFloat) -> UIFont {
+            UIFont.systemFont(ofSize: size, weight: .bold)
+        }
+        
+        public static var navBarTitle: UIFont { semibold(ofSize: 17) }
+        public static var navBarButton: UIFont { regular(ofSize: 17) }
+        public static var tabBarTitle: UIFont { regular(ofSize: 11) }
+        public static var defaultButton: UIFont { regular(ofSize: 16) }
+        public static var defaultText: UIFont { regular(ofSize: 14) }
+        public static var mediumText: UIFont { regular(ofSize: 16) }
+        public static var bigText: UIFont { regular(ofSize: 18) }
         
         // Here should be also declared mostly all popular textstyles like
         // public static var heading1 = ...

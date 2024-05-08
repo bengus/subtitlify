@@ -80,8 +80,10 @@
 		D38D01312BEA0421009E3E83 /* ObservablePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01302BEA0421009E3E83 /* ObservablePlayer.swift */; };
 		D38D01332BEA0827009E3E83 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01322BEA0827009E3E83 /* Buttons.swift */; };
 		D38D01362BEA19BC009E3E83 /* PinLayout+.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01352BEA19BC009E3E83 /* PinLayout+.swift */; };
-		D38D01382BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01372BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift */; };
-		D38D01442BEA392B009E3E83 /* MYAudioTapProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */; };
+		D38D01382BEA3001009E3E83 /* VideoTranscriptionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01372BEA3001009E3E83 /* VideoTranscriptionProvider.swift */; };
+		D38D01442BEA392B009E3E83 /* MYAudioTapProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */; settings = {COMPILER_FLAGS = "-w"; }; };
+		D3DD28EC2BEAB42B00542276 /* video_short.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D3DD28EB2BEAB42B00542276 /* video_short.mp4 */; };
+		D3DD28EE2BEBA98C00542276 /* CaptioningDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -159,11 +161,13 @@
 		D38D01302BEA0421009E3E83 /* ObservablePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservablePlayer.swift; sourceTree = "<group>"; };
 		D38D01322BEA0827009E3E83 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		D38D01352BEA19BC009E3E83 /* PinLayout+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PinLayout+.swift"; sourceTree = "<group>"; };
-		D38D01372BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoSpeechRecognitionProvider.swift; sourceTree = "<group>"; };
+		D38D01372BEA3001009E3E83 /* VideoTranscriptionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoTranscriptionProvider.swift; sourceTree = "<group>"; };
 		D38D013A2BEA3056009E3E83 /* subtitlify-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "subtitlify-Bridging-Header.h"; sourceTree = "<group>"; };
 		D38D013D2BEA3808009E3E83 /* CoreAudioTypes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudioTypes.framework; path = System/Library/Frameworks/CoreAudioTypes.framework; sourceTree = SDKROOT; };
 		D38D01422BEA392B009E3E83 /* MYAudioTapProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MYAudioTapProcessor.h; sourceTree = "<group>"; };
 		D38D01432BEA392B009E3E83 /* MYAudioTapProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MYAudioTapProcessor.m; sourceTree = "<group>"; };
+		D3DD28EB2BEAB42B00542276 /* video_short.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video_short.mp4; sourceTree = "<group>"; };
+		D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptioningDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -517,6 +521,7 @@
 			children = (
 				D30A7E3C2BE97B7B00325A76 /* EditorViewModel.swift */,
 				D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */,
+				D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 		D30A7E272BE9646600325A76 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D3DD28EB2BEAB42B00542276 /* video_short.mp4 */,
 				D38D01282BEA01AA009E3E83 /* video.mp4 */,
 				D30A7D8D2BE8F11500325A76 /* Assets.xcassets */,
 				D30A7D8F2BE8F11500325A76 /* LaunchScreen.storyboard */,
@@ -617,7 +623,7 @@
 				D38D012C2BEA027E009E3E83 /* Video.swift */,
 				D38D012E2BEA0347009E3E83 /* MediaUtils.swift */,
 				D38D01302BEA0421009E3E83 /* ObservablePlayer.swift */,
-				D38D01372BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift */,
+				D38D01372BEA3001009E3E83 /* VideoTranscriptionProvider.swift */,
 			);
 			path = Media;
 			sourceTree = "<group>";
@@ -703,6 +709,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3DD28EC2BEAB42B00542276 /* video_short.mp4 in Resources */,
 				D30A7D912BE8F11500325A76 /* LaunchScreen.storyboard in Resources */,
 				D38D01292BEA01AA009E3E83 /* video.mp4 in Resources */,
 				D30A7D8E2BE8F11500325A76 /* Assets.xcassets in Resources */,
@@ -723,7 +730,7 @@
 				D30A7DB22BE8FCB400325A76 /* UIView+BoundingRect.swift in Sources */,
 				D30A7E132BE95F4500325A76 /* EditorFlowModuleInput.swift in Sources */,
 				D30A7DC72BE900DB00325A76 /* LaunchViewController.swift in Sources */,
-				D38D01382BEA3001009E3E83 /* VideoSpeechRecognitionProvider.swift in Sources */,
+				D38D01382BEA3001009E3E83 /* VideoTranscriptionProvider.swift in Sources */,
 				D38D01312BEA0421009E3E83 /* ObservablePlayer.swift in Sources */,
 				D30A7DB02BE8FCB400325A76 /* UIView+Debug.swift in Sources */,
 				D30A7DBD2BE8FE6500325A76 /* BaseViewController.swift in Sources */,
@@ -774,6 +781,7 @@
 				D30A7DFB2BE9479100325A76 /* HomeContainerModuleInput.swift in Sources */,
 				D30A7DB12BE8FCB400325A76 /* UIViewController+Helpers.swift in Sources */,
 				D30A7DB52BE8FCB400325A76 /* UIImage+.swift in Sources */,
+				D3DD28EE2BEBA98C00542276 /* CaptioningDecorator.swift in Sources */,
 				D30A7E152BE9608900325A76 /* EditorFlowModuleFactory.swift in Sources */,
 				D38D012F2BEA0347009E3E83 /* MediaUtils.swift in Sources */,
 				D30A7E082BE95B8900325A76 /* NavigationCoordinator.swift in Sources */,

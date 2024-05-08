@@ -29,6 +29,7 @@ where VM: ViewModel<VS, VA, Eff>,
         // Subscribe to state
         viewModel.$state
             .receive(on: DispatchQueue.main)
+            .removeDuplicates()
             .sink { [weak self] state in
                 self?.onState(state)
             }.store(in: &cancellables)
