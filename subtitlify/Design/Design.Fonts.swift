@@ -26,6 +26,7 @@ public extension Design {
         public static var navBarButton: UIFont { regular(ofSize: 17) }
         public static var tabBarTitle: UIFont { regular(ofSize: 11) }
         public static var defaultButton: UIFont { regular(ofSize: 16) }
+        public static var smallText: UIFont { regular(ofSize: 12) }
         public static var defaultText: UIFont { regular(ofSize: 14) }
         public static var mediumText: UIFont { regular(ofSize: 16) }
         public static var bigText: UIFont { regular(ofSize: 18) }

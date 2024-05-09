@@ -53,4 +53,12 @@ final class AppContainer: AppContainerProtocol {
     func getProjectListModuleFactory() -> ProjectListModuleFactoryProtocol {
         return ProjectListModuleFactory(container: self)
     }
+    
+    func getAboutFlowModuleFactory() -> AboutFlowModuleFactoryProtocol {
+        return AboutFlowModuleFactory(container: self)
+    }
+    
+    func getAboutModuleFactory() -> AboutModuleFactoryProtocol {
+        return AboutModuleFactory(container: self)
+    }
 }

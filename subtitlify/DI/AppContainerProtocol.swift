@@ -25,4 +25,8 @@ protocol AppContainerProtocol {
     // Projects flow
     func getProjectsFlowModuleFactory() -> ProjectsFlowModuleFactoryProtocol
     func getProjectListModuleFactory() -> ProjectListModuleFactoryProtocol
+    
+    // About flow
+    func getAboutFlowModuleFactory() -> AboutFlowModuleFactoryProtocol
+    func getAboutModuleFactory() -> AboutModuleFactoryProtocol
 }

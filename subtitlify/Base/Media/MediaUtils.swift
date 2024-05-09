@@ -63,17 +63,19 @@ public enum MediaUtils {
         }
 
         let asset = AVAsset(url: url)
-        let imageGenerator = AVAssetImageGenerator(asset: asset)
-        imageGenerator.appliesPreferredTrackTransform = true
-        imageGenerator.maximumSize = CGSize(width: 250, height: CGFloat.greatestFiniteMagnitude)
+        let generator = AVAssetImageGenerator(asset: asset)
+        generator.requestedTimeToleranceBefore = .zero
+        generator.requestedTimeToleranceAfter = .zero
+        generator.appliesPreferredTrackTransform = true
+        generator.maximumSize = CGSize(width: 250, height: CGFloat.greatestFiniteMagnitude)
 
         var time = asset.duration
-        time.value = min(time.value, 2)
+        time.value = min(time.value, 2000)
 
         var image: UIImage?
 
         do {
-            let cgImage = try imageGenerator.copyCGImage(at: time, actualTime: nil)
+            let cgImage = try generator.copyCGImage(at: time, actualTime: nil)
             image = UIImage(cgImage: cgImage)
         } catch {
             return nil

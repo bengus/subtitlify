@@ -27,11 +27,7 @@ final class HomeContainerModuleFactory: HomeContainerModuleFactoryProtocol {
             containerViewController: containerViewController,
             projectsFlowModuleFactory: container.getProjectsFlowModuleFactory(),
             editorFlowModuleFactory: container.getEditorFlowModuleFactory(),
-            aboutModuleFactory: { let vc = BaseViewController()
-                vc.onViewDidLoad = { [weak vc] in
-                    vc?.view.backgroundColor = .yellow
-                }
-                return vc }
+            aboutFlowModuleFactory: container.getAboutFlowModuleFactory()
         )
         /// Hold a reference to the coordinator to follow the lifecycle of the ViewController.
         /// DisposeBag helps to avoid direct knowledge about a coordinator from a ViewController.

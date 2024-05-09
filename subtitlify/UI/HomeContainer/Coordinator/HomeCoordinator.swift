@@ -15,7 +15,7 @@ final class HomeCoordinator: NSObject,
     private weak var containerViewController: HomeContainerViewController?
     private let projectsFlowModuleFactory: ProjectsFlowModuleFactoryProtocol
     private let editorFlowModuleFactory: EditorFlowModuleFactoryProtocol
-    private let aboutModuleFactory: () -> UIViewController
+    private let aboutFlowModuleFactory: AboutFlowModuleFactoryProtocol
     
     
     // MARK: - Init
@@ -23,12 +23,12 @@ final class HomeCoordinator: NSObject,
         containerViewController: HomeContainerViewController,
         projectsFlowModuleFactory: ProjectsFlowModuleFactoryProtocol,
         editorFlowModuleFactory: EditorFlowModuleFactoryProtocol,
-        aboutModuleFactory: @escaping () -> UIViewController
+        aboutFlowModuleFactory: AboutFlowModuleFactoryProtocol
     ) {
         self.containerViewController = containerViewController
         self.projectsFlowModuleFactory = projectsFlowModuleFactory
         self.editorFlowModuleFactory = editorFlowModuleFactory
-        self.aboutModuleFactory = aboutModuleFactory
+        self.aboutFlowModuleFactory = aboutFlowModuleFactory
         
         super.init()
         
@@ -36,17 +36,18 @@ final class HomeCoordinator: NSObject,
         containerViewController.onViewDidFirstAppear = { [weak self] in
             guard let self else { return }
             
-            // First time we should prepare our Parents:
+            // First time we should prepare our Parent flows:
             // - projectsFlowModule
             // - aboutModule
             // Then it will be ready to be embedded into TabBarController
             projectsFlowModule.moduleInput.start(navigationController: projectsFlowNavigationController)
+            aboutFlowModule.moduleInput.start(navigationController: aboutFlowNavigationController)
             
             self.containerViewController?.setViewControllers(
                 [
                     projectsFlowNavigationController,
                     emptyEditorViewController,
-                    aboutViewController
+                    aboutFlowNavigationController
                 ],
                 animated: false
             )
@@ -55,8 +56,8 @@ final class HomeCoordinator: NSObject,
     
     
     // MARK: - Child UI modules
-    // ProjectsFlowCoordinator is a NavigationCoordinator
-    // We have to create new UINavigationController and start coordinator on it
+    // ProjectsFlowCoordinator and AboutFlowCoordinator is a NavigationCoordinators
+    // We have to create new UINavigationController for such coordinators and start on it
     // Or reuse an existing one. In this case we host it in new UINavigationController
     private lazy var projectsFlowNavigationController = {
         let navigationController = UINavigationController()
@@ -75,6 +76,22 @@ final class HomeCoordinator: NSObject,
         return module
     }()
     
+    private lazy var aboutFlowNavigationController = {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem.title = "About"
+        navigationController.tabBarItem.image = UIImage(named: "24_question_mark_circle")
+        return navigationController
+    }()
+    private lazy var aboutFlowModule = {
+        let module = aboutFlowModuleFactory.module(moduleSeed: AboutFlowModuleSeed())
+//        module.moduleInput.onAction = { [weak self] action in
+//            switch action {
+//                // No actions here
+//            }
+//        }
+        return module
+    }()
+    
     // This is a fake editor for tabbar, actual EditorFlow will be presented as modal
     private lazy var emptyEditorViewController = {
         let viewController = UIViewController()
@@ -84,13 +101,6 @@ final class HomeCoordinator: NSObject,
             viewController.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0)
         }
         viewController.tabBarItem.image = UIImage(named: "42_plus_circle1")?.withRenderingMode(.alwaysOriginal)
-        return viewController
-    }()
-    
-    private lazy var aboutViewController = {
-        let viewController = aboutModuleFactory()
-        viewController.tabBarItem.title = "About"
-        viewController.tabBarItem.image = UIImage(named: "24_question_mark_circle")
         return viewController
     }()
     
@@ -168,9 +178,6 @@ final class HomeCoordinator: NSObject,
         if viewController === emptyEditorViewController {
             openEditorFlow(context: .new)
             return false
-//        } else if viewController === aboutViewController {
-//            openEditorFlow(context: .demo(isBuffered: false))
-//            return false
         } else {
             return true
         }

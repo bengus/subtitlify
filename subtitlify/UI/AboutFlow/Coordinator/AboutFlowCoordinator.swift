@@ -1,5 +1,5 @@
 //
-//  ProjectsFlowCoordinator.swift
+//  AboutFlowCoordinator.swift
 //  subtitlify
 //
 //  Created by Boris Bengus on 06/05/2024.
@@ -8,45 +8,39 @@
 import Foundation
 import UIKit
 
-final class ProjectsFlowCoordinator: NavigationCoordinator,
-                                     ProjectsFlowModuleInput
+final class AboutFlowCoordinator: NavigationCoordinator,
+                                  AboutFlowModuleInput
 {
     
-    private let projectListModuleFactory: ProjectListModuleFactoryProtocol
+    private let aboutModuleFactory: AboutModuleFactoryProtocol
     private let editorFlowModuleFactory: EditorFlowModuleFactoryProtocol
-    private let projectsProvider: ProjectsProviderProtocol
     
     
     // MARK: - Init
     public init(
-        projectListModuleFactory: ProjectListModuleFactoryProtocol,
-        editorFlowModuleFactory: EditorFlowModuleFactoryProtocol,
-        projectsProvider: ProjectsProviderProtocol
+        aboutModuleFactory: AboutModuleFactoryProtocol,
+        editorFlowModuleFactory: EditorFlowModuleFactoryProtocol
     ) {
-        self.projectListModuleFactory = projectListModuleFactory
+        self.aboutModuleFactory = aboutModuleFactory
         self.editorFlowModuleFactory = editorFlowModuleFactory
-        self.projectsProvider = projectsProvider
     }
     
     deinit {
 #if DEBUG
-        print("Deinit ProjectsFlowCoordinator")
+        print("Deinit AboutFlowCoordinator")
 #endif
     }
     
     
-    // MARK: - ProjectsFlowModuleInput
-    var onAction: ((ProjectsFlowModuleAction) -> Void)?
+    // MARK: - AboutFlowModuleInput
+    var onAction: ((AboutFlowModuleAction) -> Void)?
     
     func start(navigationController: UINavigationController) {
-        let module = projectListModuleFactory.module(moduleSeed: ProjectListModuleSeed())
+        let module = aboutModuleFactory.module(moduleSeed: AboutModuleSeed())
         module.moduleInput.onAction = { [weak self] action in
             switch action {
-            case .createProject:
-                // In case of creation, open EditorFlow from Home-root modal
-                self?.onAction?(.createProject)
-            case .openProject(let project):
-                self?.openEditorFlow(context: .project(project))
+            case .openDemo(let isBuffered):
+                self?.openEditorFlow(context: .demo(isBuffered: isBuffered))
             }
         }
         // Lifecycle of the NavigationCoordinator should follow the root viewcontroller lificycle (see configure)
@@ -59,7 +53,7 @@ final class ProjectsFlowCoordinator: NavigationCoordinator,
     
     func openEditorFlow(context: EditorFlowContext) {
         guard let navigationController = navigationController else {
-            assertionFailure("ProjectsFlowCoordinator's navigationController is nil while editor flow opening")
+            assertionFailure("AboutFlowCoordinator's navigationController is nil while editor flow opening")
             return
         }
         

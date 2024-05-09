@@ -74,6 +74,22 @@
 		D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */; };
 		D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */; };
 		D36BF10B2BED09BB004A5775 /* ProjectListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF10A2BED09BB004A5775 /* ProjectListEmptyView.swift */; };
+		D36BF1182BED246E004A5775 /* AboutModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1172BED246E004A5775 /* AboutModuleFactoryProtocol.swift */; };
+		D36BF1192BED24B2004A5775 /* AboutFlowModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1132BED23C8004A5775 /* AboutFlowModuleSeed.swift */; };
+		D36BF11A2BED24B2004A5775 /* AboutFlowModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1112BED23C8004A5775 /* AboutFlowModuleInput.swift */; };
+		D36BF11B2BED24B2004A5775 /* AboutFlowModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF10E2BED23C8004A5775 /* AboutFlowModuleFactory.swift */; };
+		D36BF11C2BED24B2004A5775 /* AboutFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1122BED23C8004A5775 /* AboutFlowModule.swift */; };
+		D36BF11D2BED24B2004A5775 /* AboutFlowModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF10F2BED23C8004A5775 /* AboutFlowModuleFactoryProtocol.swift */; };
+		D36BF11E2BED25A6004A5775 /* AboutFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1152BED2454004A5775 /* AboutFlowCoordinator.swift */; };
+		D36BF1202BED28F9004A5775 /* AboutModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF11F2BED28F9004A5775 /* AboutModuleFactory.swift */; };
+		D36BF1252BED2AA4004A5775 /* AboutModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1222BED2A61004A5775 /* AboutModule.swift */; };
+		D36BF1262BED2AA4004A5775 /* AboutModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1232BED2A61004A5775 /* AboutModuleSeed.swift */; };
+		D36BF1272BED2AA4004A5775 /* AboutModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1242BED2A61004A5775 /* AboutModuleInput.swift */; };
+		D36BF1302BED2C23004A5775 /* AboutViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF12F2BED2ACA004A5775 /* AboutViewState.swift */; };
+		D36BF1312BED2C46004A5775 /* AboutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF12E2BED2ACA004A5775 /* AboutViewModel.swift */; };
+		D36BF1322BED2F49004A5775 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF12A2BED2ACA004A5775 /* AboutView.swift */; };
+		D36BF1332BED2F54004A5775 /* DemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF1292BED2ACA004A5775 /* DemoTableViewCell.swift */; };
+		D36BF1342BED301A004A5775 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF12C2BED2ACA004A5775 /* AboutViewController.swift */; };
 		D38D01272BE9FCA0009E3E83 /* AppStateSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01262BE9FCA0009E3E83 /* AppStateSubscriber.swift */; };
 		D38D01292BEA01AA009E3E83 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D38D01282BEA01AA009E3E83 /* video.mp4 */; };
 		D38D012D2BEA027E009E3E83 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D012C2BEA027E009E3E83 /* Video.swift */; };
@@ -192,6 +208,22 @@
 		D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModuleFactory.swift; sourceTree = "<group>"; };
 		D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModuleFactory.swift; sourceTree = "<group>"; };
 		D36BF10A2BED09BB004A5775 /* ProjectListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListEmptyView.swift; sourceTree = "<group>"; };
+		D36BF10E2BED23C8004A5775 /* AboutFlowModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFlowModuleFactory.swift; sourceTree = "<group>"; };
+		D36BF10F2BED23C8004A5775 /* AboutFlowModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFlowModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D36BF1112BED23C8004A5775 /* AboutFlowModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFlowModuleInput.swift; sourceTree = "<group>"; };
+		D36BF1122BED23C8004A5775 /* AboutFlowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFlowModule.swift; sourceTree = "<group>"; };
+		D36BF1132BED23C8004A5775 /* AboutFlowModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFlowModuleSeed.swift; sourceTree = "<group>"; };
+		D36BF1152BED2454004A5775 /* AboutFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutFlowCoordinator.swift; sourceTree = "<group>"; };
+		D36BF1172BED246E004A5775 /* AboutModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D36BF11F2BED28F9004A5775 /* AboutModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModuleFactory.swift; sourceTree = "<group>"; };
+		D36BF1222BED2A61004A5775 /* AboutModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModule.swift; sourceTree = "<group>"; };
+		D36BF1232BED2A61004A5775 /* AboutModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModuleSeed.swift; sourceTree = "<group>"; };
+		D36BF1242BED2A61004A5775 /* AboutModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModuleInput.swift; sourceTree = "<group>"; };
+		D36BF1292BED2ACA004A5775 /* DemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTableViewCell.swift; sourceTree = "<group>"; };
+		D36BF12A2BED2ACA004A5775 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		D36BF12C2BED2ACA004A5775 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		D36BF12E2BED2ACA004A5775 /* AboutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewModel.swift; sourceTree = "<group>"; };
+		D36BF12F2BED2ACA004A5775 /* AboutViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewState.swift; sourceTree = "<group>"; };
 		D38D01262BE9FCA0009E3E83 /* AppStateSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateSubscriber.swift; sourceTree = "<group>"; };
 		D38D01282BEA01AA009E3E83 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		D38D012C2BEA027E009E3E83 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -324,6 +356,7 @@
 				D30A7DA02BE8F87400325A76 /* HomeContainer */,
 				D30A7DE02BE93AF700325A76 /* ProjectsFlow */,
 				D30A7DA32BE8F9EC00325A76 /* ProjectList */,
+				D36BF10C2BED23B3004A5775 /* AboutFlow */,
 				D30A7DA22BE8F9E400325A76 /* About */,
 				D30A7DCC2BE908E100325A76 /* EditorFlow */,
 				D30A7DCD2BE908F000325A76 /* ProjectCreate */,
@@ -373,6 +406,10 @@
 		D30A7DA22BE8F9E400325A76 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				D36BF1282BED2ACA004A5775 /* View */,
+				D36BF12D2BED2ACA004A5775 /* ViewModel */,
+				D36BF1212BED2A61004A5775 /* Module */,
+				D36BF1162BED245F004A5775 /* Factory */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -712,6 +749,81 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		D36BF10C2BED23B3004A5775 /* AboutFlow */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF1142BED244D004A5775 /* Coordinator */,
+				D36BF1102BED23C8004A5775 /* Module */,
+				D36BF10D2BED23C8004A5775 /* Factory */,
+			);
+			path = AboutFlow;
+			sourceTree = "<group>";
+		};
+		D36BF10D2BED23C8004A5775 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF10F2BED23C8004A5775 /* AboutFlowModuleFactoryProtocol.swift */,
+				D36BF10E2BED23C8004A5775 /* AboutFlowModuleFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		D36BF1102BED23C8004A5775 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF1132BED23C8004A5775 /* AboutFlowModuleSeed.swift */,
+				D36BF1112BED23C8004A5775 /* AboutFlowModuleInput.swift */,
+				D36BF1122BED23C8004A5775 /* AboutFlowModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D36BF1142BED244D004A5775 /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF1152BED2454004A5775 /* AboutFlowCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D36BF1162BED245F004A5775 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF1172BED246E004A5775 /* AboutModuleFactoryProtocol.swift */,
+				D36BF11F2BED28F9004A5775 /* AboutModuleFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		D36BF1212BED2A61004A5775 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF1232BED2A61004A5775 /* AboutModuleSeed.swift */,
+				D36BF1242BED2A61004A5775 /* AboutModuleInput.swift */,
+				D36BF1222BED2A61004A5775 /* AboutModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D36BF1282BED2ACA004A5775 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF12C2BED2ACA004A5775 /* AboutViewController.swift */,
+				D36BF12A2BED2ACA004A5775 /* AboutView.swift */,
+				D36BF1292BED2ACA004A5775 /* DemoTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D36BF12D2BED2ACA004A5775 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D36BF12E2BED2ACA004A5775 /* AboutViewModel.swift */,
+				D36BF12F2BED2ACA004A5775 /* AboutViewState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		D38D012B2BEA026E009E3E83 /* Media */ = {
 			isa = PBXGroup;
 			children = (
@@ -917,6 +1029,7 @@
 				D30A7DDC2BE91D3300325A76 /* HomeContentType.swift in Sources */,
 				D30A7E172BE9609000325A76 /* EditorFlowModuleFactoryProtocol.swift in Sources */,
 				D3F2EECF2BECF2AE000F31AD /* ProjectsFlowCoordinator.swift in Sources */,
+				D36BF11C2BED24B2004A5775 /* AboutFlowModule.swift in Sources */,
 				D3F2EEA92BEC93B1000F31AD /* ProjectCreateModuleInput.swift in Sources */,
 				D30A7DD62BE9179B00325A76 /* HomeContainerViewController.swift in Sources */,
 				D30A7E302BE9662A00325A76 /* EditorModuleInput.swift in Sources */,
@@ -924,16 +1037,21 @@
 				D30A7DB22BE8FCB400325A76 /* UIView+BoundingRect.swift in Sources */,
 				D30A7E132BE95F4500325A76 /* EditorFlowModuleInput.swift in Sources */,
 				D30A7DC72BE900DB00325A76 /* LaunchViewController.swift in Sources */,
+				D36BF1192BED24B2004A5775 /* AboutFlowModuleSeed.swift in Sources */,
 				D38D01382BEA3001009E3E83 /* VideoTranscriptionProvider.swift in Sources */,
 				D38D01312BEA0421009E3E83 /* ObservablePlayer.swift in Sources */,
 				D3F2EEA12BEBF5C6000F31AD /* EditorContext.swift in Sources */,
 				D30A7DB02BE8FCB400325A76 /* UIView+Debug.swift in Sources */,
 				D3F2EE962BEBDFAC000F31AD /* ProjectsProvider.swift in Sources */,
 				D30A7DBD2BE8FE6500325A76 /* BaseViewController.swift in Sources */,
+				D36BF1342BED301A004A5775 /* AboutViewController.swift in Sources */,
+				D36BF1272BED2AA4004A5775 /* AboutModuleInput.swift in Sources */,
 				D38D012D2BEA027E009E3E83 /* Video.swift in Sources */,
 				D30A7E032BE9507200325A76 /* Design.Colors.swift in Sources */,
 				D3F2EE922BEBDF99000F31AD /* Project.swift in Sources */,
+				D36BF1202BED28F9004A5775 /* AboutModuleFactory.swift in Sources */,
 				D3F2EE9D2BEBE483000F31AD /* SystemPermissionsProvider.swift in Sources */,
+				D36BF1252BED2AA4004A5775 /* AboutModule.swift in Sources */,
 				D30A7E322BE9662A00325A76 /* EditorModule.swift in Sources */,
 				D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */,
 				D30A7DFC2BE9479100325A76 /* HomeContainerModule.swift in Sources */,
@@ -943,6 +1061,7 @@
 				D3F2EEA72BEC93AE000F31AD /* ProjectCreateModuleFactory.swift in Sources */,
 				D30A7DFD2BE94B1600325A76 /* HomeContainerModuleFactoryProtocol.swift in Sources */,
 				D30A7E392BE97AE300325A76 /* EditorViewController.swift in Sources */,
+				D36BF11A2BED24B2004A5775 /* AboutFlowModuleInput.swift in Sources */,
 				D30A7E192BE9620300325A76 /* EditorFlowCoordinator.swift in Sources */,
 				D30A7DC12BE8FE6500325A76 /* MvvmUIKitView.swift in Sources */,
 				D30A7DB42BE8FCB400325A76 /* UIColor+Components.swift in Sources */,
@@ -951,12 +1070,14 @@
 				D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */,
 				D30A7DDA2BE91CD500325A76 /* HomeCoordinator.swift in Sources */,
 				D3F820362BECFBAF00BE92E2 /* ProjectListModule.swift in Sources */,
+				D36BF11B2BED24B2004A5775 /* AboutFlowModuleFactory.swift in Sources */,
 				D3F8203A2BECFC2300BE92E2 /* ProjectListViewState.swift in Sources */,
 				D38D01332BEA0827009E3E83 /* Buttons.swift in Sources */,
 				D3F2EEC52BECECB7000F31AD /* ProjectsFlowModuleInput.swift in Sources */,
 				D30A7E052BE951D000325A76 /* Design.Appearance.swift in Sources */,
 				D30A7DC92BE906E000325A76 /* AppContainerProtocol.swift in Sources */,
 				D3F820402BED00C200BE92E2 /* ProjectListTableViewCell.swift in Sources */,
+				D36BF1302BED2C23004A5775 /* AboutViewState.swift in Sources */,
 				D30A7DEB2BE93E4A00325A76 /* RootContainerModuleFactoryProtocol.swift in Sources */,
 				D3F2EEC32BECECB7000F31AD /* ProjectsFlowModuleFactoryProtocol.swift in Sources */,
 				D30A7DF92BE9475700325A76 /* HomeContainerModuleFactory.swift in Sources */,
@@ -967,10 +1088,12 @@
 				D3F2EEB22BEC9AA7000F31AD /* ProjectCreateViewState.swift in Sources */,
 				D30A7DA62BE8FB7600325A76 /* Design.swift in Sources */,
 				D30A7DDE2BE9221C00325A76 /* ViewLifecycleObservable.swift in Sources */,
+				D36BF1322BED2F49004A5775 /* AboutView.swift in Sources */,
 				D30A7DBE2BE8FE6500325A76 /* LoadingView.swift in Sources */,
 				D30A7E3D2BE97B7B00325A76 /* EditorViewModel.swift in Sources */,
 				D30A7E3F2BE97B8200325A76 /* EditorViewState.swift in Sources */,
 				D30A7DE92BE93D8700325A76 /* RootContainerModuleSeed.swift in Sources */,
+				D36BF1332BED2F54004A5775 /* DemoTableViewCell.swift in Sources */,
 				D3F8203E2BED00BA00BE92E2 /* ProjectListView.swift in Sources */,
 				D30A7DD42BE915F300325A76 /* RootContentType.swift in Sources */,
 				D38D01442BEA392B009E3E83 /* MYAudioTapProcessor.m in Sources */,
@@ -986,6 +1109,7 @@
 				D30A7DAF2BE8FCB400325A76 /* UINavigationController+Completion.swift in Sources */,
 				D3F8203C2BED00B300BE92E2 /* ProjectListViewController.swift in Sources */,
 				D30A7DD22BE915A500325A76 /* RootCoordinator.swift in Sources */,
+				D36BF11E2BED25A6004A5775 /* AboutFlowCoordinator.swift in Sources */,
 				D3F820382BECFC1800BE92E2 /* ProjectListViewModel.swift in Sources */,
 				D3F2EEB82BECDE80000F31AD /* ProjectsError.swift in Sources */,
 				D30A7DFF2BE9506100325A76 /* Design.Metrics.swift in Sources */,
@@ -1002,6 +1126,7 @@
 				D30A7E352BE9662A00325A76 /* MediaPermissionsModuleSeed.swift in Sources */,
 				D30A7DFB2BE9479100325A76 /* HomeContainerModuleInput.swift in Sources */,
 				D3F2EECB2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift in Sources */,
+				D36BF1182BED246E004A5775 /* AboutModuleFactoryProtocol.swift in Sources */,
 				D30A7DB12BE8FCB400325A76 /* UIViewController+Helpers.swift in Sources */,
 				D30A7DB52BE8FCB400325A76 /* UIImage+.swift in Sources */,
 				D3DD28EE2BEBA98C00542276 /* CaptioningDecorator.swift in Sources */,
@@ -1021,8 +1146,11 @@
 				D30A7E3B2BE97AEA00325A76 /* EditorView.swift in Sources */,
 				D30A7E0F2BE95F2800325A76 /* EditorFlowModule.swift in Sources */,
 				D30A7D852BE8F11400325A76 /* AppDelegate.swift in Sources */,
+				D36BF1262BED2AA4004A5775 /* AboutModuleSeed.swift in Sources */,
+				D36BF1312BED2C46004A5775 /* AboutViewModel.swift in Sources */,
 				D3F2EEC22BECECB7000F31AD /* ProjectsFlowModule.swift in Sources */,
 				D30A7E012BE9506900325A76 /* Design.Fonts.swift in Sources */,
+				D36BF11D2BED24B2004A5775 /* AboutFlowModuleFactoryProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
