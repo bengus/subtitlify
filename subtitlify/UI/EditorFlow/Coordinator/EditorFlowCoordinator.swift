@@ -82,10 +82,8 @@ final class EditorFlowCoordinator: NavigationCoordinator,
         }
         
         // Lifecycle of the NavigationCoordinator should follow the root viewcontroller lificycle (see configure)
-        configure(
-            navigationController: navigationController,
-            rootViewController: initialRootViewController
-        )
+        initialRootViewController.addDisposable(self)
+        configure(navigationController: navigationController)
         push(initialRootViewController, animated: animated)
     }
     

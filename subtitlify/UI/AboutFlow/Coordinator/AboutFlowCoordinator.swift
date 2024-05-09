@@ -44,10 +44,8 @@ final class AboutFlowCoordinator: NavigationCoordinator,
             }
         }
         // Lifecycle of the NavigationCoordinator should follow the root viewcontroller lificycle (see configure)
-        configure(
-            navigationController: navigationController,
-            rootViewController: module.viewController
-        )
+        module.viewController.addDisposable(self)
+        configure(navigationController: navigationController)
         push(module.viewController, animated: false)
     }
     

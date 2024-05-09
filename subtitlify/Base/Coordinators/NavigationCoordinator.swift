@@ -11,13 +11,6 @@ import UIKit
 open class NavigationCoordinator {
     public private(set) weak var navigationController: UINavigationController?
     
-    public private(set) weak var rootViewController: UIViewController?
-    
-    open var isConfigured: Bool {
-        return navigationController != nil
-            && rootViewController != nil
-    }
-    
     
     // MARK: - Init
     public init() {
@@ -27,21 +20,15 @@ open class NavigationCoordinator {
     
     // MARK: - Internal
     func assertConfigured() {
-        if !isConfigured {
-            assertionFailure("\(type(of: self)) tries to work in non-configured state, use - configure(navigationController:rootViewController:)")
+        if navigationController == nil {
+            assertionFailure("\(type(of: self)) tries to work in non-configured state, use - configure(navigationController:)")
         }
     }
     
     
     // MARK: - Navigation methods
-    open func configure(
-        navigationController: UINavigationController,
-        rootViewController: UIViewController & DisposeBag
-    ) {
+    open func configure(navigationController: UINavigationController) {
         self.navigationController = navigationController
-        // Lifecycle of the NavigationCoordinator should follow the root viewcontroller lificycle
-        rootViewController.addDisposable(self)
-        self.rootViewController = rootViewController
     }
     
     open func push(

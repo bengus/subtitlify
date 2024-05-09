@@ -53,17 +53,25 @@ class PermissionsViewModel:
                 switch firstMissingPermission.permission {
                 case .photoLibrary:
                     systemPermissionsProvider.requestPhotoLibraryPermission { [weak self] _ in
-                        self?.reload()
+                        self?.checkAllGranted()
                     }
                 case .speechRecognizer:
                     systemPermissionsProvider.requestSpeechRecognizerPermission { [weak self] _ in
-                        self?.reload()
+                        self?.checkAllGranted()
                     }
                 }
             } else if firstMissingPermission.state == .secondaryRequest {
                 systemPermissionsProvider.openAppSettings()
                 return
             }
+        }
+    }
+    
+    private func checkAllGranted() {
+        if systemPermissionsProvider.getMissingPermissions().isEmpty {
+            onAction?(.allGranted)
+        } else {
+            reload()
         }
     }
     
@@ -112,7 +120,6 @@ class PermissionsViewModel:
         } else {
             state = .empty()
         }
-        
         
         publishState(
             state
