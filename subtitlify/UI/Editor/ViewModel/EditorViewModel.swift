@@ -18,22 +18,6 @@ class EditorViewModel:
 >,
     EditorModuleInput
 {
-    /// Actions that could published from View
-    enum ViewAction {
-        case playPauseTap
-        case scrubStarted
-        case scrubEnded(seekTime: TimeInterval)
-        case captioningModeCurrentWordTap
-        case captioningModeRegularTap
-        case captioningModeHighlightedTap
-        case closeTap
-    }
-    
-    /// Effects that could be published from ViewModel
-    enum Eff {
-        // No effects
-    }
-    
     private let context: EditorContext
     private let isBufferedTrascriptionMode: Bool
     private let selectedVideo: Video
@@ -270,4 +254,22 @@ class EditorViewModel:
     
     // MARK: - EditorModuleInput
     var onAction: ((EditorModuleAction) -> Void)?
+}
+
+extension EditorViewModel {
+    /// Actions that could published from View
+    enum ViewAction {
+        case playPauseTap
+        case scrubStarted
+        case scrubEnded(seekTime: TimeInterval)
+        case captioningModeCurrentWordTap
+        case captioningModeRegularTap
+        case captioningModeHighlightedTap
+        case closeTap
+    }
+    
+    /// Effects that could be published from ViewModel
+    enum Eff {
+        // No effects
+    }
 }

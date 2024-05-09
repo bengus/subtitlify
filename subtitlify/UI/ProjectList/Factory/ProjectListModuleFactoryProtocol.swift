@@ -10,7 +10,3 @@ import Foundation
 public protocol ProjectListModuleFactoryProtocol {
     func module(moduleSeed: ProjectListModuleSeed) -> ProjectListModule
 }
-
-public struct ProjectListModuleSeed {}
-public protocol ProjectListModuleInput: AnyObject {}
-public struct ProjectListModule {}

@@ -20,6 +20,21 @@ final class ProjectListModuleFactory: ProjectListModuleFactoryProtocol {
     
     // MARK: - ProjectListModuleFactoryProtocol
     func module(moduleSeed: ProjectListModuleSeed) -> ProjectListModule {
-        fatalError()
+        // ViewModel
+        let viewModel = ProjectListViewModel(
+            initialState: ProjectListViewState.empty(),
+            projectsProvider: container.projectsProvider
+        )
+        
+        // ViewController
+        let viewController = ProjectListViewController(
+            viewModel: viewModel,
+            viewFactory: { vm in ProjectListView(viewModel: vm) }
+        )
+        
+        return ProjectListModule(
+            viewController: viewController,
+            moduleInput: viewModel
+        )
     }
 }

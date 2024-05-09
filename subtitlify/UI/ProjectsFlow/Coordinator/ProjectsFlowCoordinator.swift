@@ -43,26 +43,20 @@ final class ProjectsFlowCoordinator: NavigationCoordinator,
     var onAction: ((ProjectsFlowModuleAction) -> Void)?
     
     func start(navigationController: UINavigationController) {
+        let module = projectListModuleFactory.module(moduleSeed: ProjectListModuleSeed())
+        module.moduleInput.onAction = { [weak self] action in
+            switch action {
+            case .openProject(let project):
+                self?.openEditorFlow(project: project)
+            }
+        }
         
-//        let module = projectListModuleFactory.module(moduleSeed: ProjectListModuleSeed())
-//        module.moduleInput.onAction = { [weak self] action in
-//            switch action {
-//            case .projectSelected(let project):
-//                self?.openEditorFlow(project)
-//            }
-//        }
         // Lifecycle of the NavigationCoordinator should follow the root viewcontroller lificycle (see configure)
-        let viewController = BaseViewController()
-        viewController.navigationItem.title = "Project list"
-        viewController.view.backgroundColor = .red
-//        viewController.hidesBottomBarWhenPushed = true
-        viewController.view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ddd)))
-        
         configure(
             navigationController: navigationController,
-            rootViewController: viewController
+            rootViewController: module.viewController
         )
-        push(viewController, animated: false)
+        push(module.viewController, animated: false)
     }
     
     @objc

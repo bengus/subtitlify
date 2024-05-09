@@ -112,6 +112,14 @@
 		D3F2EECB2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EECA2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift */; };
 		D3F2EECE2BECEF31000F31AD /* ProjectListModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EECD2BECEF31000F31AD /* ProjectListModuleFactory.swift */; };
 		D3F2EECF2BECF2AE000F31AD /* ProjectsFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEC82BECED8B000F31AD /* ProjectsFlowCoordinator.swift */; };
+		D3F820342BECFBAF00BE92E2 /* ProjectListModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F820322BECFBAB00BE92E2 /* ProjectListModuleSeed.swift */; };
+		D3F820352BECFBAF00BE92E2 /* ProjectListModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F820332BECFBAB00BE92E2 /* ProjectListModuleInput.swift */; };
+		D3F820362BECFBAF00BE92E2 /* ProjectListModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F820312BECFBAB00BE92E2 /* ProjectListModule.swift */; };
+		D3F820382BECFC1800BE92E2 /* ProjectListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F820372BECFC1800BE92E2 /* ProjectListViewModel.swift */; };
+		D3F8203A2BECFC2300BE92E2 /* ProjectListViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F820392BECFC2300BE92E2 /* ProjectListViewState.swift */; };
+		D3F8203C2BED00B300BE92E2 /* ProjectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8203B2BED00B300BE92E2 /* ProjectListViewController.swift */; };
+		D3F8203E2BED00BA00BE92E2 /* ProjectListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8203D2BED00BA00BE92E2 /* ProjectListView.swift */; };
+		D3F820402BED00C200BE92E2 /* ProjectListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F8203F2BED00C200BE92E2 /* ProjectListTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +232,14 @@
 		D3F2EEC82BECED8B000F31AD /* ProjectsFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsFlowCoordinator.swift; sourceTree = "<group>"; };
 		D3F2EECA2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModuleFactoryProtocol.swift; sourceTree = "<group>"; };
 		D3F2EECD2BECEF31000F31AD /* ProjectListModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModuleFactory.swift; sourceTree = "<group>"; };
+		D3F820312BECFBAB00BE92E2 /* ProjectListModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModule.swift; sourceTree = "<group>"; };
+		D3F820322BECFBAB00BE92E2 /* ProjectListModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModuleSeed.swift; sourceTree = "<group>"; };
+		D3F820332BECFBAB00BE92E2 /* ProjectListModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModuleInput.swift; sourceTree = "<group>"; };
+		D3F820372BECFC1800BE92E2 /* ProjectListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewModel.swift; sourceTree = "<group>"; };
+		D3F820392BECFC2300BE92E2 /* ProjectListViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewState.swift; sourceTree = "<group>"; };
+		D3F8203B2BED00B300BE92E2 /* ProjectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListViewController.swift; sourceTree = "<group>"; };
+		D3F8203D2BED00BA00BE92E2 /* ProjectListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListView.swift; sourceTree = "<group>"; };
+		D3F8203F2BED00C200BE92E2 /* ProjectListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -362,6 +378,9 @@
 		D30A7DA32BE8F9EC00325A76 /* ProjectList */ = {
 			isa = PBXGroup;
 			children = (
+				D3F8202F2BECFB8100BE92E2 /* View */,
+				D3F820302BECFB8600BE92E2 /* ViewModel */,
+				D3F8202E2BECFB7C00BE92E2 /* Module */,
 				D3F2EEC92BECEE23000F31AD /* Factory */,
 			);
 			path = ProjectList;
@@ -785,6 +804,35 @@
 			path = Factory;
 			sourceTree = "<group>";
 		};
+		D3F8202E2BECFB7C00BE92E2 /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D3F820322BECFBAB00BE92E2 /* ProjectListModuleSeed.swift */,
+				D3F820332BECFBAB00BE92E2 /* ProjectListModuleInput.swift */,
+				D3F820312BECFBAB00BE92E2 /* ProjectListModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D3F8202F2BECFB8100BE92E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D3F8203B2BED00B300BE92E2 /* ProjectListViewController.swift */,
+				D3F8203D2BED00BA00BE92E2 /* ProjectListView.swift */,
+				D3F8203F2BED00C200BE92E2 /* ProjectListTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		D3F820302BECFB8600BE92E2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				D3F820372BECFC1800BE92E2 /* ProjectListViewModel.swift */,
+				D3F820392BECFC2300BE92E2 /* ProjectListViewState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -895,13 +943,17 @@
 				D30A7E192BE9620300325A76 /* EditorFlowCoordinator.swift in Sources */,
 				D30A7DC12BE8FE6500325A76 /* MvvmUIKitView.swift in Sources */,
 				D30A7DB42BE8FCB400325A76 /* UIColor+Components.swift in Sources */,
+				D3F820342BECFBAF00BE92E2 /* ProjectListModuleSeed.swift in Sources */,
 				D30A7E0A2BE95B9200325A76 /* TrackableStackNavigationCoordinator.swift in Sources */,
 				D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */,
 				D30A7DDA2BE91CD500325A76 /* HomeCoordinator.swift in Sources */,
+				D3F820362BECFBAF00BE92E2 /* ProjectListModule.swift in Sources */,
+				D3F8203A2BECFC2300BE92E2 /* ProjectListViewState.swift in Sources */,
 				D38D01332BEA0827009E3E83 /* Buttons.swift in Sources */,
 				D3F2EEC52BECECB7000F31AD /* ProjectsFlowModuleInput.swift in Sources */,
 				D30A7E052BE951D000325A76 /* Design.Appearance.swift in Sources */,
 				D30A7DC92BE906E000325A76 /* AppContainerProtocol.swift in Sources */,
+				D3F820402BED00C200BE92E2 /* ProjectListTableViewCell.swift in Sources */,
 				D30A7DEB2BE93E4A00325A76 /* RootContainerModuleFactoryProtocol.swift in Sources */,
 				D3F2EEC32BECECB7000F31AD /* ProjectsFlowModuleFactoryProtocol.swift in Sources */,
 				D30A7DF92BE9475700325A76 /* HomeContainerModuleFactory.swift in Sources */,
@@ -916,6 +968,7 @@
 				D30A7E3D2BE97B7B00325A76 /* EditorViewModel.swift in Sources */,
 				D30A7E3F2BE97B8200325A76 /* EditorViewState.swift in Sources */,
 				D30A7DE92BE93D8700325A76 /* RootContainerModuleSeed.swift in Sources */,
+				D3F8203E2BED00BA00BE92E2 /* ProjectListView.swift in Sources */,
 				D30A7DD42BE915F300325A76 /* RootContentType.swift in Sources */,
 				D38D01442BEA392B009E3E83 /* MYAudioTapProcessor.m in Sources */,
 				D30A7DCB2BE906F600325A76 /* AppContainer.swift in Sources */,
@@ -928,12 +981,15 @@
 				D30A7DBF2BE8FE6500325A76 /* ViewModel.swift in Sources */,
 				D38D01272BE9FCA0009E3E83 /* AppStateSubscriber.swift in Sources */,
 				D30A7DAF2BE8FCB400325A76 /* UINavigationController+Completion.swift in Sources */,
+				D3F8203C2BED00B300BE92E2 /* ProjectListViewController.swift in Sources */,
 				D30A7DD22BE915A500325A76 /* RootCoordinator.swift in Sources */,
+				D3F820382BECFC1800BE92E2 /* ProjectListViewModel.swift in Sources */,
 				D3F2EEB82BECDE80000F31AD /* ProjectsError.swift in Sources */,
 				D30A7DFF2BE9506100325A76 /* Design.Metrics.swift in Sources */,
 				D3F2EEAB2BEC93B1000F31AD /* ProjectCreateModule.swift in Sources */,
 				D30A7E342BE9662A00325A76 /* EditorModuleFactoryProtocol.swift in Sources */,
 				D3F2EE942BEBDFA4000F31AD /* ProjectsProviderProtocol.swift in Sources */,
+				D3F820352BECFBAF00BE92E2 /* ProjectListModuleInput.swift in Sources */,
 				D3F2EECE2BECEF31000F31AD /* ProjectListModuleFactory.swift in Sources */,
 				D3F2EE9F2BEBF3DB000F31AD /* EditorFlowContext.swift in Sources */,
 				D30A7E112BE95F3C00325A76 /* EditorFlowModuleSeed.swift in Sources */,

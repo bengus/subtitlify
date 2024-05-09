@@ -35,6 +35,11 @@ final class ProjectsProvider: ProjectsProviderProtocol {
         }
     }
     
+    func getProjectById(_ id: UUID) -> Project? {
+        let projects = getAllProjects()
+        return projects.first(where: { $0.id == id })
+    }
+    
     func saveProject(_ project: Project) async throws {
         var projects = getAllProjects()
         if let existingProjectIndex = projects.firstIndex(where: { $0.id == project.id }) {

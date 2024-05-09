@@ -17,17 +17,6 @@ class ProjectCreateViewModel:
 >,
     ProjectCreateModuleInput
 {
-    /// Actions that could published from View
-    enum ViewAction {
-        case selectVideoTap
-        case closeTap
-    }
-    
-    /// Effects that could be published from ViewModel
-    enum Eff {
-        // No effects
-    }
-    
     private let projectsProvider: ProjectsProviderProtocol
     private var projectCreatingTask: Task<Void, Never>?
     private var isProjectCreatingInProgress: Bool {
@@ -122,5 +111,18 @@ class ProjectCreateViewModel:
             }
         }
         reload()
+    }
+}
+
+extension ProjectCreateViewModel {
+    /// Actions that could published from View
+    enum ViewAction {
+        case selectVideoTap
+        case closeTap
+    }
+    
+    /// Effects that could be published from ViewModel
+    enum Eff {
+        // No effects
     }
 }

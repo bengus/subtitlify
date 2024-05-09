@@ -9,6 +9,7 @@ import Foundation
 
 public protocol ProjectsProviderProtocol {
     func getAllProjects() -> [Project]
+    func getProjectById(_ id: UUID) -> Project?
     func saveProject(_ project: Project) async throws
     func saveProjects(_ projects: [Project]) async throws
     func deleteProject(_ project: Project) async throws
