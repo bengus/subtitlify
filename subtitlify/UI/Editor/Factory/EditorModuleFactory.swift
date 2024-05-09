@@ -24,7 +24,8 @@ final class EditorModuleFactory: EditorModuleFactoryProtocol {
         let viewModel = EditorViewModel(
             initialState: EditorViewState.empty(),
             context: moduleSeed.context,
-            projectsProvider: container.projectsProvider
+            projectsProvider: container.projectsProvider,
+            systemPermissionsProvider: container.systemPermissionsProvider
         )
         
         // ViewController
