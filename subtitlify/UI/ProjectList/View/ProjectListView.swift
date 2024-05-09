@@ -123,4 +123,24 @@ final class ProjectListView: MvvmUIKitView
         
         viewModel.sendViewAction(.projectTap(projectItem: item))
     }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let config = UISwipeActionsConfiguration(actions: [
+            UIContextualAction(
+                style: .destructive,
+                title: "Delete",
+                handler: { [weak self]  _, _, completion in
+                    self?.handleCellDeleting(at: indexPath)
+                    completion(true)
+                }
+            )
+        ])
+        config.performsFirstActionWithFullSwipe = false
+        return config
+    }
+    
+    private func handleCellDeleting(at indexPath: IndexPath) {
+        let item = viewModel.state.projects[indexPath.row]
+        viewModel.sendViewAction(.deleteProject(projectItem: item))
+    }
 }

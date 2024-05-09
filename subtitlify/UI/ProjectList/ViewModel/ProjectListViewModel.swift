@@ -17,6 +17,7 @@ class ProjectListViewModel:
     ProjectListModuleInput
 {
     private let projectsProvider: ProjectsProviderProtocol
+    private var projectDeletingTask: Task<Void, Never>?
     
     
     // MARK: - Init
@@ -36,6 +37,11 @@ class ProjectListViewModel:
         reload()
     }
     
+    override func onViewWillDisappear() {
+        super.onViewWillDisappear()
+        projectDeletingTask?.cancel()
+    }
+    
     
     // MARK: - ViewActions
     override func onViewAction(_ action: ViewAction) {
@@ -44,6 +50,8 @@ class ProjectListViewModel:
             createProjectTap()
         case .projectTap(let projectItem):
             projectTap(projectItem)
+        case .deleteProject(let projectItem):
+            deleteProject(projectItem: projectItem)
         }
     }
     
@@ -54,6 +62,17 @@ class ProjectListViewModel:
     private func projectTap(_ projectItem: ProjectListViewState.ProjectItem) {
         if let project = projectsProvider.getProjectById(projectItem.id) {
             onAction?(.openProject(project))
+        }
+    }
+    
+    private func deleteProject(projectItem: ProjectListViewState.ProjectItem) {
+        projectDeletingTask = Task(priority: .background) {
+            if let project = projectsProvider.getProjectById(projectItem.id) {
+                try? await projectsProvider.deleteProject(project)
+                await MainActor.run {
+                    reload()
+                }
+            }
         }
     }
     
@@ -81,6 +100,7 @@ extension ProjectListViewModel {
     enum ViewAction {
         case createProjectTap
         case projectTap(projectItem: ProjectListViewState.ProjectItem)
+        case deleteProject(projectItem: ProjectListViewState.ProjectItem)
     }
     
     /// Effects that could be published from ViewModel
