@@ -86,13 +86,32 @@
 		D3DD28EE2BEBA98C00542276 /* CaptioningDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */; };
 		D3DD28F22BEBCEF000542276 /* ImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3DD28F12BEBCEF000542276 /* ImagePickerDelegateProxy.swift */; };
 		D3F2EE922BEBDF99000F31AD /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE912BEBDF99000F31AD /* Project.swift */; };
-		D3F2EE942BEBDFA4000F31AD /* ProjectProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE932BEBDFA4000F31AD /* ProjectProviderProtocol.swift */; };
-		D3F2EE962BEBDFAC000F31AD /* ProjectProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE952BEBDFAC000F31AD /* ProjectProvider.swift */; };
+		D3F2EE942BEBDFA4000F31AD /* ProjectsProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE932BEBDFA4000F31AD /* ProjectsProviderProtocol.swift */; };
+		D3F2EE962BEBDFAC000F31AD /* ProjectsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE952BEBDFAC000F31AD /* ProjectsProvider.swift */; };
 		D3F2EE992BEBE327000F31AD /* SystemPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE982BEBE327000F31AD /* SystemPermission.swift */; };
 		D3F2EE9B2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE9A2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift */; };
 		D3F2EE9D2BEBE483000F31AD /* SystemPermissionsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE9C2BEBE483000F31AD /* SystemPermissionsProvider.swift */; };
 		D3F2EE9F2BEBF3DB000F31AD /* EditorFlowContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EE9E2BEBF3DB000F31AD /* EditorFlowContext.swift */; };
 		D3F2EEA12BEBF5C6000F31AD /* EditorContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEA02BEBF5C6000F31AD /* EditorContext.swift */; };
+		D3F2EEA72BEC93AE000F31AD /* ProjectCreateModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEA62BEC9399000F31AD /* ProjectCreateModuleFactory.swift */; };
+		D3F2EEA82BEC93AE000F31AD /* ProjectCreateModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEA52BEC9399000F31AD /* ProjectCreateModuleFactoryProtocol.swift */; };
+		D3F2EEA92BEC93B1000F31AD /* ProjectCreateModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEA42BEC9395000F31AD /* ProjectCreateModuleInput.swift */; };
+		D3F2EEAA2BEC93B1000F31AD /* ProjectCreateModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEA32BEC9395000F31AD /* ProjectCreateModuleSeed.swift */; };
+		D3F2EEAB2BEC93B1000F31AD /* ProjectCreateModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEA22BEC9395000F31AD /* ProjectCreateModule.swift */; };
+		D3F2EEB02BEC9AA7000F31AD /* ProjectCreateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEAF2BEC9921000F31AD /* ProjectCreateViewModel.swift */; };
+		D3F2EEB12BEC9AA7000F31AD /* ProjectCreateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEAC2BEC9829000F31AD /* ProjectCreateViewController.swift */; };
+		D3F2EEB22BEC9AA7000F31AD /* ProjectCreateViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEAE2BEC9921000F31AD /* ProjectCreateViewState.swift */; };
+		D3F2EEB32BEC9AA7000F31AD /* ProjectCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEAD2BEC9859000F31AD /* ProjectCreateView.swift */; };
+		D3F2EEB62BECDCAE000F31AD /* CaptioningMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEB52BECDCAE000F31AD /* CaptioningMode.swift */; };
+		D3F2EEB82BECDE80000F31AD /* ProjectsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEB72BECDE80000F31AD /* ProjectsError.swift */; };
+		D3F2EEC12BECECB7000F31AD /* ProjectsFlowModuleSeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEBA2BECECA5000F31AD /* ProjectsFlowModuleSeed.swift */; };
+		D3F2EEC22BECECB7000F31AD /* ProjectsFlowModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEBB2BECECA5000F31AD /* ProjectsFlowModule.swift */; };
+		D3F2EEC32BECECB7000F31AD /* ProjectsFlowModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEC02BECECA9000F31AD /* ProjectsFlowModuleFactoryProtocol.swift */; };
+		D3F2EEC42BECECB7000F31AD /* ProjectsFlowModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEBF2BECECA9000F31AD /* ProjectsFlowModuleFactory.swift */; };
+		D3F2EEC52BECECB7000F31AD /* ProjectsFlowModuleInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEBD2BECECA5000F31AD /* ProjectsFlowModuleInput.swift */; };
+		D3F2EECB2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EECA2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift */; };
+		D3F2EECE2BECEF31000F31AD /* ProjectListModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EECD2BECEF31000F31AD /* ProjectListModuleFactory.swift */; };
+		D3F2EECF2BECF2AE000F31AD /* ProjectsFlowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3F2EEC82BECED8B000F31AD /* ProjectsFlowCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,13 +198,32 @@
 		D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptioningDecorator.swift; sourceTree = "<group>"; };
 		D3DD28F12BEBCEF000542276 /* ImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
 		D3F2EE912BEBDF99000F31AD /* Project.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
-		D3F2EE932BEBDFA4000F31AD /* ProjectProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProviderProtocol.swift; sourceTree = "<group>"; };
-		D3F2EE952BEBDFAC000F31AD /* ProjectProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectProvider.swift; sourceTree = "<group>"; };
+		D3F2EE932BEBDFA4000F31AD /* ProjectsProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsProviderProtocol.swift; sourceTree = "<group>"; };
+		D3F2EE952BEBDFAC000F31AD /* ProjectsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsProvider.swift; sourceTree = "<group>"; };
 		D3F2EE982BEBE327000F31AD /* SystemPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPermission.swift; sourceTree = "<group>"; };
 		D3F2EE9A2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPermissionsProviderProtocol.swift; sourceTree = "<group>"; };
 		D3F2EE9C2BEBE483000F31AD /* SystemPermissionsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemPermissionsProvider.swift; sourceTree = "<group>"; };
 		D3F2EE9E2BEBF3DB000F31AD /* EditorFlowContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorFlowContext.swift; sourceTree = "<group>"; };
 		D3F2EEA02BEBF5C6000F31AD /* EditorContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorContext.swift; sourceTree = "<group>"; };
+		D3F2EEA22BEC9395000F31AD /* ProjectCreateModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateModule.swift; sourceTree = "<group>"; };
+		D3F2EEA32BEC9395000F31AD /* ProjectCreateModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateModuleSeed.swift; sourceTree = "<group>"; };
+		D3F2EEA42BEC9395000F31AD /* ProjectCreateModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateModuleInput.swift; sourceTree = "<group>"; };
+		D3F2EEA52BEC9399000F31AD /* ProjectCreateModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D3F2EEA62BEC9399000F31AD /* ProjectCreateModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateModuleFactory.swift; sourceTree = "<group>"; };
+		D3F2EEAC2BEC9829000F31AD /* ProjectCreateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewController.swift; sourceTree = "<group>"; };
+		D3F2EEAD2BEC9859000F31AD /* ProjectCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateView.swift; sourceTree = "<group>"; };
+		D3F2EEAE2BEC9921000F31AD /* ProjectCreateViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewState.swift; sourceTree = "<group>"; };
+		D3F2EEAF2BEC9921000F31AD /* ProjectCreateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCreateViewModel.swift; sourceTree = "<group>"; };
+		D3F2EEB52BECDCAE000F31AD /* CaptioningMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptioningMode.swift; sourceTree = "<group>"; };
+		D3F2EEB72BECDE80000F31AD /* ProjectsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsError.swift; sourceTree = "<group>"; };
+		D3F2EEBA2BECECA5000F31AD /* ProjectsFlowModuleSeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsFlowModuleSeed.swift; sourceTree = "<group>"; };
+		D3F2EEBB2BECECA5000F31AD /* ProjectsFlowModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsFlowModule.swift; sourceTree = "<group>"; };
+		D3F2EEBD2BECECA5000F31AD /* ProjectsFlowModuleInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsFlowModuleInput.swift; sourceTree = "<group>"; };
+		D3F2EEBF2BECECA9000F31AD /* ProjectsFlowModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsFlowModuleFactory.swift; sourceTree = "<group>"; };
+		D3F2EEC02BECECA9000F31AD /* ProjectsFlowModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsFlowModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D3F2EEC82BECED8B000F31AD /* ProjectsFlowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectsFlowCoordinator.swift; sourceTree = "<group>"; };
+		D3F2EECA2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModuleFactoryProtocol.swift; sourceTree = "<group>"; };
+		D3F2EECD2BECEF31000F31AD /* ProjectListModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListModuleFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,7 +305,7 @@
 				D30A7D9E2BE8F85A00325A76 /* Launch */,
 				D30A7DA02BE8F87400325A76 /* HomeContainer */,
 				D30A7DE02BE93AF700325A76 /* ProjectsFlow */,
-				D30A7DA32BE8F9EC00325A76 /* Projects */,
+				D30A7DA32BE8F9EC00325A76 /* ProjectList */,
 				D30A7DA22BE8F9E400325A76 /* About */,
 				D30A7DCC2BE908E100325A76 /* EditorFlow */,
 				D30A7DCD2BE908F000325A76 /* ProjectCreate */,
@@ -321,11 +359,12 @@
 			path = About;
 			sourceTree = "<group>";
 		};
-		D30A7DA32BE8F9EC00325A76 /* Projects */ = {
+		D30A7DA32BE8F9EC00325A76 /* ProjectList */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EEC92BECEE23000F31AD /* Factory */,
 			);
-			path = Projects;
+			path = ProjectList;
 			sourceTree = "<group>";
 		};
 		D30A7DA42BE8FA0800325A76 /* Editor */ = {
@@ -389,6 +428,7 @@
 		D30A7DC52BE8FFCE00325A76 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EEB42BECDC8B000F31AD /* Captioning */,
 				D3F2EE972BEBE31C000F31AD /* SystemPermissions */,
 				D3F2EE902BEBDF85000F31AD /* Projects */,
 			);
@@ -419,6 +459,9 @@
 		D30A7DE02BE93AF700325A76 /* ProjectsFlow */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EEC72BECED8B000F31AD /* Coordinator */,
+				D3F2EEB92BECECA5000F31AD /* Module */,
+				D3F2EEBE2BECECA8000F31AD /* Factory */,
 			);
 			path = ProjectsFlow;
 			sourceTree = "<group>";
@@ -543,7 +586,6 @@
 			children = (
 				D30A7E3C2BE97B7B00325A76 /* EditorViewModel.swift */,
 				D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */,
-				D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -604,6 +646,9 @@
 		D30A7E232BE9644C00325A76 /* Module */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EEA32BEC9395000F31AD /* ProjectCreateModuleSeed.swift */,
+				D3F2EEA42BEC9395000F31AD /* ProjectCreateModuleInput.swift */,
+				D3F2EEA22BEC9395000F31AD /* ProjectCreateModule.swift */,
 			);
 			path = Module;
 			sourceTree = "<group>";
@@ -611,6 +656,8 @@
 		D30A7E242BE9644C00325A76 /* Factory */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EEA52BEC9399000F31AD /* ProjectCreateModuleFactoryProtocol.swift */,
+				D3F2EEA62BEC9399000F31AD /* ProjectCreateModuleFactory.swift */,
 			);
 			path = Factory;
 			sourceTree = "<group>";
@@ -618,6 +665,8 @@
 		D30A7E252BE9644C00325A76 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EEAF2BEC9921000F31AD /* ProjectCreateViewModel.swift */,
+				D3F2EEAE2BEC9921000F31AD /* ProjectCreateViewState.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -625,6 +674,8 @@
 		D30A7E262BE9644C00325A76 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D3F2EEAC2BEC9829000F31AD /* ProjectCreateViewController.swift */,
+				D3F2EEAD2BEC9859000F31AD /* ProjectCreateView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -672,8 +723,9 @@
 			isa = PBXGroup;
 			children = (
 				D3F2EE912BEBDF99000F31AD /* Project.swift */,
-				D3F2EE932BEBDFA4000F31AD /* ProjectProviderProtocol.swift */,
-				D3F2EE952BEBDFAC000F31AD /* ProjectProvider.swift */,
+				D3F2EE932BEBDFA4000F31AD /* ProjectsProviderProtocol.swift */,
+				D3F2EE952BEBDFAC000F31AD /* ProjectsProvider.swift */,
+				D3F2EEB72BECDE80000F31AD /* ProjectsError.swift */,
 			);
 			path = Projects;
 			sourceTree = "<group>";
@@ -686,6 +738,51 @@
 				D3F2EE9C2BEBE483000F31AD /* SystemPermissionsProvider.swift */,
 			);
 			path = SystemPermissions;
+			sourceTree = "<group>";
+		};
+		D3F2EEB42BECDC8B000F31AD /* Captioning */ = {
+			isa = PBXGroup;
+			children = (
+				D3DD28ED2BEBA98C00542276 /* CaptioningDecorator.swift */,
+				D3F2EEB52BECDCAE000F31AD /* CaptioningMode.swift */,
+			);
+			path = Captioning;
+			sourceTree = "<group>";
+		};
+		D3F2EEB92BECECA5000F31AD /* Module */ = {
+			isa = PBXGroup;
+			children = (
+				D3F2EEBA2BECECA5000F31AD /* ProjectsFlowModuleSeed.swift */,
+				D3F2EEBD2BECECA5000F31AD /* ProjectsFlowModuleInput.swift */,
+				D3F2EEBB2BECECA5000F31AD /* ProjectsFlowModule.swift */,
+			);
+			path = Module;
+			sourceTree = "<group>";
+		};
+		D3F2EEBE2BECECA8000F31AD /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				D3F2EEC02BECECA9000F31AD /* ProjectsFlowModuleFactoryProtocol.swift */,
+				D3F2EEBF2BECECA9000F31AD /* ProjectsFlowModuleFactory.swift */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		D3F2EEC72BECED8B000F31AD /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				D3F2EEC82BECED8B000F31AD /* ProjectsFlowCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		D3F2EEC92BECEE23000F31AD /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				D3F2EECA2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift */,
+				D3F2EECD2BECEF31000F31AD /* ProjectListModuleFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -768,8 +865,11 @@
 			files = (
 				D30A7DDC2BE91D3300325A76 /* HomeContentType.swift in Sources */,
 				D30A7E172BE9609000325A76 /* EditorFlowModuleFactoryProtocol.swift in Sources */,
+				D3F2EECF2BECF2AE000F31AD /* ProjectsFlowCoordinator.swift in Sources */,
+				D3F2EEA92BEC93B1000F31AD /* ProjectCreateModuleInput.swift in Sources */,
 				D30A7DD62BE9179B00325A76 /* HomeContainerViewController.swift in Sources */,
 				D30A7E302BE9662A00325A76 /* EditorModuleInput.swift in Sources */,
+				D3F2EEAA2BEC93B1000F31AD /* ProjectCreateModuleSeed.swift in Sources */,
 				D30A7DB22BE8FCB400325A76 /* UIView+BoundingRect.swift in Sources */,
 				D30A7E132BE95F4500325A76 /* EditorFlowModuleInput.swift in Sources */,
 				D30A7DC72BE900DB00325A76 /* LaunchViewController.swift in Sources */,
@@ -777,7 +877,7 @@
 				D38D01312BEA0421009E3E83 /* ObservablePlayer.swift in Sources */,
 				D3F2EEA12BEBF5C6000F31AD /* EditorContext.swift in Sources */,
 				D30A7DB02BE8FCB400325A76 /* UIView+Debug.swift in Sources */,
-				D3F2EE962BEBDFAC000F31AD /* ProjectProvider.swift in Sources */,
+				D3F2EE962BEBDFAC000F31AD /* ProjectsProvider.swift in Sources */,
 				D30A7DBD2BE8FE6500325A76 /* BaseViewController.swift in Sources */,
 				D38D012D2BEA027E009E3E83 /* Video.swift in Sources */,
 				D30A7E032BE9507200325A76 /* Design.Colors.swift in Sources */,
@@ -786,8 +886,10 @@
 				D30A7E322BE9662A00325A76 /* EditorModule.swift in Sources */,
 				D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */,
 				D30A7DFC2BE9479100325A76 /* HomeContainerModule.swift in Sources */,
+				D3F2EEA82BEC93AE000F31AD /* ProjectCreateModuleFactoryProtocol.swift in Sources */,
 				D3F2EE9B2BEBE46A000F31AD /* SystemPermissionsProviderProtocol.swift in Sources */,
 				D38D01362BEA19BC009E3E83 /* PinLayout+.swift in Sources */,
+				D3F2EEA72BEC93AE000F31AD /* ProjectCreateModuleFactory.swift in Sources */,
 				D30A7DFD2BE94B1600325A76 /* HomeContainerModuleFactoryProtocol.swift in Sources */,
 				D30A7E392BE97AE300325A76 /* EditorViewController.swift in Sources */,
 				D30A7E192BE9620300325A76 /* EditorFlowCoordinator.swift in Sources */,
@@ -797,12 +899,17 @@
 				D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */,
 				D30A7DDA2BE91CD500325A76 /* HomeCoordinator.swift in Sources */,
 				D38D01332BEA0827009E3E83 /* Buttons.swift in Sources */,
+				D3F2EEC52BECECB7000F31AD /* ProjectsFlowModuleInput.swift in Sources */,
 				D30A7E052BE951D000325A76 /* Design.Appearance.swift in Sources */,
 				D30A7DC92BE906E000325A76 /* AppContainerProtocol.swift in Sources */,
 				D30A7DEB2BE93E4A00325A76 /* RootContainerModuleFactoryProtocol.swift in Sources */,
+				D3F2EEC32BECECB7000F31AD /* ProjectsFlowModuleFactoryProtocol.swift in Sources */,
 				D30A7DF92BE9475700325A76 /* HomeContainerModuleFactory.swift in Sources */,
 				D30A7DD82BE91C7A00325A76 /* BaseTabBarController.swift in Sources */,
+				D3F2EEB32BEC9AA7000F31AD /* ProjectCreateView.swift in Sources */,
+				D3F2EEC12BECECB7000F31AD /* ProjectsFlowModuleSeed.swift in Sources */,
 				D3F2EE992BEBE327000F31AD /* SystemPermission.swift in Sources */,
+				D3F2EEB22BEC9AA7000F31AD /* ProjectCreateViewState.swift in Sources */,
 				D30A7DA62BE8FB7600325A76 /* Design.swift in Sources */,
 				D30A7DDE2BE9221C00325A76 /* ViewLifecycleObservable.swift in Sources */,
 				D30A7DBE2BE8FE6500325A76 /* LoadingView.swift in Sources */,
@@ -822,30 +929,39 @@
 				D38D01272BE9FCA0009E3E83 /* AppStateSubscriber.swift in Sources */,
 				D30A7DAF2BE8FCB400325A76 /* UINavigationController+Completion.swift in Sources */,
 				D30A7DD22BE915A500325A76 /* RootCoordinator.swift in Sources */,
+				D3F2EEB82BECDE80000F31AD /* ProjectsError.swift in Sources */,
 				D30A7DFF2BE9506100325A76 /* Design.Metrics.swift in Sources */,
+				D3F2EEAB2BEC93B1000F31AD /* ProjectCreateModule.swift in Sources */,
 				D30A7E342BE9662A00325A76 /* EditorModuleFactoryProtocol.swift in Sources */,
-				D3F2EE942BEBDFA4000F31AD /* ProjectProviderProtocol.swift in Sources */,
+				D3F2EE942BEBDFA4000F31AD /* ProjectsProviderProtocol.swift in Sources */,
+				D3F2EECE2BECEF31000F31AD /* ProjectListModuleFactory.swift in Sources */,
 				D3F2EE9F2BEBF3DB000F31AD /* EditorFlowContext.swift in Sources */,
 				D30A7E112BE95F3C00325A76 /* EditorFlowModuleSeed.swift in Sources */,
 				D30A7E332BE9662A00325A76 /* MediaPermissionsModuleFactoryProtocol.swift in Sources */,
 				D3DD28F22BEBCEF000542276 /* ImagePickerDelegateProxy.swift in Sources */,
 				D30A7E352BE9662A00325A76 /* MediaPermissionsModuleSeed.swift in Sources */,
 				D30A7DFB2BE9479100325A76 /* HomeContainerModuleInput.swift in Sources */,
+				D3F2EECB2BECEE2C000F31AD /* ProjectListModuleFactoryProtocol.swift in Sources */,
 				D30A7DB12BE8FCB400325A76 /* UIViewController+Helpers.swift in Sources */,
 				D30A7DB52BE8FCB400325A76 /* UIImage+.swift in Sources */,
 				D3DD28EE2BEBA98C00542276 /* CaptioningDecorator.swift in Sources */,
 				D30A7E152BE9608900325A76 /* EditorFlowModuleFactory.swift in Sources */,
+				D3F2EEB12BEC9AA7000F31AD /* ProjectCreateViewController.swift in Sources */,
 				D38D012F2BEA0347009E3E83 /* MediaUtils.swift in Sources */,
 				D30A7E082BE95B8900325A76 /* NavigationCoordinator.swift in Sources */,
+				D3F2EEB62BECDCAE000F31AD /* CaptioningMode.swift in Sources */,
 				D30A7DC42BE8FF0600325A76 /* DisposeBag.swift in Sources */,
 				D30A7DED2BE93E6C00325A76 /* RootContainerModuleFactory.swift in Sources */,
+				D3F2EEC42BECECB7000F31AD /* ProjectsFlowModuleFactory.swift in Sources */,
 				D30A7DC02BE8FE6500325A76 /* MvvmUIKitViewController.swift in Sources */,
+				D3F2EEB02BEC9AA7000F31AD /* ProjectCreateViewModel.swift in Sources */,
 				D30A7DEF2BE943E500325A76 /* SuperTimer.swift in Sources */,
 				D30A7DE52BE93B8900325A76 /* RootContainerModule.swift in Sources */,
 				D30A7DB32BE8FCB400325A76 /* UIApplication+KeyWindow.swift in Sources */,
 				D30A7E3B2BE97AEA00325A76 /* EditorView.swift in Sources */,
 				D30A7E0F2BE95F2800325A76 /* EditorFlowModule.swift in Sources */,
 				D30A7D852BE8F11400325A76 /* AppDelegate.swift in Sources */,
+				D3F2EEC22BECECB7000F31AD /* ProjectsFlowModule.swift in Sources */,
 				D30A7E012BE9506900325A76 /* Design.Fonts.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

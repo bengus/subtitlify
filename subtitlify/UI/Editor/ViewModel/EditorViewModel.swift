@@ -20,7 +20,6 @@ class EditorViewModel:
 {
     /// Actions that could published from View
     enum ViewAction {
-        case selectVideoTap
         case playPauseTap
         case scrubStarted
         case scrubEnded(seekTime: TimeInterval)
@@ -40,6 +39,7 @@ class EditorViewModel:
     private let selectedVideo: Video
     private let transcriptionProvider: VideoTranscriptionProvider?
     private let captioningDecorator = CaptioningDecorator()
+    private let projectsProvider: ProjectsProviderProtocol
     
     // EditorViewModel is the specific case, because of that becides simple ViewState (see base ViewModel),
     // we also expose player observable state to sync playback status and slider as well.
@@ -49,9 +49,12 @@ class EditorViewModel:
     // MARK: - Init
     init(
         initialState: EditorViewState,
-        context: EditorContext
+        context: EditorContext,
+        projectsProvider: ProjectsProviderProtocol
     ) {
         self.context = context
+        self.projectsProvider = projectsProvider
+        
         switch context {
         case .demo(let isBuffered):
             self.isBufferedTrascriptionMode = isBuffered
@@ -113,8 +116,6 @@ class EditorViewModel:
     // MARK: - ViewActions
     override func onViewAction(_ action: ViewAction) {
         switch action {
-        case .selectVideoTap:
-            selectVideo()
         case .playPauseTap:
             playPause()
         case .scrubStarted:
@@ -130,10 +131,6 @@ class EditorViewModel:
         case .closeTap:
             close()
         }
-    }
-    
-    private func selectVideo() {
-        onAction?(.selectVideo)
     }
     
     private func playPause() {
@@ -199,20 +196,11 @@ class EditorViewModel:
     
     /// Each time you want, you can rebuild current view state publish it for view with "reload"
     private func reload() {
-        // TODO: Detect all the permissions
-        let state: EditorViewState.State
-        if selectedVideo != nil {
-            state = .editing
-        } else {
-            state = .selecting
-        }
-        
         let isLoading = transcriptionProvider?.isFullTranscriptionInProgress ?? false
         
         publishState(
             EditorViewState(
                 isLoading: isLoading,
-                state: state,
                 captioningAttributedText: captioningDecorator.getCaptioningAttributedText(),
                 captioningMode: .fromDecoratorCaptioningMode(captioningDecorator.captioningMode),
                 timeControlStatus: .fromAVPlayerTimeControlStatus(player.timeControlStatus)

@@ -11,17 +11,19 @@ import Speech
 // How many segments we display in captioning at the moment
 private let captioningWindowLength = 12
 
-final class CaptioningDecorator {
-    enum CaptioningMode {
-        case currentWord
-        case regular
-        case highlighted
-    }
-    
+public final class CaptioningDecorator {
     private var currentCaptioningIndex: Array.Index?
     private var currentCaptioningRange: Range<Array.Index>?
     private var transcription: SFTranscription?
     private(set) var captioningMode: CaptioningMode = .highlighted
+    private lazy var regularAttributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.foregroundColor: Design.Colors.lightText,
+        NSAttributedString.Key.font: Design.Fonts.semibold(ofSize: 18),
+    ]
+    private lazy var highlightedAttributes: [NSAttributedString.Key: Any] = [
+        NSAttributedString.Key.foregroundColor: Design.Colors.accent,
+        NSAttributedString.Key.font: Design.Fonts.bold(ofSize: 18),
+    ]
     private var isTailWindowMode = false
     
     
@@ -51,15 +53,6 @@ final class CaptioningDecorator {
         if currentCaptioningIndex == nil && currentCaptioningRange == nil {
             return nil
         }
-        
-        let regularAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: Design.Colors.lightText,
-            NSAttributedString.Key.font: Design.Fonts.semibold(ofSize: 18),
-        ]
-        let highlightedAttributes: [NSAttributedString.Key: Any] = [
-            NSAttributedString.Key.foregroundColor: Design.Colors.accent,
-            NSAttributedString.Key.font: Design.Fonts.bold(ofSize: 18),
-        ]
         
         let attributedText = NSMutableAttributedString()
         if let transcription {

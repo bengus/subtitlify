@@ -1,5 +1,5 @@
 //
-//  EditorModuleFactory.swift
+//  ProjectCreateModuleFactory.swift
 //  subtitlify
 //
 //  Created by Boris Bengus on 07/05/2024.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class EditorModuleFactory: EditorModuleFactoryProtocol {
+final class ProjectCreateModuleFactory: ProjectCreateModuleFactoryProtocol {
     // MARK: - Dependencies
     private let container: AppContainerProtocol
     
@@ -18,22 +18,21 @@ final class EditorModuleFactory: EditorModuleFactoryProtocol {
     }
     
     
-    // MARK: - EditorModuleFactoryProtocol
-    func module(moduleSeed: EditorModuleSeed) -> EditorModule {
+    // MARK: - ProjectCreateModuleFactoryProtocol
+    func module(moduleSeed: ProjectCreateModuleSeed) -> ProjectCreateModule {
         // ViewModel
-        let viewModel = EditorViewModel(
-            initialState: EditorViewState.empty(),
-            context: moduleSeed.context,
+        let viewModel = ProjectCreateViewModel(
+            initialState: ProjectCreateViewState.empty(),
             projectsProvider: container.projectsProvider
         )
         
         // ViewController
-        let viewController = EditorViewController(
+        let viewController = ProjectCreateViewController(
             viewModel: viewModel,
-            viewFactory: { vm in EditorView(viewModel: vm) }
+            viewFactory: { vm in ProjectCreateView(viewModel: vm) }
         )
         
-        return EditorModule(
+        return ProjectCreateModule(
             viewController: viewController,
             moduleInput: viewModel
         )

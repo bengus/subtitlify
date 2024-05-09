@@ -25,13 +25,7 @@ final class HomeContainerModuleFactory: HomeContainerModuleFactoryProtocol {
         // Coordinator
         let coordinator = HomeCoordinator(
             containerViewController: containerViewController,
-            projectsModuleFactory: {
-                let vc = BaseViewController()
-                vc.onViewDidLoad = { [weak vc] in
-                    vc?.view.backgroundColor = .orange
-                }
-                return vc
-            },
+            projectsFlowModuleFactory: container.getProjectsFlowModuleFactory(),
             editorFlowModuleFactory: container.getEditorFlowModuleFactory(),
             aboutModuleFactory: { let vc = BaseViewController()
                 vc.onViewDidLoad = { [weak vc] in

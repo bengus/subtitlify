@@ -19,16 +19,6 @@ final class EditorView: MvvmUIKitView
     EditorViewModel.Eff
 > {
     // MARK: - Subviews
-    private lazy var selectingWrapperView = UIView(frame: .zero)
-    private lazy var editingWrapperView: UIView = {
-        let view = UIView(frame: .zero)
-        view.backgroundColor = Design.Colors.playbackBackround
-        return view
-    }()
-    private lazy var permissionWrapperView = UIView(frame: .zero)
-    
-    private lazy var selectVideoButton = Buttons.solidAccent(title: "Select video")
-
     private lazy var playerLayer = AVPlayerLayer()
     private lazy var playerView: UIView = {
         let view = UIView(frame: .zero)
@@ -86,21 +76,11 @@ final class EditorView: MvvmUIKitView
     override init(viewModel: EditorViewModel) {
         super.init(viewModel: viewModel)
         
-        self.backgroundColor = Design.Colors.defaultBackground
+        self.backgroundColor = Design.Colors.playbackBackround
         
-        addSubview(selectingWrapperView)
-        addSubview(editingWrapperView)
-        addSubview(permissionWrapperView)
-        selectingWrapperView.isHidden = true
-        editingWrapperView.isHidden = true
-        permissionWrapperView.isHidden = true
-        
-        selectingWrapperView.addSubview(selectVideoButton)
-        selectVideoButton.addTarget(self, action: #selector(selectButtonPressed), for: .touchUpInside)
-        
-        editingWrapperView.addSubview(playerView)
-        editingWrapperView.addSubview(subtitlesWrapperView)
-        editingWrapperView.addSubview(controlsWrapperView)
+        addSubview(playerView)
+        addSubview(subtitlesWrapperView)
+        addSubview(controlsWrapperView)
             
         subtitlesWrapperView.addSubview(subtitlesLabel)
         
@@ -148,26 +128,6 @@ final class EditorView: MvvmUIKitView
     // MARK: - Layout
     @discardableResult
     private func layout() -> CGSize {
-        // permission
-        permissionWrapperView.pin.all()
-        
-        // selecting
-        selectingWrapperView.pin.all()
-        selectVideoButton.pin
-            .apply({
-                if Design.isIpad {
-                    $0.width(Design.Metrics.buttonWidthIpad)
-                    $0.hCenter()
-                } else {
-                    $0.horizontally(Design.Metrics.horizontalGap)
-                }
-            })
-            .sizeToFit(.width)
-            .vCenter()
-        
-        // editing
-        editingWrapperView.pin.all()
-        
         // controls
         controlsWrapperView.pin
             .horizontally()
@@ -208,7 +168,7 @@ final class EditorView: MvvmUIKitView
             subtitlesWrapperView.pin
                 .top(overridenSubtitlesOrigin.y)
                 .left(overridenSubtitlesOrigin.x)
-                .width(editingWrapperView.frame.width)
+                .width(self.frame.width)
         } else {
             subtitlesWrapperView.pin
                 .horizontally()
@@ -235,11 +195,6 @@ final class EditorView: MvvmUIKitView
     
     
     // MARK: - Control's actions
-    @objc
-    private func selectButtonPressed() {
-        viewModel.sendViewAction(.selectVideoTap)
-    }
-    
     @objc
     private func playPauseButtonPressed() {
         viewModel.sendViewAction(.playPauseTap)
@@ -281,13 +236,13 @@ final class EditorView: MvvmUIKitView
     @objc
     private func handleSubtitlesPan(_ gesture: UIPanGestureRecognizer) {
         if let draggingView = gesture.view {
-            let point = gesture.translation(in: editingWrapperView)
+            let point = gesture.translation(in: self)
             draggingView.center = CGPoint(
                 x: draggingView.center.x + point.x,
                 y: draggingView.center.y + point.y
             )
             overridenSubtitlesOrigin = draggingView.frame.origin
-            gesture.setTranslation(.zero, in: editingWrapperView)
+            gesture.setTranslation(.zero, in: self)
             switch gesture.state {
             case .began:
                 draggingView.layer.borderWidth = 1
@@ -309,23 +264,6 @@ final class EditorView: MvvmUIKitView
     // MARK: - State and effects
     override func onState(_ state: EditorViewState) {
         super.onState(state)
-        
-        switch state.state {
-        case .permissionRequired where permissionWrapperView.isHidden:
-            selectingWrapperView.isHidden = true
-            editingWrapperView.isHidden = true
-            permissionWrapperView.isHidden = false
-        case .selecting where selectingWrapperView.isHidden:
-            selectingWrapperView.isHidden = false
-            editingWrapperView.isHidden = true
-            permissionWrapperView.isHidden = true
-        case .editing where editingWrapperView.isHidden:
-            selectingWrapperView.isHidden = true
-            editingWrapperView.isHidden = false
-            permissionWrapperView.isHidden = true
-        default:
-            break
-        }
         
         subtitlesLabel.attributedText = state.captioningAttributedText
         loadingView.setLoading(state.isLoading)

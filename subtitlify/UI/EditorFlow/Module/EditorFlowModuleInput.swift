@@ -15,5 +15,8 @@ public enum EditorFlowModuleAction {
 
 public protocol EditorFlowModuleInput: AnyObject {
     var onAction: ((EditorFlowModuleAction) -> Void)? { get set }
-    func start(navigationController: UINavigationController)
+    func start(
+        navigationController: UINavigationController,
+        animated: Bool
+    )
 }

@@ -9,12 +9,6 @@ import Foundation
 import AVFoundation
 
 struct EditorViewState: Equatable {
-    enum State {
-        case permissionRequired
-        case selecting
-        case editing
-    }
-    
     enum CaptioningMode {
         case currentWord
         case regular
@@ -28,7 +22,6 @@ struct EditorViewState: Equatable {
     }
     
     let isLoading: Bool
-    let state: State
     let captioningAttributedText: NSAttributedString?
     let captioningMode: CaptioningMode
     let timeControlStatus: TimeControlStatus
@@ -36,7 +29,6 @@ struct EditorViewState: Equatable {
     static func empty() -> Self {
         return EditorViewState(
             isLoading: false,
-            state: .selecting,
             captioningAttributedText: nil,
             captioningMode: .highlighted,
             timeControlStatus: .unknown
@@ -45,7 +37,7 @@ struct EditorViewState: Equatable {
 }
 
 extension EditorViewState.CaptioningMode {
-    static func fromDecoratorCaptioningMode(_ mode: CaptioningDecorator.CaptioningMode) -> Self {
+    static func fromDecoratorCaptioningMode(_ mode: CaptioningMode) -> Self {
         switch mode {
         case .currentWord:
             return .currentWord

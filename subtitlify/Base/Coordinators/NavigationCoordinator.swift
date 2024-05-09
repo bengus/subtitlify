@@ -91,4 +91,18 @@ open class NavigationCoordinator {
             completion?()
         }
     }
+    
+    open func replace(
+        with viewControllers: [UIViewController],
+        animated: Bool,
+        completion: (() -> Void)? = nil
+    ) {
+        assertConfigured()
+        navigationController?.setViewControllers(
+            viewControllers,
+            animated: animated
+        ) {
+            completion?()
+        }
+    }
 }

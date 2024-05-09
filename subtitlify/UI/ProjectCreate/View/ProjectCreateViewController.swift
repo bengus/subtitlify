@@ -1,5 +1,5 @@
 //
-//  EditorViewController.swift
+//  ProjectCreateViewController.swift
 //  subtitlify
 //
 //  Created by Boris Bengus on 06/05/2024.
@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-final class EditorViewController: MvvmUIKitViewController
+final class ProjectCreateViewController: MvvmUIKitViewController
 <
-    EditorView,
-    EditorViewModel,
-    EditorViewState,
-    EditorViewModel.ViewAction,
-    EditorViewModel.Eff
+    ProjectCreateView,
+    ProjectCreateViewModel,
+    ProjectCreateViewState,
+    ProjectCreateViewModel.ViewAction,
+    ProjectCreateViewModel.Eff
 >
 {
     private lazy var closeButton = Buttons.navbarImageButtonItem(
@@ -26,10 +26,13 @@ final class EditorViewController: MvvmUIKitViewController
     
     // MARK: - Init
     override init(
-        viewModel: EditorViewModel,
-        viewFactory: @escaping (EditorViewModel) -> EditorView
+        viewModel: ProjectCreateViewModel,
+        viewFactory: @escaping (ProjectCreateViewModel) -> ProjectCreateView
     ) {
-        super.init(viewModel: viewModel, viewFactory: viewFactory)
+        super.init(
+            viewModel: viewModel,
+            viewFactory: viewFactory
+        )
         self.hidesBottomBarWhenPushed = true
     }
     
@@ -37,7 +40,7 @@ final class EditorViewController: MvvmUIKitViewController
     // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "Editor"
+        navigationItem.title = "Create project"
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,7 +54,7 @@ final class EditorViewController: MvvmUIKitViewController
     
     
     // MARK: - State and effects
-    override func onState(_ state: EditorViewState) {
+    override func onState(_ state: ProjectCreateViewState) {
         super.onState(state)
         closeButton.isEnabled = !state.isLoading
     }

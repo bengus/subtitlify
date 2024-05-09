@@ -91,10 +91,7 @@ public enum MediaUtils {
         return image
     }
     
-    public func encodeVideoToMp4(
-        videoUrl: URL,
-        completion: @escaping (Result<Video, MediaError>) -> Void
-    ) {
+    public static func encodeVideoToMp4(videoUrl: URL) async throws -> Video {
         let savingFilePath = MediaUtils.getUniqueMediaFileName(withExt: MediaUtils.mediaFileTypeMp4)
         let savingUrl = MediaUtils.getTempFileUrl(forFileName: savingFilePath)
         let sourceAsset = AVURLAsset(url: videoUrl)
@@ -104,28 +101,20 @@ public enum MediaUtils {
             asset: sourceAsset,
             presetName: AVAssetExportPresetPassthrough
         ) else {
-            DispatchQueue.main.async {
-                completion(.failure(.encodingVideoToMp4Failed(reason: nil)))
-            }
-            return
+            throw MediaError.encodingVideoToMp4Failed(reason: nil)
         }
         exportSession.timeRange = CMTimeRange(start: CMTime(seconds: 0, preferredTimescale: 1), duration: sourceAsset.duration)
         exportSession.outputURL = savingUrl
         exportSession.outputFileType = AVFileType.mp4
         exportSession.shouldOptimizeForNetworkUse = true
         
-        exportSession.exportAsynchronously {
-            switch exportSession.status {
-            case .completed:
-                let encodedVideo = Video(url: savingUrl)
-                DispatchQueue.main.async {
-                    completion(.success(encodedVideo))
-                }
-            default:
-                DispatchQueue.main.async {
-                    completion(.failure(.encodingVideoToMp4Failed(reason: exportSession.error)))
-                }
-            }
+        await exportSession.export()
+        switch exportSession.status {
+        case .completed:
+            let encodedVideo = Video(url: savingUrl)
+            return encodedVideo
+        default:
+            throw MediaError.encodingVideoToMp4Failed(reason: exportSession.error)
         }
     }
     

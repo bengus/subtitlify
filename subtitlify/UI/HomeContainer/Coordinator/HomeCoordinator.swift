@@ -13,7 +13,7 @@ final class HomeCoordinator: NSObject,
                              UITabBarControllerDelegate
 {
     private weak var containerViewController: HomeContainerViewController?
-    private let projectsModuleFactory: () -> UIViewController
+    private let projectsFlowModuleFactory: ProjectsFlowModuleFactoryProtocol
     private let editorFlowModuleFactory: EditorFlowModuleFactoryProtocol
     private let aboutModuleFactory: () -> UIViewController
     
@@ -21,12 +21,12 @@ final class HomeCoordinator: NSObject,
     // MARK: - Init
     init(
         containerViewController: HomeContainerViewController,
-        projectsModuleFactory: @escaping () -> UIViewController,
+        projectsFlowModuleFactory: ProjectsFlowModuleFactoryProtocol,
         editorFlowModuleFactory: EditorFlowModuleFactoryProtocol,
         aboutModuleFactory: @escaping () -> UIViewController
     ) {
         self.containerViewController = containerViewController
-        self.projectsModuleFactory = projectsModuleFactory
+        self.projectsFlowModuleFactory = projectsFlowModuleFactory
         self.editorFlowModuleFactory = editorFlowModuleFactory
         self.aboutModuleFactory = aboutModuleFactory
         
@@ -35,9 +35,16 @@ final class HomeCoordinator: NSObject,
         containerViewController.delegate = self
         containerViewController.onViewDidFirstAppear = { [weak self] in
             guard let self else { return }
+            
+            // First time we should prepare our Parents:
+            // - projectsFlowModule
+            // - aboutModule
+            // Then it will be ready to be embedded into TabBarController
+            projectsFlowModule.moduleInput.start(navigationController: projectsFlowNavigationController)
+            
             self.containerViewController?.setViewControllers(
                 [
-                    projectsViewController,
+                    projectsFlowNavigationController,
                     emptyEditorViewController,
                     aboutViewController
                 ],
@@ -48,11 +55,21 @@ final class HomeCoordinator: NSObject,
     
     
     // MARK: - Child UI modules
-    private lazy var projectsViewController = {
-        let viewController = projectsModuleFactory()
-        viewController.tabBarItem.title = "Projects"
-        viewController.tabBarItem.image = UIImage(named: "24_home")
-        return viewController
+    // ProjectsFlowCoordinator is a NavigationCoordinator
+    // We have to create new UINavigationController and start coordinator on it
+    // Or reuse an existing one. In this case we host it in new UINavigationController
+    private lazy var projectsFlowNavigationController = {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem.title = "Projects"
+        navigationController.tabBarItem.image = UIImage(named: "24_home")
+        return navigationController
+    }()
+    private lazy var projectsFlowModule = {
+        let module = projectsFlowModuleFactory.module(moduleSeed: ProjectsFlowModuleSeed())
+        module.moduleInput.onAction = { [weak self] action in
+            // Do nothing
+        }
+        return module
     }()
     
     // This is a fake editor for tabbar, actual EditorFlow will be presented as modal
@@ -135,7 +152,10 @@ final class HomeCoordinator: NSObject,
         let topViewController = UIViewController.findTopViewController(fromRootViewController: rootViewController)
         
         // Start flow inside NavigationController and present it
-        editorFlowModule.moduleInput.start(navigationController: navigationController)
+        editorFlowModule.moduleInput.start(
+            navigationController: navigationController,
+            animated: false // to prevent double animation start non-animated, but animate presenting
+        )
         topViewController.present(navigationController, animated: true)
     }
     
@@ -143,11 +163,11 @@ final class HomeCoordinator: NSObject,
     // MARK: - UITabBarControllerDelegate
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
         if viewController === emptyEditorViewController {
-            openEditorFlow(context: .demo(isBuffered: true))
+            openEditorFlow(context: .new)
             return false
-        } else if viewController === aboutViewController {
-            openEditorFlow(context: .demo(isBuffered: false))
-            return false
+//        } else if viewController === aboutViewController {
+//            openEditorFlow(context: .demo(isBuffered: false))
+//            return false
         } else {
             return true
         }

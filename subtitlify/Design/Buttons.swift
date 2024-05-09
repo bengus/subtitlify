@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 public enum Buttons {
+    // MARK: - Image buttons
     public static func image(
         image: UIImage?,
         backgroundColor: UIColor,
@@ -95,6 +96,38 @@ public enum Buttons {
         }
         button.configuration = configuration
         
+        return button
+    }
+    
+    
+    // MARK: - UIBarButtonItems
+    public static func navbarTextButtonItem(
+        title: String?,
+        target: Any? = nil,
+        action: Selector? = nil
+    ) -> UIBarButtonItem {
+        let button = UIBarButtonItem(
+            title: title,
+            style: .plain,
+            target: target,
+            action: action
+        )
+        button.tintColor = Design.Colors.navBarText
+        return button
+    }
+    
+    public static func navbarImageButtonItem(
+        image: UIImage?,
+        target: Any? = nil,
+        action: Selector? = nil
+    ) -> UIBarButtonItem {
+        let button = UIBarButtonItem(
+            image: image,
+            style: .plain,
+            target: target,
+            action: action
+        )
+        button.tintColor = Design.Colors.navBarText
         return button
     }
 }
