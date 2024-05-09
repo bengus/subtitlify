@@ -10,6 +10,7 @@ import UIKit
 
 public enum ProjectsFlowModuleAction {
     // Actions that will be available outside the module should be declared here
+    case createProject
 }
 
 public protocol ProjectsFlowModuleInput: AnyObject {

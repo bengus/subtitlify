@@ -40,9 +40,15 @@ class ProjectListViewModel:
     // MARK: - ViewActions
     override func onViewAction(_ action: ViewAction) {
         switch action {
+        case .createProjectTap:
+            createProjectTap()
         case .projectTap(let projectItem):
             projectTap(projectItem)
         }
+    }
+    
+    private func createProjectTap() {
+        onAction?(.createProject)
     }
     
     private func projectTap(_ projectItem: ProjectListViewState.ProjectItem) {
@@ -73,6 +79,7 @@ class ProjectListViewModel:
 extension ProjectListViewModel {
     /// Actions that could published from View
     enum ViewAction {
+        case createProjectTap
         case projectTap(projectItem: ProjectListViewState.ProjectItem)
     }
     

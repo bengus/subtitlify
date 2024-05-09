@@ -26,6 +26,7 @@ public extension Design {
         public static let buttonImageContentInset = NSDirectionalEdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8)
         public static let buttonSystemContentInset = NSDirectionalEdgeInsets(top: 8, leading: 4, bottom: 8, trailing: 4)
         public static let buttonHeight: CGFloat = 48
+        public static let buttonWidth: CGFloat = 260
         public static let buttonWidthIpad: CGFloat = 320
     }
 }

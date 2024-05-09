@@ -10,6 +10,7 @@ import UIKit
 
 public enum ProjectListModuleAction {
     // Actions that will be available outside the module should be declared here
+    case createProject
     case openProject(_ project: Project)
 }
 

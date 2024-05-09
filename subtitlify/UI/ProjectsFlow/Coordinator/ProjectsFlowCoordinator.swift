@@ -46,8 +46,11 @@ final class ProjectsFlowCoordinator: NavigationCoordinator,
         let module = projectListModuleFactory.module(moduleSeed: ProjectListModuleSeed())
         module.moduleInput.onAction = { [weak self] action in
             switch action {
+            case .createProject:
+                // In case of creation, open EditorFlow from Home-root modal
+                self?.onAction?(.createProject)
             case .openProject(let project):
-                self?.openEditorFlow(project: project)
+                self?.openEditorFlow(context: .project(project))
             }
         }
         
@@ -59,21 +62,14 @@ final class ProjectsFlowCoordinator: NavigationCoordinator,
         push(module.viewController, animated: false)
     }
     
-    @objc
-    private func ddd() {
-        if let firstProject = projectsProvider.getAllProjects().first {
-            openEditorFlow(project: firstProject)
-        }
-    }
-    
-    func openEditorFlow(project: Project) {
+    func openEditorFlow(context: EditorFlowContext) {
         guard let navigationController = navigationController else {
             assertionFailure("ProjectsFlowCoordinator's navigationController is nil while editor flow opening")
             return
         }
         
         let editorFlowModule = editorFlowModuleFactory.module(
-            moduleSeed: EditorFlowModuleSeed(context: .project(project))
+            moduleSeed: EditorFlowModuleSeed(context: context)
         )
         editorFlowModule.moduleInput.onAction = { action in
             switch action {

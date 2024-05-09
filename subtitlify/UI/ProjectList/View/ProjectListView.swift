@@ -33,6 +33,8 @@ final class ProjectListView: MvvmUIKitView
         return tableView
     }()
     
+    private lazy var emptyView = ProjectListEmptyView()
+    
     
     // MARK: - Init
     override init(viewModel: ProjectListViewModel) {
@@ -40,9 +42,14 @@ final class ProjectListView: MvvmUIKitView
         
         self.backgroundColor = Design.Colors.defaultBackground
         addSubview(tableView)
+        addSubview(emptyView)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ProjectListTableViewCell.self, forCellReuseIdentifier: ProjectListTableViewCellIdentifier)
+        
+        emptyView.onCreateProjectTap = { [weak self] in
+            self?.viewModel.sendViewAction(.createProjectTap)
+        }
     }
     
     
@@ -70,6 +77,9 @@ final class ProjectListView: MvvmUIKitView
             .top(pin.safeArea.top)
             .horizontally()
             .bottom()
+        
+        emptyView.pin.all()
+        
         return frame.size
     }
     
@@ -78,6 +88,7 @@ final class ProjectListView: MvvmUIKitView
     override func onState(_ state: ProjectListViewState) {
         super.onState(state)
         
+        emptyView.isHidden = !state.projects.isEmpty
         tableView.reloadData()
         setNeedsLayout()
     }

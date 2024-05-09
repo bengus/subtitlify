@@ -73,6 +73,7 @@
 		D30A7E3F2BE97B8200325A76 /* EditorViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */; };
 		D30A7E412BE97CAD00325A76 /* EditorModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */; };
 		D30A7E442BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */; };
+		D36BF10B2BED09BB004A5775 /* ProjectListEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36BF10A2BED09BB004A5775 /* ProjectListEmptyView.swift */; };
 		D38D01272BE9FCA0009E3E83 /* AppStateSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D01262BE9FCA0009E3E83 /* AppStateSubscriber.swift */; };
 		D38D01292BEA01AA009E3E83 /* video.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = D38D01282BEA01AA009E3E83 /* video.mp4 */; };
 		D38D012D2BEA027E009E3E83 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38D012C2BEA027E009E3E83 /* Video.swift */; };
@@ -190,6 +191,7 @@
 		D30A7E3E2BE97B8200325A76 /* EditorViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorViewState.swift; sourceTree = "<group>"; };
 		D30A7E402BE97CAD00325A76 /* EditorModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditorModuleFactory.swift; sourceTree = "<group>"; };
 		D30A7E432BE97D6A00325A76 /* MediaPermissionsModuleFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPermissionsModuleFactory.swift; sourceTree = "<group>"; };
+		D36BF10A2BED09BB004A5775 /* ProjectListEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectListEmptyView.swift; sourceTree = "<group>"; };
 		D38D01262BE9FCA0009E3E83 /* AppStateSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStateSubscriber.swift; sourceTree = "<group>"; };
 		D38D01282BEA01AA009E3E83 /* video.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = video.mp4; sourceTree = "<group>"; };
 		D38D012C2BEA027E009E3E83 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
@@ -820,6 +822,7 @@
 				D3F8203B2BED00B300BE92E2 /* ProjectListViewController.swift */,
 				D3F8203D2BED00BA00BE92E2 /* ProjectListView.swift */,
 				D3F8203F2BED00C200BE92E2 /* ProjectListTableViewCell.swift */,
+				D36BF10A2BED09BB004A5775 /* ProjectListEmptyView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				D3F2EEAB2BEC93B1000F31AD /* ProjectCreateModule.swift in Sources */,
 				D30A7E342BE9662A00325A76 /* EditorModuleFactoryProtocol.swift in Sources */,
 				D3F2EE942BEBDFA4000F31AD /* ProjectsProviderProtocol.swift in Sources */,
+				D36BF10B2BED09BB004A5775 /* ProjectListEmptyView.swift in Sources */,
 				D3F820352BECFBAF00BE92E2 /* ProjectListModuleInput.swift in Sources */,
 				D3F2EECE2BECEF31000F31AD /* ProjectListModuleFactory.swift in Sources */,
 				D3F2EE9F2BEBF3DB000F31AD /* EditorFlowContext.swift in Sources */,

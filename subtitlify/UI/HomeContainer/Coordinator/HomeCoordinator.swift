@@ -67,7 +67,10 @@ final class HomeCoordinator: NSObject,
     private lazy var projectsFlowModule = {
         let module = projectsFlowModuleFactory.module(moduleSeed: ProjectsFlowModuleSeed())
         module.moduleInput.onAction = { [weak self] action in
-            // Do nothing
+            switch action {
+            case .createProject:
+                self?.openEditorFlow(context: .new)
+            }
         }
         return module
     }()
