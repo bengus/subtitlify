@@ -12,6 +12,7 @@ protocol AppContainerProtocol {
     
     // Services
     var projectsProvider: ProjectsProviderProtocol { get }
+    var systemPermissionsProvider: SystemPermissionsProviderProtocol { get }
     
     // UI Modules factories
     func getHomeContainerModuleFactory() -> HomeContainerModuleFactoryProtocol
@@ -20,7 +21,7 @@ protocol AppContainerProtocol {
     func getEditorFlowModuleFactory() -> EditorFlowModuleFactoryProtocol
     func getProjectCreateModuleFactory() -> ProjectCreateModuleFactoryProtocol
     func getEditorModuleFactory() -> EditorModuleFactoryProtocol
-    func getMediaPermissionsModuleFactory() -> MediaPermissionsModuleFactoryProtocol
+    func getPermissionsModuleFactory() -> PermissionsModuleFactoryProtocol
     
     // Projects flow
     func getProjectsFlowModuleFactory() -> ProjectsFlowModuleFactoryProtocol

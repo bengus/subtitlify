@@ -98,7 +98,7 @@ final class ProjectListEmptyView: UIView {
             .sizeToFit(.width)
         
         centerWrapperView.pin
-            .wrapContent()
+            .wrapContent(.vertically)
             .vCenter()
         
         return frame.size

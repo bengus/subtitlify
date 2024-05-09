@@ -20,7 +20,6 @@ public struct Project: Codable {
         return MediaUtils.getDocumentsFileUrl(forFileName: fileNameInDocumentsDirectory)
     }
     
-    
     public init(
         id: UUID,
         fileNameInDocumentsDirectory: String,

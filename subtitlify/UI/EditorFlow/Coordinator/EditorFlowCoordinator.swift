@@ -16,7 +16,8 @@ final class EditorFlowCoordinator: NavigationCoordinator,
     private let context: EditorFlowContext
     private let projectCreateModuleFactory: ProjectCreateModuleFactoryProtocol
     private let editorModuleFactory: EditorModuleFactoryProtocol
-    private let mediaPermissionsModuleFactory: MediaPermissionsModuleFactoryProtocol
+    private let permissionsModuleFactory: PermissionsModuleFactoryProtocol
+    private let systemPermissionsProvider: SystemPermissionsProviderProtocol
     
     
     // MARK: - Init
@@ -24,12 +25,14 @@ final class EditorFlowCoordinator: NavigationCoordinator,
         context: EditorFlowContext,
         projectCreateModuleFactory: ProjectCreateModuleFactoryProtocol,
         editorModuleFactory: EditorModuleFactoryProtocol,
-        mediaPermissionsModuleFactory: MediaPermissionsModuleFactoryProtocol
+        permissionsModuleFactory: PermissionsModuleFactoryProtocol,
+        systemPermissionsProvider: SystemPermissionsProviderProtocol
     ) {
         self.context = context
         self.projectCreateModuleFactory = projectCreateModuleFactory
         self.editorModuleFactory = editorModuleFactory
-        self.mediaPermissionsModuleFactory = mediaPermissionsModuleFactory
+        self.permissionsModuleFactory = permissionsModuleFactory
+        self.systemPermissionsProvider = systemPermissionsProvider
     }
     
     deinit {
@@ -39,7 +42,7 @@ final class EditorFlowCoordinator: NavigationCoordinator,
     }
     
     
-    // MARK: - Child UI modules
+    // MARK: - Child UI modules inputs (weak)
     private weak var editorModuleInput: EditorModuleInput?
     private weak var projectCreateModuleInput: ProjectCreateModuleInput?
     
@@ -55,18 +58,26 @@ final class EditorFlowCoordinator: NavigationCoordinator,
         let initialRootViewController: UIViewController & DisposeBag
         
         // Choose initial root module accordingly to the context
-        switch context {
-        case .new:
-            let module = createProjectCreateModule()
-            self.projectCreateModuleInput = module.moduleInput
-            initialRootViewController = module.viewController
-        case .demo(let isBuffered):
-            let module = createEditorModule(context: .demo(isBuffered: isBuffered))
-            self.editorModuleInput = module.moduleInput
-            initialRootViewController = module.viewController
-        case .project(let project):
-            let module = createEditorModule(context: .project(project))
-            self.editorModuleInput = module.moduleInput
+        let missingPermissions = systemPermissionsProvider.getMissingPermissions()
+        if missingPermissions.isEmpty {
+            // If all required permissions are granted, move forward
+            switch context {
+            case .new:
+                let module = createProjectCreateModule()
+                self.projectCreateModuleInput = module.moduleInput
+                initialRootViewController = module.viewController
+            case .demo(let isBuffered):
+                let module = createEditorModule(context: .demo(isBuffered: isBuffered))
+                self.editorModuleInput = module.moduleInput
+                initialRootViewController = module.viewController
+            case .project(let project):
+                let module = createEditorModule(context: .project(project))
+                self.editorModuleInput = module.moduleInput
+                initialRootViewController = module.viewController
+            }
+        } else {
+            // otherwise ask permissions on a separate screen
+            let module = createPermissionsModule()
             initialRootViewController = module.viewController
         }
         
@@ -121,15 +132,45 @@ final class EditorFlowCoordinator: NavigationCoordinator,
         return module
     }
     
-    private func openPermission() {
-        
+    private func createPermissionsModule() -> PermissionsModule {
+        let module = permissionsModuleFactory.module(moduleSeed: PermissionsModuleSeed())
+        module.moduleInput.onAction = { [weak self] action in
+            switch action {
+            case .close:
+                self?.onAction?(.close)
+            case .allGranted:
+                self?.openInitialContext()
+            }
+        }
+        return module
+    }
+    
+    private func openInitialContext() {
+        let rootViewController: UIViewController & DisposeBag
+        switch context {
+        case .new:
+            let module = createProjectCreateModule()
+            self.projectCreateModuleInput = module.moduleInput
+            rootViewController = module.viewController
+        case .demo(let isBuffered):
+            let module = createEditorModule(context: .demo(isBuffered: isBuffered))
+            self.editorModuleInput = module.moduleInput
+            rootViewController = module.viewController
+        case .project(let project):
+            let module = createEditorModule(context: .project(project))
+            self.editorModuleInput = module.moduleInput
+            rootViewController = module.viewController
+        }
+        // In case of stack replacement we have to rebind lifecycle to the new root
+        rootViewController.addDisposable(self)
+        replace(with: [rootViewController], animated: true)
     }
     
     private func openProject(_ project: Project, flushStack: Bool) {
         let module = createEditorModule(context: .project(project))
         self.editorModuleInput = module.moduleInput
         if flushStack {
-            // In case of replace we have to rebind lifecycle to the new root
+            // In case of stack replacement we have to rebind lifecycle to the new root
             module.viewController.addDisposable(self)
             replace(with: [module.viewController], animated: true)
         } else {

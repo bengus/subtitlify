@@ -14,18 +14,15 @@ final class ProjectsFlowCoordinator: NavigationCoordinator,
     
     private let projectListModuleFactory: ProjectListModuleFactoryProtocol
     private let editorFlowModuleFactory: EditorFlowModuleFactoryProtocol
-    private let projectsProvider: ProjectsProviderProtocol
     
     
     // MARK: - Init
     public init(
         projectListModuleFactory: ProjectListModuleFactoryProtocol,
-        editorFlowModuleFactory: EditorFlowModuleFactoryProtocol,
-        projectsProvider: ProjectsProviderProtocol
+        editorFlowModuleFactory: EditorFlowModuleFactoryProtocol
     ) {
         self.projectListModuleFactory = projectListModuleFactory
         self.editorFlowModuleFactory = editorFlowModuleFactory
-        self.projectsProvider = projectsProvider
     }
     
     deinit {

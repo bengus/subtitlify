@@ -26,6 +26,8 @@ final class AppContainer: AppContainerProtocol {
         defaults: UserDefaults.standard
     )
     
+    private(set) lazy var systemPermissionsProvider: SystemPermissionsProviderProtocol = SystemPermissionsProvider()
+    
     func getHomeContainerModuleFactory() -> HomeContainerModuleFactoryProtocol {
         return HomeContainerModuleFactory(container: self)
     }
@@ -42,8 +44,8 @@ final class AppContainer: AppContainerProtocol {
         return EditorModuleFactory(container: self)
     }
     
-    func getMediaPermissionsModuleFactory() -> MediaPermissionsModuleFactoryProtocol {
-        return MediaPermissionsModuleFactory(container: self)
+    func getPermissionsModuleFactory() -> PermissionsModuleFactoryProtocol {
+        return PermissionsModuleFactory(container: self)
     }
     
     func getProjectsFlowModuleFactory() -> ProjectsFlowModuleFactoryProtocol {

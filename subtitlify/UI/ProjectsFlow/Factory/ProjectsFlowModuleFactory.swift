@@ -23,8 +23,7 @@ final class ProjectsFlowModuleFactory: ProjectsFlowModuleFactoryProtocol {
         // Coordinator
         let coordinator = ProjectsFlowCoordinator(
             projectListModuleFactory: container.getProjectListModuleFactory(),
-            editorFlowModuleFactory: container.getEditorFlowModuleFactory(),
-            projectsProvider: container.projectsProvider
+            editorFlowModuleFactory: container.getEditorFlowModuleFactory()
         )
         
         return ProjectsFlowModule(

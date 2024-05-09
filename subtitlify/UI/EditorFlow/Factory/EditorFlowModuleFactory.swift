@@ -25,7 +25,8 @@ final class EditorFlowModuleFactory: EditorFlowModuleFactoryProtocol {
             context: moduleSeed.context,
             projectCreateModuleFactory: container.getProjectCreateModuleFactory(),
             editorModuleFactory: container.getEditorModuleFactory(),
-            mediaPermissionsModuleFactory: container.getMediaPermissionsModuleFactory()
+            permissionsModuleFactory: container.getPermissionsModuleFactory(),
+            systemPermissionsProvider: container.systemPermissionsProvider
         )
         
         return EditorFlowModule(

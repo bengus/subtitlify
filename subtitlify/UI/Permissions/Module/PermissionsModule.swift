@@ -1,5 +1,5 @@
 //
-//  MediaPermissionsModule.swift
+//  PermissionsModule.swift
 //  subtitlify
 //
 //  Created by Boris Bengus on 06/05/2024.
@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-public struct MediaPermissionsModule {
+public struct PermissionsModule {
     public let viewController: UIViewController & DisposeBag
-    public let moduleInput: MediaPermissionsModuleInput
+    public let moduleInput: PermissionsModuleInput
     
     public init(
         viewController: UIViewController & DisposeBag,
-        moduleInput: MediaPermissionsModuleInput
+        moduleInput: PermissionsModuleInput
     ) {
         self.viewController = viewController
         self.moduleInput = moduleInput

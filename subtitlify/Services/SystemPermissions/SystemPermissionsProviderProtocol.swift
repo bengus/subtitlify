@@ -7,9 +7,9 @@
 
 import Foundation
 
-protocol SystemPermissionsProviderProtocol {
-    func getMissingPermissions(completion: @escaping ([SystemPermissionRequest]) -> Void)
-    
+public protocol SystemPermissionsProviderProtocol {
+    func getMissingPermissions() -> [SystemPermissionRequest]
     func requestSpeechRecognizerPermission(completion: @escaping (Bool) -> Void)
     func requestPhotoLibraryPermission(completion: @escaping (Bool) -> Void)
+    func openAppSettings()
 }
