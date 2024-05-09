@@ -22,6 +22,42 @@ final class AboutView: MvvmUIKitView
     private let DemoTableViewCellIdentifier = "DemoTableViewCellIdentifier"
     
     // MARK: - Subviews
+    private lazy var logoImageView: UIImageView = {
+        let imageView = UIImageView(frame: .zero)
+        imageView.image = UIImage(named: "AppIcon")
+        imageView.contentMode = .scaleAspectFit
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = Design.Metrics.cornerRadius
+        return imageView
+    }()
+    
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.font = Design.Fonts.bold(ofSize: 24)
+        label.textColor = Design.Colors.accent
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        if
+            let appVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            let buildVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+        {
+            label.text = "Subtitlify \(appVersion) (\(buildVersion))"
+        } else {
+            label.text = "Subtitlify"
+        }
+        return label
+    }()
+    
+    private lazy var subtitleLabel: UILabel = {
+        let label = UILabel()
+        label.font = Design.Fonts.semibold(ofSize: 18)
+        label.textColor = Design.Colors.primaryText
+        label.textAlignment = .center
+        label.numberOfLines = 0
+        label.text = "Demo show cases below:"
+        return label
+    }()
+    
     private lazy var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
         tableView.backgroundColor = .clear
@@ -39,7 +75,12 @@ final class AboutView: MvvmUIKitView
         super.init(viewModel: viewModel)
         
         self.backgroundColor = Design.Colors.defaultBackground
+        
+        addSubview(logoImageView)
+        addSubview(titleLabel)
+        addSubview(subtitleLabel)
         addSubview(tableView)
+        
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(DemoTableViewCell.self, forCellReuseIdentifier: DemoTableViewCellIdentifier)
@@ -66,8 +107,28 @@ final class AboutView: MvvmUIKitView
     // MARK: - Layout
     @discardableResult
     private func layout() -> CGSize {
-        tableView.pin
+        logoImageView.pin
             .top(pin.safeArea.top)
+            .marginTop(Design.Metrics.bigVerticalGap)
+            .hCenter()
+            .width(Design.Metrics.logoWidth)
+            .height(Design.Metrics.logoWidth)
+        
+        titleLabel.pin
+            .below(of: logoImageView)
+            .marginTop(Design.Metrics.verticalGap)
+            .horizontally(Design.Metrics.horizontalGap)
+            .sizeToFit(.width)
+        
+        subtitleLabel.pin
+            .below(of: titleLabel)
+            .marginTop(Design.Metrics.bigVerticalGap)
+            .horizontally(Design.Metrics.horizontalGap)
+            .sizeToFit(.width)
+        
+        tableView.pin
+            .below(of: subtitleLabel)
+            .marginTop(Design.Metrics.smallVerticalGap)
             .horizontally()
             .bottom()
         
@@ -118,4 +179,8 @@ final class AboutView: MvvmUIKitView
             viewModel.sendViewAction(.demoNonBufferedTap)
         }
     }
+}
+
+private extension Design.Metrics {
+    static let logoWidth: CGFloat = 200
 }

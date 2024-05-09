@@ -85,16 +85,18 @@ class ProjectCreateViewModel:
                 // Encode video to mp4
                 let encodedVideo = try await MediaUtils.encodeVideoToMp4(videoUrl: video.url)
                 // Save to documents directory
-                let fileName = MediaUtils.getUniqueMediaFileName(withExt: MediaUtils.mediaFileTypeMp4)
+                let newFileName = MediaUtils.getUniqueMediaFileName(withExt: MediaUtils.mediaFileTypeMp4)
                 let movedToDocumentsVideo = MediaUtils.movedVideoToDocumentsDirectory(
                     encodedVideo,
-                    newFileName: fileName
+                    newFileName: newFileName
                 )
                 // Create and save our project
                 let project = Project(
                     id: UUID(),
-                    videoUrl: movedToDocumentsVideo.url,
-                    createdDate: Date()
+                    fileNameInDocumentsDirectory: movedToDocumentsVideo.fileName,
+                    createdDate: Date(),
+                    subtitlesPosition: nil,
+                    lastUsedCaptioningMode: nil
                 )
                 try await projectsProvider.saveProject(project)
                 

@@ -24,6 +24,9 @@ class EditorViewModel:
     private let transcriptionProvider: VideoTranscriptionProvider?
     private let captioningDecorator = CaptioningDecorator()
     private let projectsProvider: ProjectsProviderProtocol
+    // can be nil in case of Demo
+    private var project: Project?
+    private var projectSavingTask: Task<Void, Never>?
     
     // EditorViewModel is the specific case, because of that becides simple ViewState (see base ViewModel),
     // we also expose player observable state to sync playback status and slider as well.
@@ -42,11 +45,23 @@ class EditorViewModel:
         switch context {
         case .demo(let isBuffered):
             self.isBufferedTrascriptionMode = isBuffered
-            let demoVideoURL = Bundle.main.url(forResource: "video_short", withExtension: "mp4")!
-            self.selectedVideo = Video(url: demoVideoURL)
+            if isBuffered {
+                // In buffered mode let's check a long video
+                let demoVideoURL = Bundle.main.url(forResource: "video", withExtension: "mp4")!
+                let demoVideo = Video(url: demoVideoURL)
+                self.selectedVideo = demoVideo
+            } else {
+                let demoShortVideoURL = Bundle.main.url(forResource: "video_short", withExtension: "mp4")!
+                let demoShortVideo = Video(url: demoShortVideoURL)
+                self.selectedVideo = demoShortVideo
+            }
         case .project(let project):
             self.isBufferedTrascriptionMode = false
             self.selectedVideo = Video(url: project.videoUrl)
+            self.project = project
+            if let lastUsedCaptioningMode = project.lastUsedCaptioningMode {
+                captioningDecorator.setCaptioningMode(lastUsedCaptioningMode)
+            }
         }
         self.player = ObservablePlayer(
             asset: selectedVideo.asset,
@@ -93,6 +108,7 @@ class EditorViewModel:
         super.onViewWillDisappear()
         
         stopPlayerObservation()
+        projectSavingTask?.cancel()
         pause()
     }
     
@@ -112,6 +128,8 @@ class EditorViewModel:
             captioningModeRegular()
         case .captioningModeHighlightedTap:
             captioningModeHighlighted()
+        case .changeSubtitlesPosition(let origin):
+            changeSubtitlesPosition(origin: origin)
         case .closeTap:
             close()
         }
@@ -161,17 +179,62 @@ class EditorViewModel:
     
     private func captioningModeCurrentWord() {
         captioningDecorator.setCaptioningMode(.currentWord)
+        saveLastCaptioningMode(.currentWord)
         reload()
     }
     
     private func captioningModeRegular() {
         captioningDecorator.setCaptioningMode(.regular)
+        saveLastCaptioningMode(.regular)
         reload()
     }
     
     private func captioningModeHighlighted() {
         captioningDecorator.setCaptioningMode(.highlighted)
+        saveLastCaptioningMode(.highlighted)
         reload()
+    }
+    
+    private func changeSubtitlesPosition(origin: CGPoint) {
+        if let project {
+            projectSavingTask?.cancel()
+            projectSavingTask = Task(priority: .background) {
+                // don't worry about [weak self] and retain cycle because we cancel the task on viewWillDisappear
+                let newProject = Project(
+                    id: project.id,
+                    fileNameInDocumentsDirectory: project.fileNameInDocumentsDirectory,
+                    createdDate: project.createdDate,
+                    subtitlesPosition: origin,
+                    lastUsedCaptioningMode: project.lastUsedCaptioningMode
+                )
+                try? await projectsProvider.saveProject(newProject)
+                self.project = newProject
+                await MainActor.run {
+                    reload()
+                }
+            }
+        }
+    }
+    
+    private func saveLastCaptioningMode(_ mode: CaptioningMode) {
+        if let project {
+            projectSavingTask?.cancel()
+            projectSavingTask = Task(priority: .background) {
+                // don't worry about [weak self] and retain cycle because we cancel the task on viewWillDisappear
+                let newProject = Project(
+                    id: project.id,
+                    fileNameInDocumentsDirectory: project.fileNameInDocumentsDirectory,
+                    createdDate: project.createdDate,
+                    subtitlesPosition: project.subtitlesPosition,
+                    lastUsedCaptioningMode: mode
+                )
+                try? await projectsProvider.saveProject(newProject)
+                self.project = newProject
+                await MainActor.run {
+                    reload()
+                }
+            }
+        }
     }
     
     private func close() {
@@ -187,7 +250,8 @@ class EditorViewModel:
                 isLoading: isLoading,
                 captioningAttributedText: captioningDecorator.getCaptioningAttributedText(),
                 captioningMode: .fromDecoratorCaptioningMode(captioningDecorator.captioningMode),
-                timeControlStatus: .fromAVPlayerTimeControlStatus(player.timeControlStatus)
+                timeControlStatus: .fromAVPlayerTimeControlStatus(player.timeControlStatus),
+                subtitlesPosition: project?.subtitlesPosition
             )
         )
     }
@@ -265,6 +329,7 @@ extension EditorViewModel {
         case captioningModeCurrentWordTap
         case captioningModeRegularTap
         case captioningModeHighlightedTap
+        case changeSubtitlesPosition(origin: CGPoint)
         case closeTap
     }
     

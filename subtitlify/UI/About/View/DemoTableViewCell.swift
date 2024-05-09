@@ -107,7 +107,7 @@ final class DemoTableViewCell: UITableViewCell {
         
         borderView.pin
             .below(of: [previewImageView, subtitleLabel])
-            .marginTop(Design.Metrics.verticalGap)
+            .marginTop(Design.Metrics.bigVerticalGap)
             .horizontally()
             .height(Design.Metrics.borderWidth)
         

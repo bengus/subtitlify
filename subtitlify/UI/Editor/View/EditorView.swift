@@ -77,6 +77,7 @@ final class EditorView: MvvmUIKitView
         super.init(viewModel: viewModel)
         
         self.backgroundColor = Design.Colors.playbackBackround
+        self.clipsToBounds = true
         
         addSubview(playerView)
         addSubview(subtitlesWrapperView)
@@ -250,6 +251,9 @@ final class EditorView: MvvmUIKitView
             case .cancelled, .ended, .failed:
                 draggingView.layer.borderWidth = 0
                 draggingView.layer.borderColor = nil
+                if let overridenSubtitlesOrigin {
+                    viewModel.sendViewAction(.changeSubtitlesPosition(origin: overridenSubtitlesOrigin))
+                }
             case .possible:
                 break
             case .changed:
@@ -299,6 +303,9 @@ final class EditorView: MvvmUIKitView
             modeHighlightedButton.backgroundColor = Design.Colors.accent
             modeHighlightedButton.titleLabel?.textColor = Design.Colors.lightText
         }
+        
+        // Change only of panGesture is inactive
+        self.overridenSubtitlesOrigin = state.subtitlesPosition
         
         setNeedsLayout()
     }

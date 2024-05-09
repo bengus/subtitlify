@@ -68,7 +68,7 @@ final class LaunchViewController: BaseViewController {
     }
 }
 
-extension Design.Metrics {
+private extension Design.Metrics {
     static let logoWidth: CGFloat = 200
     static let activityIndicatorBottomGap: CGFloat = 125
 }

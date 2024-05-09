@@ -21,6 +21,10 @@ public struct Video {
         return CMTimeGetSeconds(duration)
     }
     
+    public var fileName: String {
+        return url.lastPathComponent
+    }
+    
     public init(url: URL) {
         self.url = url
         self.asset = AVURLAsset(url: url)

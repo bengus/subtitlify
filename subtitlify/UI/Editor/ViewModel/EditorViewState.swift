@@ -25,13 +25,15 @@ struct EditorViewState: Equatable {
     let captioningAttributedText: NSAttributedString?
     let captioningMode: CaptioningMode
     let timeControlStatus: TimeControlStatus
+    let subtitlesPosition: CGPoint?
     
     static func empty() -> Self {
         return EditorViewState(
             isLoading: false,
             captioningAttributedText: nil,
             captioningMode: .highlighted,
-            timeControlStatus: .unknown
+            timeControlStatus: .unknown,
+            subtitlesPosition: nil
         )
     }
 }

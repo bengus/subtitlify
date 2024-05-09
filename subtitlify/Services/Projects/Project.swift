@@ -9,18 +9,29 @@ import Foundation
 
 public struct Project: Codable {
     public let id: UUID
-    public let videoUrl: URL
+    public let fileNameInDocumentsDirectory: String
     public let createdDate: Date
-//    public let lastUsedCaptioningMode: CaptioningMode
+    public let subtitlesPosition: CGPoint?
+    public let lastUsedCaptioningMode: CaptioningMode?
+    
+    // Because we shouldn't store absolute URL for documents directory.
+    // It could be changed after reinstall
+    public var videoUrl: URL {
+        return MediaUtils.getDocumentsFileUrl(forFileName: fileNameInDocumentsDirectory)
+    }
     
     
     public init(
         id: UUID,
-        videoUrl: URL,
-        createdDate: Date
+        fileNameInDocumentsDirectory: String,
+        createdDate: Date,
+        subtitlesPosition: CGPoint?,
+        lastUsedCaptioningMode: CaptioningMode?
     ) {
         self.id = id
-        self.videoUrl = videoUrl
+        self.fileNameInDocumentsDirectory = fileNameInDocumentsDirectory
         self.createdDate = createdDate
+        self.subtitlesPosition = subtitlesPosition
+        self.lastUsedCaptioningMode = lastUsedCaptioningMode
     }
 }

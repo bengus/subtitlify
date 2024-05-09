@@ -37,8 +37,8 @@ class ProjectListViewModel:
         reload()
     }
     
-    override func onViewWillDisappear() {
-        super.onViewWillDisappear()
+    override func onViewDidDisappear() {
+        super.onViewDidDisappear()
         projectDeletingTask?.cancel()
     }
     
@@ -67,6 +67,7 @@ class ProjectListViewModel:
     
     private func deleteProject(projectItem: ProjectListViewState.ProjectItem) {
         projectDeletingTask = Task(priority: .background) {
+            // don't worry about [weak self] and retain cycle because we cancel the task on viewDidDisappear
             if let project = projectsProvider.getProjectById(projectItem.id) {
                 try? await projectsProvider.deleteProject(project)
                 await MainActor.run {

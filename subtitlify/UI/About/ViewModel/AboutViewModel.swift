@@ -43,8 +43,11 @@ class AboutViewModel:
     }
     
     private func reload() {
-        let demoVideoURL = Bundle.main.url(forResource: "video_short", withExtension: "mp4")!
+        let demoVideoURL = Bundle.main.url(forResource: "video", withExtension: "mp4")!
         let demoVideo = Video(url: demoVideoURL)
+        
+        let demoShortVideoURL = Bundle.main.url(forResource: "video_short", withExtension: "mp4")!
+        let demoShortVideo = Video(url: demoShortVideoURL)
         
         publishState(
             AboutViewState(
@@ -56,7 +59,7 @@ class AboutViewModel:
                         demoType: .buffered
                     ),
                     AboutViewState.DemoItem(
-                        video: demoVideo,
+                        video: demoShortVideo,
                         titleText: "Demo video with fully prepared transcription",
                         subtitleText: "Generates full transcription before playing a video",
                         demoType: .nonBuffered

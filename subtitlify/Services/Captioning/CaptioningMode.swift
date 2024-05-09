@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum CaptioningMode {
+public enum CaptioningMode: Codable {
     case currentWord
     case regular
     case highlighted

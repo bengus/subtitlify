@@ -62,14 +62,8 @@ final class ProjectCreateView: MvvmUIKitView
     private func layout() -> CGSize {
         // selecting
         selectVideoButton.pin
-            .apply({
-                if Design.isIpad {
-                    $0.width(Design.Metrics.buttonWidthIpad)
-                    $0.hCenter()
-                } else {
-                    $0.horizontally(Design.Metrics.horizontalGap)
-                }
-            })
+            .width(Design.Metrics.buttonWidth)
+            .hCenter()
             .sizeToFit(.width)
             .vCenter()
         
