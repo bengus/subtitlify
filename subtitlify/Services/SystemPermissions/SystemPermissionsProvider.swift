@@ -41,10 +41,9 @@ final class SystemPermissionsProvider: SystemPermissionsProviderProtocol {
     
     func requestSpeechRecognizerPermission(completion: @escaping (Bool) -> Void) {
         SFSpeechRecognizer.requestAuthorization { status in
-            assert(status == .authorized)
             DispatchQueue.main.async {
 #if DEBUG
-                print("SFSpeechRecognizer permission granted")
+                print("SFSpeechRecognizer permission granted: \(status == .authorized)")
 #endif
                 completion(status == .authorized)
             }

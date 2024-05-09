@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Speech
 
 class EditorViewModel:
     ViewModel
@@ -24,6 +23,7 @@ class EditorViewModel:
     private let transcriptionProvider: VideoTranscriptionProvider?
     private let captioningDecorator = CaptioningDecorator()
     private let projectsProvider: ProjectsProviderProtocol
+    private let systemPermissionsProvider: SystemPermissionsProviderProtocol
     // can be nil in case of Demo
     private var project: Project?
     private var projectSavingTask: Task<Void, Never>?
@@ -37,10 +37,12 @@ class EditorViewModel:
     init(
         initialState: EditorViewState,
         context: EditorContext,
-        projectsProvider: ProjectsProviderProtocol
+        projectsProvider: ProjectsProviderProtocol,
+        systemPermissionsProvider: SystemPermissionsProviderProtocol
     ) {
         self.context = context
         self.projectsProvider = projectsProvider
+        self.systemPermissionsProvider = systemPermissionsProvider
         
         switch context {
         case .demo(let isBuffered):
@@ -88,13 +90,14 @@ class EditorViewModel:
     override func onViewDidFirstAppear() {
         super.onViewDidFirstAppear()
         
-        SFSpeechRecognizer.requestAuthorization { [weak self] status in
-            assert(status == .authorized)
+        systemPermissionsProvider.requestSpeechRecognizerPermission { granted in
             DispatchQueue.main.async { [weak self] in
 #if DEBUG
-                print("SFSpeechRecognizer permission granted")
+                print("SFSpeechRecognizer permission granted: \(granted)")
 #endif
-                self?.prepareTranscription()
+                if granted {
+                    self?.prepareTranscription()
+                }
             }
         }
     }
