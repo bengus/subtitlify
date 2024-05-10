@@ -7,6 +7,7 @@
 
 import Foundation
 
-public enum ProjectsError {
-    
+public enum ProjectsError: Error {
+    case projectSavingFailed(reason: Error)
+    case projectDeletionFailed(reason: Error)
 }

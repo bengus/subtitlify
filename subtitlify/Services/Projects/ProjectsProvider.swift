@@ -51,13 +51,17 @@ final class ProjectsProvider: ProjectsProviderProtocol {
     }
     
     func saveProjects(_ projects: [Project]) async throws {
-        let projectsData = try jsonEncoder.encode(projects)
-        let projectsString = String(data: projectsData, encoding: .utf8)
-        
-        if let projectsString = projectsString {
-            defaults.set(projectsString, forKey: projectsDefaultsKey)
-        } else {
-            defaults.removeObject(forKey: projectsDefaultsKey)
+        do {
+            let projectsData = try jsonEncoder.encode(projects)
+            let projectsString = String(data: projectsData, encoding: .utf8)
+            
+            if let projectsString = projectsString {
+                defaults.set(projectsString, forKey: projectsDefaultsKey)
+            } else {
+                defaults.removeObject(forKey: projectsDefaultsKey)
+            }
+        } catch(let error) {
+            throw ProjectsError.projectSavingFailed(reason: error)
         }
     }
     
@@ -66,7 +70,12 @@ final class ProjectsProvider: ProjectsProviderProtocol {
         if let existingProjectIndex = projects.firstIndex(where: { $0.id == project.id }) {
             projects.remove(at: existingProjectIndex)
         }
-        try await saveProjects(projects)
+        do {
+            try await saveProjects(projects)
+        } catch(let error) {
+            throw ProjectsError.projectDeletionFailed(reason: error)
+        }
+        
         // delete video file also
         Task(priority: .background) {
             do {
