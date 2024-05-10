@@ -200,6 +200,16 @@ static OSStatus AU_RenderCallback(void *inRefCon, AudioUnitRenderActionFlags *io
     [self.delegate audioTabProcessor:self didReceiveBuffer:outBuffer];
 }
 
+- (void)stopProcessing {
+    NSLog(@"AudioTapProcessor - stopProcessing");
+    AVMutableAudioMixInputParameters *params = (AVMutableAudioMixInputParameters *)_audioMix.inputParameters[0];
+    MTAudioProcessingTapRef audioProcessingTap = params.audioTapProcessor;
+    AVAudioTapProcessorContext *context = (AVAudioTapProcessorContext *)MTAudioProcessingTapGetStorage(audioProcessingTap);
+
+    // nils out the pointer so that we know in tapProcessorCallbacks that self will be dealloc'ed
+    context->self = NULL;
+}
+
 @end
 
 #pragma mark - MTAudioProcessingTap Callbacks
@@ -354,6 +364,11 @@ static void tap_ProcessCallback(MTAudioProcessingTapRef tap, CMItemCount numberF
     __unused OSStatus status = MTAudioProcessingTapGetSourceAudio(tap, numberFrames, bufferListInOut, flagsOut, NULL, numberFramesOut);
 
     MYAudioTapProcessor *self = ((__bridge MYAudioTapProcessor *)context->self);
+    if (!self) {
+        NSLog(@"AudioTapProcessor - processCallback CANCELLED (self is nil)");
+        return;
+    }
+    NSLog(@"AudioTapProcessor - processCallback PROCESSING");
     [self updateWithAudioBuffer:bufferListInOut capacity:(AVAudioFrameCount)numberFrames];
 }
 

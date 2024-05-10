@@ -65,6 +65,9 @@
 @property (nonatomic) float centerFrequency; // [0 .. 1]
 @property (nonatomic) float bandwidth; // [0 .. 1]
 
+// Method to explicitly say AudioTapProcessor to stop processing
+- (void)stopProcessing;
+
 @end
 
 #pragma mark - Protocols

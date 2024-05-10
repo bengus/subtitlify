@@ -48,6 +48,8 @@ public final class VideoTranscriptionProvider: NSObject,
 #if DEBUG
         print("VideoTranscriptionProvider deinit")
 #endif
+        // https://stackoverflow.com/a/55117416/3802468
+        audioTapProcessor?.stopProcessing()
     }
     
     

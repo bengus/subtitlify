@@ -80,6 +80,9 @@ class EditorViewModel:
 #if DEBUG
         print("EditorViewModel deinit")
 #endif
+        if isBufferedTrascriptionMode {
+            player.avPlayer.currentItem?.audioMix = nil
+        }
     }
     
     
