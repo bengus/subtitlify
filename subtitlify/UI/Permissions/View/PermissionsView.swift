@@ -25,8 +25,6 @@ final class PermissionsView: MvvmUIKitView
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFit
         imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = Design.Metrics.cornerRadius
-        imageView.tintColor = Design.Colors.accent
         return imageView
     }()
     
@@ -41,7 +39,7 @@ final class PermissionsView: MvvmUIKitView
     
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
-        label.font = Design.Fonts.semibold(ofSize: 18)
+        label.font = Design.Fonts.mediumText
         label.textColor = Design.Colors.secondaryText
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -142,7 +140,7 @@ final class PermissionsView: MvvmUIKitView
         super.onState(state)
         
         if let imageName = state.imageName {
-            logoImageView.image = UIImage(named: imageName)?.withRenderingMode(.alwaysTemplate)
+            logoImageView.image = UIImage(named: imageName)
         } else {
             logoImageView.image = nil
         }

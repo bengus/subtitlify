@@ -89,21 +89,21 @@ class PermissionsViewModel:
             let imageName: String?
             switch firstMissingPermission.permission {
             case .photoLibrary:
-                titleText = "Access to Photos"
+                titleText = "Photos"
                 subtitleText = if firstMissingPermission.state == .primaryRequest {
-                    "We kindly ask you to provide an access to your Photos to pick videos for captioning🙏. Tap \"Request\" to provide an access."
+                    "We kindly ask you to provide an access to your Photos to pick videos for captioning.\nTap \"Request\" to provide an access."
                 } else {
-                    "We kindly ask you to provide an access to your Photos to pick videos for captioning🙏. You can enable it in Settings app. Tap \"Go to settings\"."
+                    "We kindly ask you to provide an access to your Photos to pick videos for captioning.\nYou can enable it in Settings app. Tap \"Go to settings\"."
                 }
-                imageName = "icn_photos"
+                imageName = "apple_photos"
             case .speechRecognizer:
-                titleText = "Access to SpeechRecognition"
+                titleText = "SpeechRecognition"
                 subtitleText =  if firstMissingPermission.state == .primaryRequest {
-                    "We need to access to SpeechRecognition services on your device to make captioning for videos🙏. Tap \"Request\" to provide an access."
+                    "We need to access to SpeechRecognition services on your device to make captioning for videos.\nTap \"Request\" to provide an access."
                 } else {
-                    "We need to access to SpeechRecognition services on your device to make captioning for videos🙏. You can enable it in Settings app. Tap \"Go to settings\"."
+                    "We need to access to SpeechRecognition services on your device to make captioning for videos.\nYou can enable it in Settings app. Tap \"Go to settings\"."
                 }
-                imageName = "icn_mic"
+                imageName = "apple_speech_recognizer"
             }
             buttonText = if firstMissingPermission.state == .primaryRequest {
                 "Request"

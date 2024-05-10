@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "apple_speech_recognizer.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
