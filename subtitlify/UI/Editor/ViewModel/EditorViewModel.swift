@@ -27,6 +27,7 @@ class EditorViewModel:
     // can be nil in case of Demo
     private var project: Project?
     private var projectSavingTask: Task<Void, Never>?
+    private var overridenSubtitlesOrigin: CGPoint?
     
     // EditorViewModel is the specific case, because of that becides simple ViewState (see base ViewModel),
     // we also expose player observable state to sync playback status and slider as well.
@@ -64,6 +65,7 @@ class EditorViewModel:
             if let lastUsedCaptioningMode = project.lastUsedCaptioningMode {
                 captioningDecorator.setCaptioningMode(lastUsedCaptioningMode)
             }
+            self.overridenSubtitlesOrigin = project.subtitlesPosition
         }
         self.player = ObservablePlayer(
             asset: selectedVideo.asset,
@@ -199,6 +201,7 @@ class EditorViewModel:
     }
     
     private func changeSubtitlesPosition(origin: CGPoint) {
+        self.overridenSubtitlesOrigin = origin
         if let project {
             projectSavingTask?.cancel()
             projectSavingTask = Task(priority: .background) {
@@ -254,7 +257,7 @@ class EditorViewModel:
                 captioningAttributedText: captioningDecorator.getCaptioningAttributedText(),
                 captioningMode: .fromDecoratorCaptioningMode(captioningDecorator.captioningMode),
                 timeControlStatus: .fromAVPlayerTimeControlStatus(player.timeControlStatus),
-                subtitlesPosition: project?.subtitlesPosition
+                subtitlesPosition: overridenSubtitlesOrigin
             )
         )
     }

@@ -43,6 +43,8 @@ final class EditorView: MvvmUIKitView
         return view
     }()
     
+    private lazy var subtitlesPanGesture = UIPanGestureRecognizer()
+    
     private lazy var controlsWrapperView: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = Design.Colors.playbackBackround
@@ -98,7 +100,8 @@ final class EditorView: MvvmUIKitView
         modeWordByWordButton.addTarget(self, action: #selector(modeWordByWordButtonPressed), for: .touchUpInside)
         modeRegularButton.addTarget(self, action: #selector(modeRegularButtonPressed), for: .touchUpInside)
         modeHighlightedButton.addTarget(self, action: #selector(modeHighlightedButtonPressed), for: .touchUpInside)
-        subtitlesWrapperView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleSubtitlesPan)))
+        subtitlesPanGesture.addTarget(self, action: #selector(handleSubtitlesPan))
+        subtitlesWrapperView.addGestureRecognizer(subtitlesPanGesture)
         
         // Observing $player becides normal UI State
         startPlayerObservation()
@@ -305,7 +308,9 @@ final class EditorView: MvvmUIKitView
         }
         
         // Change only of panGesture is inactive
-        self.overridenSubtitlesOrigin = state.subtitlesPosition
+        if subtitlesPanGesture.state == .possible {
+            self.overridenSubtitlesOrigin = state.subtitlesPosition
+        }
         
         setNeedsLayout()
     }
