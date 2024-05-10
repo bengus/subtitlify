@@ -201,6 +201,14 @@ static OSStatus AU_RenderCallback(void *inRefCon, AudioUnitRenderActionFlags *io
 }
 
 - (void)stopProcessing {
+    // Don't need to stop processing if we didn't start processing.
+    // We know that _audioMix should be non-nil if processing was started.
+    if (!_audioMix)
+    {
+        NSLog(@"Don't need to stop processing for AudioTapProcessor if we didn't start.");
+        return;
+    }
+    
     NSLog(@"AudioTapProcessor - stopProcessing");
     AVMutableAudioMixInputParameters *params = (AVMutableAudioMixInputParameters *)_audioMix.inputParameters[0];
     MTAudioProcessingTapRef audioProcessingTap = params.audioTapProcessor;
@@ -368,7 +376,6 @@ static void tap_ProcessCallback(MTAudioProcessingTapRef tap, CMItemCount numberF
         NSLog(@"AudioTapProcessor - processCallback CANCELLED (self is nil)");
         return;
     }
-    NSLog(@"AudioTapProcessor - processCallback PROCESSING");
     [self updateWithAudioBuffer:bufferListInOut capacity:(AVAudioFrameCount)numberFrames];
 }
 
