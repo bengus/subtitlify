@@ -177,13 +177,13 @@ private extension SFTranscription {
         let startIndex = segments.firstIndex(where: {
             currentTime <= $0.timestamp + $0.duration
         }) ?? segments.startIndex
-        let endIndex = segments.index(startIndex, offsetBy: captioningWindowLength, limitedBy: segments.endIndex) ?? segments.endIndex
+        let endIndex = segments.index(startIndex, offsetBy: limit, limitedBy: segments.endIndex) ?? segments.endIndex
         return startIndex..<endIndex
     }
     
     func getTailSegmentsRange(limit: Int) -> Range<Array.Index> {
         let endIndex = segments.endIndex
-        let startIndex = segments.index(endIndex, offsetBy: -captioningWindowLength, limitedBy: segments.startIndex) ?? segments.startIndex
+        let startIndex = segments.index(endIndex, offsetBy: -limit, limitedBy: segments.startIndex) ?? segments.startIndex
         return startIndex..<endIndex
     }
 }
